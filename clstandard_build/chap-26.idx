@@ -1,0 +1,694 @@
+
+!2G:()!!26--2
+!2G:absolute!!26--2
+!2G:access!!26--2
+!2G:accessibility!!26--2
+!2G:accessible!!26--2
+!2G:accessor!!26--2
+!2G:active!!26--3
+!2G:actual adjustability!!26--3
+!2G:actual argument!!26--3
+!2G:actual array element type!!26--3
+!2G:actual complex part type!!26--3
+!2G:actual parameter!!26--3
+!2G:actually adjustable!!26--3
+!2G:adjustability!!26--3
+!2G:adjustable!!26--3
+!2G:after method!!26--3
+!2G:alist!!26--3
+!2G:alphabetic!!26--3
+!2G:alphanumeric!!26--3
+!2G:ampersand!!26--4
+!2G:anonymous!!26--4
+!2G:apparently uninterned!!26--4
+!2G:applicable!!26--4
+!2G:applicable handler!!26--4
+!2G:applicable method!!26--4
+!2G:applicable restart!!26--4
+!2G:apply!!26--4
+!2G:argument!!26--4
+!2G:argument evaluation order!!26--4
+!2G:argument precedence order!!26--4
+!2G:around method!!26--4
+!2G:array!!26--4
+!2G:array element type!!26--5
+!2G:array total size!!26--5
+!2G:assign!!26--5
+!2G:association list!!26--5
+!2G:asterisk!!26--5
+!2G:at-sign!!26--5
+!2G:atom!!26--5
+!2G:atomic!!26--5
+!2G:atomic type specifier!!26--5
+!2G:attribute!!26--5
+!2G:aux variable!!26--5
+!2G:auxiliary method!!26--5
+!2G:backquote!!26--6
+!2G:backslash!!26--6
+!2G:base character!!26--6
+!2G:base string!!26--6
+!2G:before method!!26--6
+!2G:bidirectional!!26--6
+!2G:binary!!26--6
+!2G:bind!!26--6
+!2G:binding!!26--6
+!2G:bit!!26--6
+!2G:bit array!!26--6
+!2G:bit vector!!26--6
+!2G:bit-wise logical operation specifier!!26--6
+!2G:block!!26--7
+!2G:block tag!!26--7
+!2G:boa lambda list!!26--7
+!2G:body parameter!!26--7
+!2G:boolean!!26--7
+!2G:boolean equivalent!!26--7
+!2G:bound!!26--7
+!2G:bound declaration!!26--7
+!2G:bounded!!26--7
+!2G:bounding index!!26--7
+!2G:bounding index designator!!26--8
+!2G:break loop!!26--8
+!2G:broadcast stream!!26--8
+!2G:built-in class!!26--8
+!2G:built-in type!!26--8
+!2G:byte!!26--8
+!2G:byte specifier!!26--8
+!2G:cadr!!26--8
+!2G:call!!26--8
+!2G:captured initialization form!!26--8
+!2G:car!!26--9
+!2G:case!!26--9
+!2G:case sensitivity mode!!26--9
+!2G:catch!!26--9
+!2G:catch tag!!26--9
+!2G:cddr!!26--9
+!2G:cdr!!26--9
+!2G:cell!!26--9
+!2G:character!!26--9
+!2G:character code!!26--9
+!2G:character designator!!26--10
+!2G:circular!!26--10
+!2G:circular list!!26--10
+!2G:class!!26--10
+!2G:class designator!!26--10
+!2G:class precedence list!!26--10
+!2G:close!!26--10
+!2G:closed!!26--10
+!2G:closure!!26--10
+!2G:coalesce!!26--10
+!2G:code!!26--11
+!2G:coerce!!26--11
+!2G:colon!!26--11
+!2G:comma!!26--11
+!2G:compilation!!26--11
+!2G:compilation environment!!26--11
+!2G:compilation unit!!26--11
+!2G:compile!!26--11
+!2G:compile time!!26--11
+!2G:compile-time definition!!26--11
+!2G:compiled code!!26--11
+!2G:compiled file!!26--12
+!2G:compiled function!!26--12
+!2G:compiler!!26--12
+!2G:compiler macro!!26--12
+!2G:compiler macro expansion!!26--12
+!2G:compiler macro form!!26--12
+!2G:compiler macro function!!26--12
+!2G:complex!!26--12
+!2G:complex float!!26--12
+!2G:complex part type!!26--12
+!2G:complex rational!!26--12
+!2G:complex single float!!26--13
+!2G:composite stream!!26--13
+!2G:compound form!!26--13
+!2G:compound type specifier!!26--13
+!2G:concatenated stream!!26--13
+!2G:condition!!26--13
+!2G:condition designator!!26--13
+!2G:condition handler!!26--13
+!2G:condition reporter!!26--13
+!2G:conditional newline!!26--13
+!2G:conformance!!26--13
+!2G:conforming code!!26--13
+!2G:conforming implementation!!26--13
+!2G:conforming processor!!26--14
+!2G:conforming program!!26--14
+!2G:congruent!!26--14
+!2G:cons!!26--14
+!2G:constant!!26--14
+!2G:constant form!!26--14
+!2G:constant object!!26--14
+!2G:constant variable!!26--14
+!2G:constituent!!26--14
+!2G:constituent trait!!26--14
+!2G:constructed stream!!26--14
+!2G:contagion!!26--15
+!2G:continuable!!26--15
+!2G:control form!!26--15
+!2G:copy!!26--15
+!2G:correctable!!26--15
+!2G:current input base!!26--15
+!2G:current logical block!!26--15
+!2G:current output base!!26--15
+!2G:current package!!26--16
+!2G:current pprint dispatch table!!26--16
+!2G:current random state!!26--16
+!2G:current readtable!!26--16
+!2G:data type!!26--16
+!2G:debug I/O!!26--16
+!2G:debugger!!26--16
+!2G:declaration!!26--16
+!2G:declaration identifier!!26--16
+!2G:declaration specifier!!26--16
+!2G:declare!!26--16
+!2G:decline!!26--17
+!2G:decoded time!!26--17
+!2G:default method!!26--17
+!2G:defaulted initialization argument list!!26--17
+!2G:define-method-combination arguments lambda list!!26--17
+!2G:define-modify-macro lambda list!!26--17
+!2G:defined name!!26--17
+!2G:defining form!!26--17
+!2G:defsetf lambda list!!26--17
+!2G:deftype lambda list!!26--17
+!2G:denormalized!!26--17
+!2G:derived type!!26--18
+!2G:derived type specifier!!26--18
+!2G:designator!!26--18
+!2G:destructive!!26--18
+!2G:destructuring lambda list!!26--18
+!2G:different!!26--18
+!2G:digit!!26--18
+!2G:dimension!!26--18
+!2G:direct instance!!26--18
+!2G:direct subclass!!26--18
+!2G:direct superclass!!26--18
+!2G:disestablish!!26--18
+!2G:disjoint!!26--18
+!2G:dispatching macro character!!26--19
+!2G:displaced array!!26--19
+!2G:distinct!!26--19
+!2G:documentation string!!26--19
+!2G:dot!!26--19
+!2G:dotted list!!26--19
+!2G:dotted pair!!26--19
+!2G:double float!!26--19
+!2G:double-quote!!26--19
+!2G:dynamic binding!!26--19
+!2G:dynamic environment!!26--19
+!2G:dynamic extent!!26--19
+!2G:dynamic scope!!26--19
+!2G:dynamic variable!!26--20
+!2G:echo stream!!26--20
+!2G:effective method!!26--20
+!2G:element!!26--20
+!2G:element type!!26--20
+!2G:em!!26--20
+!2G:empty list!!26--20
+!2G:empty type!!26--20
+!2G:end of file!!26--20
+!2G:environment!!26--21
+!2G:environment object!!26--21
+!2G:environment parameter!!26--21
+!2G:error!!26--21
+!2G:error output!!26--21
+!2G:escape!!26--21
+!2G:establish!!26--21
+!2G:evaluate!!26--21
+!2G:evaluation!!26--21
+!2G:evaluation environment!!26--21
+!2G:execute!!26--22
+!2G:execution time!!26--22
+!2G:exhaustive partition!!26--22
+!2G:exhaustive union!!26--22
+!2G:exit point!!26--22
+!2G:explicit return!!26--22
+!2G:explicit use!!26--22
+!2G:exponent marker!!26--22
+!2G:export!!26--22
+!2G:exported!!26--23
+!2G:expressed adjustability!!26--23
+!2G:expressed array element type!!26--23
+!2G:expressed complex part type!!26--23
+!2G:expression!!26--23
+!2G:expressly adjustable!!26--23
+!2G:extended character!!26--23
+!2G:extended function designator!!26--23
+!2G:extended lambda list!!26--23
+!2G:extension!!26--24
+!2G:extent!!26--24
+!2G:external file format!!26--24
+!2G:external file format designator!!26--24
+!2G:external symbol!!26--24
+!2G:externalizable object!!26--24
+!2G:false!!26--24
+!2G:fbound!!26--24
+!2G:feature!!26--24
+!2G:feature expression!!26--25
+!2G:features list!!26--25
+!2G:file!!26--25
+!2G:file compiler!!26--25
+!2G:file position!!26--25
+!2G:file position designator!!26--25
+!2G:file stream!!26--25
+!2G:file system!!26--25
+!2G:filename!!26--25
+!2G:fill pointer!!26--25
+!2G:finite!!26--25
+!2G:fixnum!!26--26
+!2G:float!!26--26
+!2G:for-value!!26--26
+!2G:form!!26--26
+!2G:formal argument!!26--26
+!2G:formal parameter!!26--26
+!2G:format!!26--26
+!2G:format argument!!26--26
+!2G:format control!!26--26
+!2G:format directive!!26--26
+!2G:format string!!26--26
+!2G:free declaration!!26--26
+!2G:fresh!!26--26
+!2G:freshline!!26--27
+!2G:funbound!!26--27
+!2G:function!!26--27
+!2G:function block name!!26--27
+!2G:function cell!!26--27
+!2G:function designator!!26--27
+!2G:function form!!26--27
+!2G:function name!!26--27
+!2G:functional evaluation!!26--27
+!2G:functional value!!26--27
+!2G:further compilation!!26--28
+!2G:general!!26--28
+!2G:generalized boolean!!26--28
+!2G:generalized instance!!26--28
+!2G:generalized reference!!26--28
+!2G:generalized synonym stream!!26--28
+!2G:generic function!!26--28
+!2G:generic function lambda list!!26--28
+!2G:gensym!!26--28
+!2G:global declaration!!26--29
+!2G:global environment!!26--29
+!2G:global variable!!26--29
+!2G:glyph!!26--29
+!2G:go!!26--29
+!2G:go point!!26--29
+!2G:go tag!!26--29
+!2G:graphic!!26--29
+!2G:handle!!26--29
+!2G:handler!!26--29
+!2G:hash table!!26--29
+!2G:home package!!26--29
+!2G:I/O customization variable!!26--29
+!2G:identical!!26--30
+!2G:identifier!!26--30
+!2G:immutable!!26--30
+!2G:implementation!!26--30
+!2G:implementation limit!!26--30
+!2G:implementation-defined!!26--30
+!2G:implementation-dependent!!26--30
+!2G:implementation-independent!!26--30
+!2G:implicit block!!26--30
+!2G:implicit compilation!!26--30
+!2G:implicit progn!!26--30
+!2G:implicit tagbody!!26--31
+!2G:import!!26--31
+!2G:improper list!!26--31
+!2G:inaccessible!!26--31
+!2G:indefinite extent!!26--31
+!2G:indefinite scope!!26--31
+!2G:indicator!!26--31
+!2G:indirect instance!!26--31
+!2G:inherit!!26--31
+!2G:initial pprint dispatch table!!26--31
+!2G:initial readtable!!26--31
+!2G:initialization argument list!!26--31
+!2G:initialization form!!26--31
+!2G:input!!26--31
+!2G:instance!!26--31
+!2G:integer!!26--31
+!2G:interactive stream!!26--32
+!2G:intern!!26--32
+!2G:internal symbol!!26--32
+!2G:internal time!!26--32
+!2G:internal time unit!!26--32
+!2G:interned!!26--32
+!2G:interpreted function!!26--32
+!2G:interpreted implementation!!26--32
+!2G:interval designator!!26--32
+!2G:invalid!!26--32
+!2G:iteration form!!26--32
+!2G:iteration variable!!26--33
+!2G:key!!26--33
+!2G:keyword!!26--33
+!2G:keyword parameter!!26--33
+!2G:keyword/value pair!!26--33
+!2G:lambda combination!!26--33
+!2G:lambda expression!!26--33
+!2G:lambda form!!26--33
+!2G:lambda list!!26--33
+!2G:lambda list keyword!!26--34
+!2G:lambda variable!!26--34
+!2G:leaf!!26--34
+!2G:leap seconds!!26--34
+!2G:left-parenthesis!!26--34
+!2G:length!!26--34
+!2G:lexical binding!!26--34
+!2G:lexical closure!!26--34
+!2G:lexical environment!!26--34
+!2G:lexical scope!!26--34
+!2G:lexical variable!!26--34
+!2G:Lisp image!!26--34
+!2G:Lisp printer!!26--35
+!2G:Lisp read-eval-print loop!!26--35
+!2G:Lisp reader!!26--35
+!2G:list!!26--35
+!2G:list designator!!26--35
+!2G:list structure!!26--35
+!2G:literal!!26--35
+!2G:load!!26--35
+!2G:load time!!26--35
+!2G:load time value!!26--36
+!2G:loader!!26--36
+!2G:local declaration!!26--36
+!2G:local precedence order!!26--36
+!2G:local slot!!26--36
+!2G:logical block!!26--36
+!2G:logical host!!26--36
+!2G:logical host designator!!26--36
+!2G:logical pathname!!26--36
+!2G:long float!!26--36
+!2G:loop keyword!!26--36
+!2G:lowercase!!26--36
+!2G:macro!!26--37
+!2G:macro character!!26--37
+!2G:macro expansion!!26--37
+!2G:macro form!!26--37
+!2G:macro function!!26--37
+!2G:macro lambda list!!26--37
+!2G:macro name!!26--37
+!2G:macroexpand hook!!26--37
+!2G:mapping!!26--37
+!2G:metaclass!!26--37
+!2G:Metaobject Protocol!!26--37
+!2G:method!!26--38
+!2G:method combination!!26--38
+!2G:method-defining form!!26--38
+!2G:method-defining operator!!26--38
+!2G:minimal compilation!!26--38
+!2G:modified lambda list!!26--38
+!2G:most recent!!26--38
+!2G:multiple escape!!26--38
+!2G:multiple values!!26--38
+!2G:name!!26--38
+!2G:named constant!!26--39
+!2G:namespace!!26--39
+!2G:namestring!!26--39
+!2G:newline!!26--39
+!2G:next method!!26--39
+!2G:nickname!!26--39
+!2G:nil!!26--39
+!2G:non-atomic!!26--39
+!2G:non-constant variable!!26--39
+!2G:non-correctable!!26--39
+!2G:non-empty!!26--39
+!2G:non-generic function!!26--39
+!2G:non-graphic!!26--40
+!2G:non-list!!26--40
+!2G:non-local exit!!26--40
+!2G:non-nil!!26--40
+!2G:non-null lexical environment!!26--40
+!2G:non-simple!!26--40
+!2G:non-terminating!!26--40
+!2G:non-top-level form!!26--40
+!2G:normal return!!26--40
+!2G:normalized!!26--40
+!2G:null!!26--40
+!2G:null lexical environment!!26--40
+!2G:number!!26--41
+!2G:numeric!!26--41
+!2G:object!!26--41
+!2G:object-traversing!!26--41
+!2G:open!!26--41
+!2G:operator!!26--41
+!2G:optimize quality!!26--41
+!2G:optional parameter!!26--41
+!2G:ordinary function!!26--41
+!2G:ordinary lambda list!!26--41
+!2G:otherwise inaccessible part!!26--42
+!2G:output!!26--42
+!2G:package!!26--42
+!2G:package cell!!26--42
+!2G:package designator!!26--42
+!2G:package marker!!26--42
+!2G:package prefix!!26--42
+!2G:package registry!!26--42
+!2G:pairwise!!26--42
+!2G:parallel!!26--42
+!2G:parameter!!26--43
+!2G:parameter specializer!!26--43
+!2G:parameter specializer name!!26--43
+!2G:pathname!!26--43
+!2G:pathname designator!!26--43
+!2G:physical pathname!!26--43
+!2G:place!!26--43
+!2G:plist!!26--43
+!2G:portable!!26--43
+!2G:potential copy!!26--43
+!2G:potential number!!26--43
+!2G:pprint dispatch table!!26--44
+!2G:predicate!!26--44
+!2G:present!!26--44
+!2G:pretty print!!26--44
+!2G:pretty printer!!26--44
+!2G:pretty printing stream!!26--44
+!2G:primary method!!26--44
+!2G:primary value!!26--44
+!2G:principal!!26--44
+!2G:print name!!26--44
+!2G:printer control variable!!26--44
+!2G:printer escaping!!26--45
+!2G:printer escaping!!26--45
+!2G:printing!!26--45
+!2G:process!!26--45
+!2G:processor!!26--45
+!2G:proclaim!!26--45
+!2G:proclamation!!26--45
+!2G:prog tag!!26--45
+!2G:program!!26--45
+!2G:programmer!!26--45
+!2G:programmer code!!26--45
+!2G:proper list!!26--45
+!2G:proper name!!26--45
+!2G:proper sequence!!26--45
+!2G:proper subtype!!26--45
+!2G:property!!26--45
+!2G:property indicator!!26--45
+!2G:property list!!26--46
+!2G:property value!!26--46
+!2G:purports to conform!!26--46
+!2G:qualified method!!26--46
+!2G:qualifier!!26--46
+!2G:query I/O!!26--46
+!2G:quoted object!!26--46
+!2G:radix!!26--46
+!2G:random state!!26--46
+!2G:rank!!26--46
+!2G:ratio!!26--46
+!2G:ratio marker!!26--47
+!2G:rational!!26--47
+!2G:read!!26--47
+!2G:readably!!26--47
+!2G:reader!!26--47
+!2G:reader macro!!26--47
+!2G:reader macro function!!26--47
+!2G:readtable!!26--47
+!2G:readtable case!!26--47
+!2G:readtable designator!!26--47
+!2G:recognizable subtype!!26--47
+!2G:reference!!26--47
+!2G:registered package!!26--48
+!2G:relative!!26--48
+!2G:repertoire!!26--48
+!2G:report!!26--48
+!2G:report message!!26--48
+!2G:required parameter!!26--48
+!2G:rest list!!26--48
+!2G:rest parameter!!26--48
+!2G:restart!!26--48
+!2G:restart designator!!26--48
+!2G:restart function!!26--48
+!2G:return!!26--49
+!2G:return value!!26--49
+!2G:right-parenthesis!!26--49
+!2G:run time!!26--49
+!2G:run-time compiler!!26--49
+!2G:run-time definition!!26--49
+!2G:run-time environment!!26--49
+!2G:safe!!26--49
+!2G:safe call!!26--49
+!2G:same!!26--49
+!2G:satisfy the test!!26--49
+!2G:scope!!26--50
+!2G:script!!26--50
+!2G:secondary value!!26--50
+!2G:section!!26--50
+!2G:self-evaluating object!!26--50
+!2G:semi-standard!!26--50
+!2G:semicolon!!26--50
+!2G:sequence!!26--50
+!2G:sequence function!!26--50
+!2G:sequential!!26--50
+!2G:sequentially!!26--50
+!2G:serious condition!!26--51
+!2G:session!!26--51
+!2G:set!!26--51
+!2G:setf expander!!26--51
+!2G:setf expansion!!26--51
+!2G:setf function!!26--51
+!2G:setf function name!!26--51
+!2G:shadow!!26--51
+!2G:shadowing symbol!!26--51
+!2G:shadowing symbols list!!26--51
+!2G:shared slot!!26--51
+!2G:sharpsign!!26--51
+!2G:short float!!26--51
+!2G:sign!!26--51
+!2G:signal!!26--51
+!2G:signature!!26--52
+!2G:similar!!26--52
+!2G:similarity!!26--52
+!2G:simple!!26--52
+!2G:simple array!!26--52
+!2G:simple bit array!!26--52
+!2G:simple bit vector!!26--52
+!2G:simple condition!!26--52
+!2G:simple general vector!!26--52
+!2G:simple string!!26--52
+!2G:simple vector!!26--52
+!2G:single escape!!26--52
+!2G:single float!!26--52
+!2G:single-quote!!26--52
+!2G:singleton!!26--52
+!2G:situation!!26--53
+!2G:slash!!26--53
+!2G:slot!!26--53
+!2G:slot specifier!!26--53
+!2G:source code!!26--53
+!2G:source file!!26--53
+!2G:space!!26--53
+!2G:special form!!26--53
+!2G:special operator!!26--53
+!2G:special variable!!26--53
+!2G:specialize!!26--53
+!2G:specialized!!26--53
+!2G:specialized lambda list!!26--53
+!2G:spreadable argument list designator!!26--53
+!2G:stack allocate!!26--54
+!2G:stack-allocated!!26--54
+!2G:standard character!!26--54
+!2G:standard class!!26--54
+!2G:standard generic function!!26--54
+!2G:standard input!!26--54
+!2G:standard method combination!!26--54
+!2G:standard object!!26--54
+!2G:standard output!!26--54
+!2G:standard pprint dispatch table!!26--54
+!2G:standard readtable!!26--54
+!2G:standard syntax!!26--55
+!2G:standardized!!26--55
+!2G:startup environment!!26--55
+!2G:step!!26--55
+!2G:stream!!26--55
+!2G:stream associated with a file!!26--55
+!2G:stream designator!!26--55
+!2G:stream element type!!26--55
+!2G:stream variable!!26--55
+!2G:stream variable designator!!26--55
+!2G:string!!26--55
+!2G:string designator!!26--56
+!2G:string equal!!26--56
+!2G:string stream!!26--56
+!2G:structure!!26--56
+!2G:structure class!!26--56
+!2G:structure name!!26--56
+!2G:style warning!!26--56
+!2G:subclass!!26--56
+!2G:subexpression!!26--56
+!2G:subform!!26--56
+!2G:subrepertoire!!26--56
+!2G:subtype!!26--56
+!2G:superclass!!26--56
+!2G:supertype!!26--56
+!2G:supplied-p parameter!!26--57
+!2G:symbol!!26--57
+!2G:symbol macro!!26--57
+!2G:synonym stream!!26--57
+!2G:synonym stream symbol!!26--57
+!2G:syntax type!!26--57
+!2G:system class!!26--57
+!2G:system code!!26--57
+!2G:t!!26--57
+!2G:tag!!26--57
+!2G:tail!!26--58
+!2G:target!!26--58
+!2G:terminal I/O!!26--58
+!2G:terminating!!26--58
+!2G:tertiary value!!26--58
+!2G:throw!!26--58
+!2G:tilde!!26--58
+!2G:time!!26--58
+!2G:time zone!!26--58
+!2G:token!!26--58
+!2G:top level form!!26--58
+!2G:trace output!!26--58
+!2G:tree!!26--59
+!2G:tree structure!!26--59
+!2G:true!!26--59
+!2G:truename!!26--59
+!2G:two-way stream!!26--59
+!2G:type!!26--59
+!2G:type declaration!!26--59
+!2G:type equivalent!!26--59
+!2G:type expand!!26--59
+!2G:type specifier!!26--59
+!2G:unbound!!26--59
+!2G:unbound variable!!26--60
+!2G:undefined function!!26--60
+!2G:unintern!!26--60
+!2G:uninterned!!26--60
+!2G:universal time!!26--60
+!2G:unqualified method!!26--60
+!2G:unregistered package!!26--60
+!2G:unsafe!!26--60
+!2G:unsafe call!!26--60
+!2G:upgrade!!26--60
+!2G:upgraded array element type!!26--60
+!2G:upgraded complex part type!!26--60
+!2G:uppercase!!26--61
+!2G:use!!26--61
+!2G:use list!!26--61
+!2G:user!!26--61
+!2G:valid array dimension!!26--61
+!2G:valid array index!!26--61
+!2G:valid array row-major index!!26--61
+!2G:valid fill pointer!!26--61
+!2G:valid logical pathname host!!26--61
+!2G:valid pathname device!!26--62
+!2G:valid pathname directory!!26--62
+!2G:valid pathname host!!26--62
+!2G:valid pathname name!!26--62
+!2G:valid pathname type!!26--62
+!2G:valid pathname version!!26--62
+!2G:valid physical pathname host!!26--62
+!2G:valid sequence index!!26--62
+!2G:value!!26--62
+!2G:value cell!!26--62
+!2G:variable!!26--62
+!2G:vector!!26--62
+!2G:vertical-bar!!26--62
+!2G:whitespace!!26--63
+!2G:wild!!26--63
+!2G:write!!26--63
+!2G:writer!!26--63
+!2G:yield!!26--63

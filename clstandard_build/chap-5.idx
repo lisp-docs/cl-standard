@@ -1,0 +1,84 @@
+
+!2G:generalized reference!!5--1
+!2G:place!!5--1
+!2T:order of evaluation!!5--2
+!2T:evaluation order!!5--2
+!2T:order of evaluation!!5--2
+!2T:evaluation order!!5--2
+!2R:apply!!5--14
+!2R:defun!!5--15
+!2R:fdefinition!!5--17
+!2R:fboundp!!5--18
+!2R:fmakunbound!!5--19
+!2R:flet, labels, macrolet!!5--20
+!2R:funcall!!5--24
+!2R:function!!5--25
+!2R:function-lambda-expression!!5--26
+!2R:functionp!!5--28
+!2R:compiled-function-p!!5--28
+!2R:call-arguments-limit!!5--29
+!2R:lambda-list-keywords!!5--30
+!2R:lambda-parameters-limit!!5--30
+!2R:defconstant!!5--31
+!2R:defparameter, defvar!!5--32
+!2R:destructuring-bind!!5--35
+!2R:let, let*!!5--36
+!2R:progv!!5--38
+!2R:setq!!5--39
+!2R:psetq!!5--40
+!2R:block!!5--41
+!2R:catch!!5--43
+!2T:order of evaluation!!5--43
+!2T:evaluation order!!5--43
+!2R:go!!5--44
+!2R:return-from!!5--45
+!2R:return!!5--47
+!2R:tagbody!!5--48
+!2R:throw!!5--49
+!2R:unwind-protect!!5--51
+!2R:nil!!5--54
+!2R:not!!5--55
+!2R:t!!5--55
+!2R:eq!!5--56
+!2R:eql!!5--58
+!2R:equal!!5--59
+!2R:equalp!!5--62
+!2R:identity!!5--64
+!2R:complement!!5--65
+!2R:constantly!!5--66
+!2R:every, some, notevery, notany!!5--67
+!2R:and!!5--68
+!2R:cond!!5--69
+!2R:if!!5--70
+!2R:or!!5--71
+!2R:when, unless!!5--72
+!2R:case, ccase, ecase!!5--74
+!2R:otherwise!!5--74
+!2R:t!!5--74
+!2R:typecase, ctypecase, etypecase!!5--76
+!2R:otherwise!!5--77
+!2R:t!!5--77
+!2R:multiple-value-bind!!5--79
+!2R:multiple-value-call!!5--81
+!2R:multiple-value-list!!5--81
+!2R:multiple-value-prog1!!5--82
+!2R:multiple-value-setq!!5--83
+!2T:order of evaluation!!5--83
+!2T:evaluation order!!5--83
+!2R:values!!5--84
+!2R:values-list!!5--85
+!2R:multiple-values-limit!!5--86
+!2R:nth-value!!5--86
+!2R:prog, prog*!!5--87
+!2R:prog1, prog2!!5--89
+!2R:progn!!5--91
+!2R:define-modify-macro!!5--92
+!2R:defsetf!!5--93
+!2R:define-setf-expander!!5--96
+!2R:get-setf-expansion!!5--98
+!2R:setf, psetf!!5--99
+!2R:shiftf!!5--101
+!2R:rotatef!!5--103
+!2R:control-error!!5--104
+!2R:program-error!!5--104
+!2R:undefined-function!!5--104

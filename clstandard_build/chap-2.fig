@@ -1,0 +1,21 @@
+!22--1. Readtable defined names!!2--1
+!22--2. Variables that influence the Lisp reader.!!2--2
+!22--3. Standard Character Subrepertoire (Part 1 of 3: Latin Characters)!!2--3
+!22--4. Standard Character Subrepertoire (Part 2 of 3: Numeric Characters)!!2--3
+!22--5. Standard Character Subrepertoire (Part 3 of 3: Special Characters)!!2--4
+!22--6. Possible Character Syntax Types!!2--5
+!22--7. Character Syntax Types in Standard Syntax!!2--5
+!22--8. Constituent Traits of Standard Characters and Semi-Standard Characters!!2--7
+!22--9. Syntax for Numeric Tokens!!2--14
+!22--10. Examples of reserved tokens!!2--15
+!22--11. Examples of symbols!!2--15
+!22--12. Examples of symbols or potential numbers!!2--16
+!22--13. Examples of Ratios!!2--17
+!22--14. Examples of Floating-point numbers!!2--18
+!22--15. Examples of the printed representation of symbols (Part 1 of 2)!!2--19
+!22--16. Examples of the printed representation of symbols (Part 2 of 2)!!2--20
+!22--17. Valid patterns for tokens!!2--21
+!22--18. Examples of the use of double-quote!!2--26
+!22--19. Standard \# Dispatching Macro Character Syntax!!2--30
+!22--20. Radix Indicator Example!!2--34
+!22--21. Complex Number Example!!2--35

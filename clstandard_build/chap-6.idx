@@ -1,0 +1,10 @@
+
+!2T:order of evaluation!!6--5
+!2T:evaluation order!!6--5
+!2T:order of evaluation!!6--9
+!2T:evaluation order!!6--9
+!2R:do, do*!!6--31
+!2R:dotimes!!6--35
+!2R:dolist!!6--37
+!2R:loop!!6--38
+!2R:loop-finish!!6--42

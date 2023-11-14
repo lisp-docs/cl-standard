@@ -1,0 +1,914 @@
+\input pitex
+\input navigator
+
+\setparameter page:
+  left         = 5cm
+  top          = 3cm
+  hsize        = 27pc
+  width        = "\dimexpr 10cm + 27pc\relax"
+  baselineskip = 14pt
+
+\setparameter navigator:
+  author = "Paul Isambert"
+  title  = "Navigator's documentation"
+  mode   = bookmarks
+  layout = onecolumn
+  pre    = "\longcolor{.8 .2 .2}"
+  post   = \endlongcolor
+
+\def\longcolor#1#2\endlongcolor{%
+  \color{#1}{#2}%
+  }
+
+\setparameter font:
+  command = \mainfont
+  type    = ttf
+  name    = lucidastd
+  roman   = ""
+  italic  = i
+  bold    = b
+  big     = 15pt
+
+\setparameter font:
+  command  = \codefont
+  type     = ttf
+  name     = lucon
+  roman    = ""
+  features = "" 
+
+\setparameter section:
+  font   = "\sc\bf"
+  number = none
+  color  = \comcolor
+
+\setparameter describebookmark:
+  meta = navigator
+  left = 12em
+
+\def\beforedescribe{%
+  \vskip-\lastskip
+  \vskip\baselineskip
+  \iflines1{}{\clearpage}%
+  \noindent
+  \bgroup\codefont
+  \hfuzz=\maxdimen}
+\def\afterdescribe{\par\egroup\noindent\ignorespaces}
+
+\def\desclap#1{\llap{#1\kern.25em}}
+
+\def\comcolor{.75 0 0}
+\def\attrcolor{.3 .3 .3}
+
+\def\describe#1#2.{%
+  \beforedescribe
+  \outline[meta = describebookmark]{3}[\commandtoname#1]{\noexpand#1}%
+  \desclap{\color{\comcolor}{\string#1}}#2%
+  \ifemptystring{#2}{\egroup\ignorespaces}{\afterdescribe}%
+  }
+
+\def\jumpcom#1{\jumplink{\commandtoname#1}{\com#1}\antigobblespace}
+
+\def\name{\arg{name}\antigobblespace}
+\def\code{\arg{code}\antigobblespace}
+
+\freedef\param#1{{\codefont#1}}
+\freedef\attr#1{{\codefont\color{\attrcolor}{#1}}}
+\freedef\value#1{{\codefont#1}}
+
+\def\describeattr#1#2(#3).{%
+  \beforedescribe
+  \outline[meta = describebookmark, italic]{4}{#1}%
+  \desclap{\attr{#1}}<\valueloop{}{#2 }> (\ifemptystring{#3}{No default}{Default: #3}.)%
+  \afterdescribe
+  }
+
+\newfornoempty\valueloop{1}#2 {%
+  \ifemptystring{#1}
+    {#2\passarguments{x}}
+    {\kern1pt\char"007C\kern1pt#2}%
+  }
+
+\newverbatim\verbatim
+  {\vskip\baselineskip
+   \codefont
+   \hfuzz=\maxdimen
+   \parindent=0pt\relax}
+  {\printverbatim
+   \vskip\baselineskip\removenextindent}
+
+\newblock*\description
+  {\it\rightskip=0pt plus 1fil\relax}{\par}
+
+\newblock*\values
+  {\parindent=0pt
+   \everypar{\getvalue}%
+   \getleftskip
+   }{\par}
+
+\def\getleftskip[#1]{\leftskip=#1\relax}
+\def\getvalue#1 {\llap{\value"#1"\kern.6em}}
+
+
+\gates def {headers}{%
+  \setbox255=\vbox to \dimexpr\outputsize+4\baselineskip{%
+    \box255
+    \vfil
+    \hbox to \hsize{\it\normalsize\hfil \the\pageno \hfil}}%
+  }
+
+
+\urlaction{pdf}{http://www.adobe.com/content/dam/Adobe/en/devnet/pdf/pdfs/PDF32000_2008.pdf}
+
+\def\tex{\TeX\antigobblespace}
+\def\pdftex{\scap{pdf}\tex}
+\def\luatex{Lua\kern-1pt\tex}
+\def\xetex{Xe\kern-1pt\tex}
+\def\navigator{\emph{Navigator}\antigobblespace}
+\pdfdef\navigator{Navigator}
+
+
+\bgroup
+
+\vbox to 4\baselineskip{%
+  \leftskip=0pt plus 1fil
+  \parfillskip=0pt \parindent=0pt
+  \vfil\obeylines
+  {\big\color{\comcolor}{\navigator}}\hfill Paul Isambert
+  \verb"zappathustra@free.fr"
+  01/25/2010
+  }
+
+\egroup
+
+
+
+
+
+\section"Introduction"
+
+\navigator offers access to PDF features such as outlines (bookmarks), links,
+actions and embedded files; it differs from other existing packages on two
+main points: first, it doesn't depend on any format and can be used with plain
+\tex, La\tex, ConTeXt (with some limitations, see \jumplink{files}{here} and
+\jumplink{features}{here}), and anywhere else; second, it defines commands
+to create PDF objects, and can be used as a base to produce raw PDF
+code across \pdftex, \luatex and \xetex.
+
+Note that PDF is a description language, and that not all PDF viewers render
+it completely (not even Adobe Acrobat, actually); thus, some of the features
+in \navigator might seem to produce nothing when the file is read with a
+reader which doesn't fully support PDF. Fortunately, the most common and
+useful features, such as links and outlines, are generally supported.
+
+
+
+
+
+
+
+
+\section"Using \navigator"
+
+\navigator is loaded in the usual fashion, depending on the format:
+\verb"\usepackage{navigator}" in La\tex, \verb"\usemodule[navigator]" in
+Con\tex{}t, and \verb"\input navigator" anywhere else.
+
+\describe\finishpdffile.
+Some of \navigator's operations can take place only at the end of the file.
+These include producing the outline's hierarchy, sorting embedded files, and
+writing some information about the document. However, there are exceptions:
+first in La\tex and Con\tex{}t, this is done automatically (and for Con\tex{}t
+anyway file embedding document settings aren't properly supported; you can
+do what \navigator does with the Con\tex{}t core, though); second, even
+if you don't use La\tex or Con\tex t, in \xetex the outline hierarchy is
+built at once, so this command isn't needed unless you embed files or
+want to write some infos to the document's properties. Anyway the command
+can also be systematically issued harmlessly.
+
+
+
+
+
+
+\section"Anchors"[anchors]
+
+\description
+Anchors are positions used as the targets of links for navigation
+within a PDF file (they are called \emph"destinations" in PDF parlance). 
+They are to be used in association with the \jumpcom\jumplink command
+or with \jumplink{outlines}{outlines}.
+\description/
+
+\describe\anchor\oarg{options}\name.
+This defines \name as an anchor. In vertical mode, the destination is were the
+command is issued; in horizontal mode, it also depends on the \attr"up" and \attr"left"
+attributes below. In both cases, however, the value of \attr"fit" might make a difference.
+The options that follow are also used in the \jumpcom\outline command
+when it defines an implicit anchor.
+
+\describeattr{up} dimension (\com\baselineskip).
+In horizontal mode, anchors are placed on the baseline; it means they send 
+below the intended line (more precisely: with the intended line's baseline
+at the top of the screen). This attribute makes a vertical correction, so
+the intended line is shown.
+
+\describeattr{left} dimension (0pt).
+Similar to \attr"up", but in the horizontal direction (moving leftward).
+
+\describeattr{fit} xyz fit fith fitv fitb fitbh fitbv fitr (xyz).
+All anchors target the page where they appear (fortunately), but when
+jumping to an anchor how the page is displayed depends on this parameter.
+The values have the following effect:
+
+\values[4em]
+xyz
+The page is displayed so that the anchor is positioned at the
+upper-left corner of the window. Also, if \attr"zoom" is specified, it
+is enforced.
+
+fit
+The page is displayed so that it fits entirely in the window.
+
+fith
+Same as \value"fit", but only horizontally.
+
+fitv
+Same as \value"fit", vertically.
+
+fitb
+The page is displayed so that its bounding box fits entirely
+in the window. A page's bounding box is the smallest rectancle enclosing
+its contents (including headers and footers or marginal material, if any).
+
+fitbh
+Same as \value"fith" for the bounding box.
+
+fitbv
+Same as \value"fitv" for the bounding box.
+
+fitr
+Displays the page so that the box where the anchor appears
+fits entirely in the window. This is disabled with \xetex, and subtler
+things might be possible in the future.
+\values/
+
+\describeattr{zoom} number ().
+Sets the viewer's zoom when jumping to a destination. The number provided
+should be 1000 times the intended zoom (like magnification in \tex); hence
+\verb"zoom = 1000" is the normal magnification, i.e. a 100\%~zoom. The use
+of this attribute, as well as any value but \value"xyz" for the previous
+one, might be extremely annoying for the reader, because s/he might need 
+to reset his or her zoom after each jump. (Most viewers implement \value"xyz"
+so that it performs its operation as best as possible without zooming; hence,
+unless the reader already uses a powerful zoom, the way the page is displayed
+is predictable.)
+
+\describe\anchorname\name.
+To avoid possible conflicts, \navigator tweaks the names you give it
+for anchors; if you ever need it, this command returns the real PDF
+names of the anchor you call \name.
+
+
+
+
+\section"Outlines (aka bookmarks)"[outlines]
+
+\description
+Don't hold it against me if I use the words \emph"outline" and
+\emph"bookmarks" alternatively. They are the same things, even
+though the command is \com\outline. There is no need for a second
+run to get bookmarks right.
+\description/
+
+\describe\outline\oarg{options}\arg{level}\oarg{name}\arg{title}.
+This creates a bookmark with title \arg{title}. In \luatex, \arg{title}
+is converted to UTF\nobreak-16 (in octal form, so \luatex doesn't
+complain), so you can use any character of Unicode (although the
+font used by your reader is very unlikely to display anything besides
+the basic plane). \xetex seems to spot the right encoding sometimes.
+As for \pdftex, no conversion is performed, so Latin-1 at best may
+succeed (the string is escaped nonetheless for characters with special
+meanings in PDF).
+
+The \arg{level} defines how the bookmark fits in the hierarchy. It
+is a number, and the smaller it is, the higher the bookmark. A bookmark
+is a child to the nearest preceding bookmark with a smaller \arg{level}.
+The following example illustrates that (hopefully):
+
+\verbatim
+\outline{1}{A chapter}
+  \outline{2}{A section}
+    \outline{3}{A subsection}
+  \outline{2}{Another section}
+\verbatim/
+
+Now, there is a difference between \pdftex and \luatex on the one hand
+and \xetex on the other. First, when using \xetex, \arg{level} should be an
+integer; no such restriction applies with the other engines. That means
+that if you suddenly want to insert a bookmark halfway between a chapter
+and a section in the hierarchy, you don't need to renumber everything:
+just assign a decimal number to it, for instance \verb"1.5" in the previous
+example. That is impossible with \xetex (which will ignore the decimal part,
+so it is also harmless). Second, with the latter engine, it is also impossible
+to skip levels, i.e. the following example isn't allowed:
+
+\verbatim
+\outline{1}{A chapter}
+  \outline{3}{A subsection}
+\verbatim/
+
+In that case, \xetex (i.e. \verb"xdvipdfmx") will insert an intermediate
+bookmark, called \verb"<No Title>", in red and italics (so you definitely
+can't miss it). With \pdftex and \luatex, since levels are a continuum,
+skipping a level doesn't make sense and the previous example is perfectly
+legitimate (however, if a section follows the subsection, its bookmark
+will appear at the same level as the subsection's). Finally, with all
+engines, \arg{level} can be zero or negative.
+
+Among the \arg{options}, those pertaining to a bookmark's appearance are:
+
+\describeattr{open} true false (false).
+If set to \verb"true", the bookmark diplays its immediate children.
+(You don't need to type `\verb"open = true"'; as with all other boolean
+attributes, `\verb"open"' suffices.)
+
+\describeattr{bold} true false (false).
+If \verb"true", the bookmark is displayed in a bold font.
+
+\describeattr{italic} true false (false).
+If \verb"true", the bookmark is displayed in an italic font (this is
+not incompatible with the previous attribute).
+
+\describeattr{color} {red green blue} (0 0 0, i.e. black).
+A triplet of numbers between between \verb"0" and \verb"1" setting
+the bookmark's color.
+
+\describeattr{outlinecolor} {red green blue} (0 0 0, i.e. black).
+Alias for \attr"color". (This name should be used when setting
+attributes globally in the \param"navigator" parameter or elsewhere.)
+
+\vskip\baselineskip
+By default, a bookmark creates an anchor, and clicking it jumps to the
+position thus defined. If the optional \arg{name} is present, then you
+can refer to that anchor and reuse it, as if you'd issued the \jumpcom\anchor
+command. Such an anchor, named or not, can take the same options
+as seen above for the \jumpcom\anchor command, for instance:
+
+\verbatim
+\outline[zoom = fith]{1}{A chapter}
+...
+  \outline[left = 2em]{2}[mysection]{A section}
+\verbatim/
+
+Two other options can modify a bookmark's behavior:
+
+\describeattr{anchor} name ().
+As just said, a bookmark creates an anchor. However, this is not true if
+this attribute is set; in this case, when clicked the bookmark sends
+to the anchor called \name, which need not be already defined,
+of course. The attributes pertaining to anchor settings, if any, are
+ignored, as is the optional name in the \com\outline command. In
+other words, the following two bookmarks are equivalent:
+
+\verbatim
+\outline[anchor = mydest, fit = fitv]{1}[aname]{A title}
+\outline[anchor = mydest]{1}{A title}
+\verbatim/
+
+\describeattr{action} name ().
+Like \attr"anchor", except the bookmark executes action \name
+(and doesn't send you anywhere). If both \attr"anchor" and \attr"action"
+are given, the former wins. See the section on \jumplink{actions}{actions}.
+
+\describe\pdfdef<command><parameter text>\string{replacement text\string}.
+Most of the commands used in \tex will yield nothing good in a bookmark's
+title. However, you may want to reuse the same text to set that title and,
+say, a section heading. When redefined with \com\pdfdef, \arg{command} will
+expand to \arg{replacement text}, but only in a bookmark's title. For
+instance, after:
+
+\verbatim
+\pdfdef\TeX{TeX}
+\pdfdef\emph#1{#1}
+\pdfdef\whatever{\noexpand\whatever}
+\verbatim/
+
+\com\TeX will produce ``\verb"TeX"'' in a bookmark, \com\emph will simply
+return its argument, and \com\whatever will represent itself. Note that
+unexpandable commands and \com\protected commands don't require any special
+treatment to represent themselves.
+
+
+
+
+\section"Links"[links]
+
+\description
+Links (and annotations more generally) are clickable zones of a PDF document,
+which trigger actions. \navigator offers a few types of links and actions,
+and also allows you to create your own with raw \jumplink{objects}{PDF objects}. 
+The \arg{options} that appear in the commands below are described at
+\jumplink{options}{the end of this section}.
+\description/
+
+\describe\jumplink\oarg{options}\name\arg{text}.
+This prints \arg{text} and defines it as a clickable zone that sends to
+the anchor called \name (defined either with \jumpcom\anchor or \jumpcom\outline,
+although the anchor need not be already defined for the link to work,
+obviously). For instance, clicking \com\anchor or \com\outline in the
+previous parenthesis sends you to the page where those commands are defined.
+
+\describe\urllink\oarg{options}\arg{url}\arg{text}.
+This is the same thing as \com\jumplink,
+except the link sends to an internet resource (any URI works, actually).
+For instance:
+
+\verbatim
+\urllink[border = 1, color = 1 0 0, dash = 3 2]
+        {http://www.tug.org}{Go to TUG!}
+\verbatim/
+
+produces: \doverbatim\ If the \jumplink{uri}{uri} or
+\jumplink{base}{base} attributes in the \param"navigator"
+parameter are set, then \arg{url} can be relative.
+
+\describe\javascriptlink\oarg{options}\arg{JavaScript code}\arg{text}.
+A link which executes some JavaScript code (if the viewer can do that).
+For instance:
+
+\verbatim
+\javascriptlink[highlight = push]
+               {app.alert("Hello!")}{Say hello!}
+\verbatim/
+
+produces: \doverbatim
+
+\describe\actionlink\oarg{options}\name\arg{text}.
+This executes the action called \name. A named action is an action that is
+defined elsewhere in the document (not necessarily before) and given a name to
+refer to it.  The \jumplink{actions}{next section} introduces two simple
+commands to create URL and JavaScript actions; however, an action is just a
+PDF object; hence, \name can be any valid PDF object (of the right type,
+obviously), and you can define such objects with the commands introduced in
+\jumplink{objects}{the last section} of this document.  \navigator already
+defines four actions, namely: \actionlink{firstpage}{firstpage},
+\actionlink{lastpage}{lastpage}, \actionlink{prevpage}{prevpage} and
+\actionlink{nextpage}{nextpage}.  The meaning should be obvious, but if you
+have any doubt, just click!
+
+\describe\rawactionlink\oarg{options}\arg{PDF code}\arg{text}.
+This is the same as \com\actionlink, except the action is defined
+not in an external action but in \arg{PDF code}, which should be
+an action dictionary (without the enclosing \verb"<<" and \verb">>",
+exactly as with \jumpcom\pdfdictobject).
+
+
+\vskip\baselineskip
+\noindent\anchor{options}%
+In the commands above, the \arg{options} are used to set the appearance
+of the links. Here are the ones you can set:
+
+\describeattr{border} number (0).
+The width (in PostScript points) of the border drawn around the link.
+Default \verb"0" means no border. (In \pdftex and \luatex, you can use
+the \com\pdflinkmargin primitive to set the distance between the link's
+border and its content, even if the border isn't drawn -- it makes
+the clickable zone larger.)
+
+\describeattr{color} {red green blue} (0 0 0, i.e. black).
+The color of the link's border, if any.
+
+\describeattr{linkcolor} {red green blue} (0 0 0, i.e. black).
+Alias for \attr"color". (This name should be used when setting
+attributes globally in the \param"navigator" parameter or elsewhere.)
+
+\describeattr{dash} numbers ().
+The dash pattern of the link's border, can you believe it? The
+\arg{numbers} should be \verb"a1 b1 a2 b2..." where \verb"a"'s
+specify visible parts of the border in PostScript points and
+\verb"b"'s specify hidden parts. Then the pattern repeats itself.
+More or less. (Set \attr"dash" to \verb"1"\nobreak\ \verb"0" if you want to
+override a default dash pattern.)
+
+\describeattr{highlight} none invert outline push (invert).
+This defines how the link flashes when clicked: \value"none" does
+nothing, \value"invert" inverts its colors, \value"outline" inverts
+its border's colors if any, and \value"push" gives the amazing illusion
+that the link is pushed below the surface of the page (says the
+author of the \ital{PDF reference}, except s/he didn't mention any
+amazing illusion).
+
+\describeattr{pre} code ().
+\tex code to be appended before \arg{text}.
+
+\describeattr{post} code ().
+\tex code to be appended after \arg{text}. This and \attr"pre"
+allows you to achieve coherent formatting of links. For instance:
+
+\verbatim
+\def\weblink{\urllink[pre = \bgroup\bf, post = \egroup]}
+Go to \weblink{http://www.tug.org}{TUG} and
+upload to \weblink{http://ctan.org}{CTAN}.
+\verbatim/
+
+produces:\doverbatim
+
+\describeattr{raw} {PDF code} ().
+Raw PDF code to be inserted in the link's dictionary.
+
+\describe\annotation\oarg{options}\arg{PDF code}\arg{text}.
+This creates an annotation tied to \arg{text}. \arg{PDF code} goes
+into the annotation's dictionary; note that the annotation thus created
+doesn't even have a \verb"Subtype" entry (a link, as described in this
+section, is one of the many subtypes of annotation). Depending on the
+\arg{options}, the \verb"Border" entry, the \verb"C" entry (for \attr"color")
+and the \verb"H" (for \attr"highlight") might be specified.
+
+\vskip\baselineskip
+\noindent
+There is one more type of action link, \jumpcom\openfilelink; it takes
+the same options as the commands described here, but it is introduced
+in the section on \jumplink{files}{embedded files}, because it is
+related to them.
+
+
+
+
+
+\section"Actions"[actions]
+
+\description
+The commands in this section allow you to create actions and 
+refer to it somewhere else in your document. That is a convenient
+approach for actions that are used repeatedly. Note that the PDF
+file itself is also improved, because in it too actions thus defined
+appear only once.
+
+You might think that not much types of actions can be designed:
+only internet addresses and JavaScript. But those are only predefined
+patterns to be used even when one doesn't know anything about PDF.
+Other types of actions require that you write real PDF code, more precisely
+so-called action dictionaries; these are but dictionary objects,
+and \navigator allows you to create them with \jumpcom\pdfdictobject.
+Then the name you give to that object is a valid action name and can
+be used with \jumpcom\actionlink.
+
+In other words, there is no \com\whateveraction command, because
+that's what \jumpcom\pdfdictobject does.
+\description/
+
+\describe\urlaction\name\arg{url}.
+Defines \name as an action which sends to the address \arg{url} on
+the internet. (Actually, any URI can be used, not only URLs.)
+As with \jumpcom\urllink,
+if the \jumplink{uri}{uri} or \jumplink{base}{base} attributes
+in the \param"navigator" parameter are set, then \arg{url} can be relative.
+
+\describe\javascriptaction\name\arg{JavaScript code}.
+Defines \name as an action which executes \arg{JavaScript code}
+(if the viewer can do that).
+
+Thus the following are equivalent to the previous two examples
+with \com\urllink and \com\javascriptlink:
+
+\verbatim
+\urlaction {tug}{http://www.tug.org}
+\actionlink{tug}{Go to TUG!}
+
+\javascriptaction{hello}{app.alert("Hello!")}
+\actionlink{hello}{Say hello!}
+\verbatim/
+
+
+
+
+
+
+\section"Embedded files"[files]
+
+\description
+\navigator provides a simple command to embed files in a PDF document.
+Embedded file can also be opened with an action link, but only if they
+are PDF files. However, no proper support is offered for file embedding
+in Con\tex{}t.
+\description/
+
+\describe\embeddedfile\oarg{description}\arg{object name}\oarg{alternate filename}\arg{file}.
+This embeds \arg{file} in the current document; the name displayed by the viewer
+will be \arg{file} or \arg{alternate filename}, if used (do not forget the
+file's extension in that alternate name). The use of an alternate name
+is useful if \arg{file} contains a path.
+The viewer might also display an
+optional \arg{description}. (The command name \com\embeddedfile, cumbersome
+when compared to the more obvious \com\embedfile, is meant to avoid a possible
+conflict with Heiko Oberdiek's \verb"embedfile".)
+
+The command creates a \jumplink{objects}{PDF object} called \arg{object name}; its
+\verb"Type" is \verb"Filespec", and it points to another object of type
+\verb"EmbeddedFile" (containing the actual file). That object isn't used anywhere
+in \navigator for the moment, but it is available in case you need it, for instance
+when writing raw PDF.
+
+\describe\openfilelink\oarg{options}\arg{file}\oarg{page}\arg{text}.
+This is an action link, so see the description of the \jumplink{options}{\arg{options}}
+above. When clicked, it opens \arg{file} on page \arg{page}
+(first page if \arg{page} is omitted). That file should be embedded elsewhere
+in the document with \jumpcom\embeddedfile, and it should be a PDF file;
+\arg{file} should match the \arg{file} argument in \com\embeddedfile,
+or \arg{alternate filename} if given.
+
+
+
+
+
+
+\section{Settings}[settings]
+
+\description
+Many of the commands introduced in the previous sections can take options.
+If an option is not given, its default value is used instead; you may
+want to set those default values, and to do so you have to change the
+attributes of the \param"navigator" parameter:
+\description/
+
+\verbatim
+\setparameter navigator:
+  <attribute> = <value>
+  <attribute> = <value>
+...
+\par
+\verbatim/
+
+This is the \urllink{http://tug.ctan.org/cgi-bin/ctanPackageInformation.py?id=yax}{YaX}
+syntax , it is a little bit special, and if you don't want to learn it the
+traditional comma-separated list is also possible:
+
+\verbatim
+\setparameterlist{navigator}
+                 {<attribute> = <value>,
+                  <attribute> = <value>...}
+\verbatim/
+
+(If a \arg{value} is \verb"true" it can be omitted.)
+Learning YaX might still be a good idea, though, since then you can
+use the \verb"meta" attribute, which wasn't shown when the options for
+the commands above were explained, because it can be used anywhere.
+For instance:
+
+\verbatim
+\setparameterlist{mylink1}
+                 {meta  = navigator,
+                  color = 1 0 0}
+\setparameterlist{mylink2}
+                 {meta  = navigator,
+                  color = 0 1 0}
+...
+\actionlink[meta = mylink1]{...}{...}
+\actionlink[meta = mylink2]{...}{...}
+\verbatim/
+
+There you define two types of links, and you can change their settings
+at once by changing the parameters \param"mylink1" and \param"mylink2"
+instead of the links themselves (which might be numerous). Note how
+\param"mylink1" and \param"mylink2" define \param"navigator" as the
+meta-parameter. That is not necessary, but the action links wouldn't inherit
+your global default settings otherwise (unless the meta-parameter of
+\param"mylink1" and \param"mylink2" itself had \param"navigator" as its
+meta-parameter, or a meta-parameter which... got it?). The \verb"navigator"
+parameter itself can have a meta-attribute too.
+
+\vskip\baselineskip
+\noindent
+At last, here are the attributes that can be set (some make sense in individual
+commands only, and not in the \param"navigator" parameter, but
+you can still set them):
+
+\vskip\baselineskip
+\noindent
+\attr"up", \attr"left", \attr"fit", \attr"zoom":
+see the \jumplink{anchors}{section on anchors} (note that they also
+affect \jumplink{outlines}{outlines} when outlines create implicit anchors).
+
+\vskip\baselineskip
+\noindent
+\attr"outlinecolor", \attr"open", \attr"bold", \attr"italic", \attr"action", \attr"anchor":
+those are options for \jumplink{outlines}{outlines}. (In a given outline, one
+can use the \attr"color" attribute instead of \attr"outlinecolor"; in the \param"navigator"
+parameter, however, one should use only the latter.)
+
+\vskip\baselineskip
+\noindent
+\attr"border", \attr"linkcolor", \attr"highlight", \attr"dash", \attr"raw", \attr"pre", \attr"post":
+those affect \jumplink{links}{action links}. (The remark on \attr"outlinecolor"
+above holds for \attr"linkcolor" here.)
+
+\vskip\baselineskip
+\noindent\anchor{features}%
+And here are attributes that aren't associated with commands, but instead
+specify options and pieces of information for the entire document.
+Note that they do not work in Con\tex{}t, but that can be done easily
+without \navigator.
+
+\describeattr{author} string ().
+The author of the document. This shows up in the document's properties.
+The string is dealt with as described for an \jumpcom\outline's title.
+
+\describeattr{title} string ().
+Same as \attr"author", with the document's title.
+
+\describeattr{keywords} string ().
+Same thing again, with keywords.
+
+\describeattr{subject} string ().
+One more time for the world, this time with the subject addressed by your document.
+
+\describeattr{date} date (current date).
+The creation date; the date should be formatted as explained in the \actionlink{pdf}{\ital"PDF Reference"},
+so have fun. Anyway that is set automatically by \tex (and can't be set with \xetex).
+
+\describeattr{moddate} date (current date).
+Same as \attr"date", for the modification date.
+
+\describeattr{creator} string (TeX).
+The software that produced the document's original format.
+
+\describeattr{producer} string (\pdftex, \luatex or \xetex).
+The software that turned the original document into PDF (cannot be set with \xetex).
+
+\describeattr{rawinfo} {PDF code} ().
+Entries you want to add by yourself to the document's \verb"Info" dictionary.
+
+\describeattr{layout} onepage onecolumn twopage twocolumn twopage* twocolumn* ().
+This sets how the document should be displayed when opened:
+
+\values[6em]
+onepage
+The window displays only one page, with no continuous transition to the next one.
+
+onecolumn
+The window displays only one page, with a continuous transition to the next.
+
+twopage
+The window displays two pages, odd-numbered pages on the right,
+without a continuous transition.
+
+twocolumn
+Same as \value"twopage" with a continuous transition.
+
+twopage*
+Same as \value"twopage" with odd-numbered pages on the left.
+
+twocolumn*
+Same as \value"twopage*" with a continuous transition.
+\values/
+
+\describeattr{mode} outlines bookmarks thumbnails thumbs attachments files oc ().
+This sets what panel the reader should display when the document is
+opened:
+
+\values[6em]
+outlines
+The reader shows the document's outlines.
+
+bookmarks
+Same as \value"outlines".
+
+thumbnails
+Thumbnail images are shown.
+
+thumbs
+Same as \value"thumbnails".
+
+attachments
+Show the attached files.
+
+files
+Same as \value"attachments".
+
+oc
+The Optional Content Group panel is displayed; quite useless
+if you don't have any OCG's (\navigator might offer support one day).
+\values/
+
+\describeattr{uri} address ().
+\anchor[up = 2\baselineskip]{uri}%
+The base address that will be used with relative references.
+See \jumpcom\urllink and \jumpcom\urlaction.
+
+\describeattr{base} address ().
+\anchor[up = 2\baselineskip]{base}%
+Alias for \attr"uri".
+
+\describeattr{openaction} name ().
+The \name of the \jumplink{actions}{action} to be performed
+when the document is opened.
+
+\describeattr{rawcatalog} {PDF code} ().
+Raw PDF code to be added to the document's catalog.
+
+
+
+
+
+
+
+
+\section"PDF objects"[objects]
+
+\description
+Here are commands that let you create and use PDF objects (and which
+\navigator actually uses internally). Of course they are useless unless
+you know how PDF works (if you do, then you might note that what I call
+here \emph"objects" actually are \emph"indirect objects"). 
+
+Named actions used with \jumpcom\actionlink being objects, they 
+behave as any other object with the commands below; for one thing, they
+respond positively to \jumpcom\ifpdfobject, and you can't create an object
+with the same name.
+\description/
+
+\describe\pdfobject\name\code.
+Creates a raw PDF object with name \name. There shouldn't already exist an
+object with the same name (unless it is just reserved).
+
+\describe\pdfdictobject\name\code.
+Same as \com\pdfobject, except a dictionary object is created. This
+command is totally equivalent to the previous one with \code enclosed between
+\verb"<<" and \verb">>". With this you can write custom named actions,
+i.e. \name can be used with \jumpcom\actionlink.
+
+\describe\pdfstreamobject\oarg{raw code}\name\arg{stream}.
+Creates a PDF stream object, with optional \arg{raw code} added to the
+dictionary.
+
+\describe\pdffileobject\oarg{raw code}\name\arg{file}.
+Same as \com\pdfstreamobject, except the stream is the contents of
+\arg{file}.
+
+\describe\pdfreserveobject\name.
+Reserves an object with name \name. That is totally useless (but harmless too)
+with \xetex. In \pdftex and \luatex, it is needed to refer to an object that
+isn't created yet.
+
+\describe\pdfensureobject\name.
+If \name isn't an object (reserved or created), this command reserves it.
+Otherwise it does nothing.
+
+\describe\pdfobjectnumber\name.
+Returns the number of object \name (which must be reserved at least). In \xetex,
+it actually returns nothing, because you can't use object numbers there,
+but fortunately in \pdftex and \luatex it isn't very useful either; the next
+command is much more interesting. (If \name doesn't exist, this command returns
+\verb"0"; an object can't have number \verb"0" in PDF, but that makes more
+sense than returning an error message, which would never make it to the terminal
+and spoil the PDF file instead.)
+
+\describe\pdfrefobject\name.
+Makes an indirect reference to object \name. For instance:
+
+\verbatim
+\urlaction{tug}{http://www.tug.org}
+\verbatim/
+
+and then somewhere while writing PDF code:
+
+\verbatim
+/A \pdfrefobject{myobj}
+\verbatim/
+
+(As with \com\pdfobjectnumber, if \name doesn't exist, i.e. it hasn't been
+reserved or created, this command returns \verb"0 0 R", an impossible object
+that is better than an error message. With \xetex, though, the reference is
+made anyway.)
+
+\describe\pdfobjectstatus\name.
+Returns \verb"0" if \name isn't an object, \verb"1" if it is a reserved object and
+\verb"2" if the object has been created.
+
+\describe\ifpdfobject\name\arg{true}\arg{false}.
+Executes \arg{true} if \name is an object (reserved or created) and \arg{false}
+otherwise.
+
+\describe\pdfstring\arg{string}.
+This transforms \arg{string} into a valid PDF string: in \xetex this
+actually does nothing, whereas in \pdftex the string is escaped, and
+in \luatex it is converted to UTF-16 in octal form. Note that this operation
+is already performed in a bookmark's title, in the description of an
+embedded file, in \jumpcom\javascriptaction and in various attributes
+of the \param"navigator" parameter,
+so you shouldn't use it there; it might be otherwise useful when writing raw PDF code.
+
+
+\vskip0pt plus 1filll
+
+\bgroup
+\leftskip=0pt plus 1fill
+\it\obeylines
+Typeset with LuaTeX v.0.66
+in Lucida and Lucida Console
+(Charles Bigelow and Kris Holmes)
+\egroup
+
+
+\finishpdffile
+\bye

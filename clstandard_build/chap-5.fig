@@ -1,0 +1,13 @@
+!25--1. Examples of setf!!5--1
+!25--2. Operators relating to places and generalized reference.!!5--1
+!25--3. Sample Setf Expansion of a Variable!!5--4
+!25--4. Sample Setf Expansion of a CAR Form!!5--4
+!25--5. Sample Setf Expansion of a SUBSEQ Form!!5--4
+!25--6. Sample Setf Expansion of a LDB Form!!5--5
+!25--7. Functions that setf can be used with---1!!5--6
+!25--8. Functions that setf can be used with---2!!5--7
+!25--9. Read-Modify-Write Macros!!5--12
+!25--10. Macros that have implicit tagbodies.!!5--49
+!25--11. Operators that always prefer EQ over EQL!!5--58
+!25--12. Summary and priorities of behavior of {{$ $}}\hbox {{\bbfnine equal\/}}!!5--61
+!25--13. Summary and priorities of behavior of {{$ $}}\hbox {{\bbfnine equalp\/}}!!5--63

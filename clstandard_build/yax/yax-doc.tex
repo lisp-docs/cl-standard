@@ -1,0 +1,1032 @@
+\input pitex % which \input's YaX
+
+\setparameter document:
+  author   = "Paul Isambert"
+  title    = \yax
+  pdftitle = YaX
+  version  = \yaxversion
+  date     = "\the\month/\the\day/\the\year"
+  display  = outlines
+  subject  = "The YaX documentation."
+
+\setparameter navigator:
+  mode = outlines
+
+\setparameter page:
+  left   = 5cm
+  right  = 3cm
+  height = 26cm
+
+\setparameter font :
+  command = \mainfont
+  name    = ChaparralPro-
+  roman   = Regular
+  italic  = Italic
+  bold    = Bold
+
+\setparameter font :
+  command = \sectionfont
+  size    = 13pt
+  name    = ChaparralPro-
+  roman   = Regular
+  italic  = Italic
+
+\setparameter font :
+  command = \titlefont
+  size    = 26pt
+  name    = ChaparralPro-
+  roman   = Regular
+
+\setparameter font:
+  command  = \codefont
+  name     = lucon
+  size     = 8.1pt
+  type     = ttf
+  roman    = {}
+  features = "\usevalue metafont:features -trep;"
+
+\setparameter section:
+  font   = \sectionfont
+  number = none
+  color  = ".8 0 0"
+
+\setparameter sectionbookmark:
+  meta = navigator
+  up   = 15pt
+
+
+\pdfdef\ital#1{#1}
+
+
+\def\yax{%
+  Y\kern-.1em \raise.15em\hbox{\sc a}\kern-.1em \lower.15em\hbox{X}%
+  \ifcatnext a { }{\iffnext({ }}%
+  }
+\def\defarg#1#2{%
+  \def#1{\arg{#2}\kern1pt\antigobblespace}%
+  }
+\defarg\param{parameter} \defarg\paralist{list of parameters}
+\defarg\attr{attribute} \defarg\attrlist{list of attributes}
+\def\paramatt{\param\kern-1pt\tcode:\attr\antigobblespace}
+\defarg\attrlist{list of attributes} \defarg\vallist{list of values}
+\defarg\value{value} \defarg\ospace{optional space}
+\defarg\andvalue{value exists} \defarg\orvalue{no value}
+\defarg\true{true} \defarg\false{false}
+\defarg\codarg{code} \defarg\comarg{command}
+\newif\ifdescribebookmark
+\def\describe{%
+  \ifnext*{\describebookmarktrue\gobbleoneand\Describe}
+          {\describebookmarkfalse\Describe}%
+  }
+\def\Describe{%
+  \ifnext!{\gobbleoneand{\let\COM\ecom\DoDescribe}}
+          {\let\COM\com\DoDescribe}%
+  }
+\def\ecom#1{{\mainfont\char"E01F}\com{#1}}
+\long\def\DoDescribe#1#2.{%
+  \ifvmode \vskip\baselineskip \fi
+  \noindent
+  \ifdescribebookmark
+    \outline[color = .4 .4 .4]{3}{\noexpand#1}%
+  \fi
+  \llap{\color{.8 0 0}{\COM#1}\iffemptystring{#2}{\kern1em}}#2%
+  \reverse\iffemptystring{#2}{\par\noindent}\ignorespaces
+  }
+
+\newblock*\syntax{\vskip\baselineskip\codefont\setcatcodes{\^^M=13}\obeylines}
+                 {\vskip\baselineskip}
+\extraboxspace=10pt
+
+\newbox\codebox
+\newbox\processbox
+\newdimen\prevcodedepth
+\def\processexample{%
+  \setbox\codebox=\vtop{%
+    \let\exampleskip\relax
+    \parindent0pt
+    \hsize.75\hsize
+    \typesetexample
+    \par
+    \global\prevcodedepth=\prevdepth
+    }%
+  \setbox\processbox=\vtop{%
+    \parindent0pt
+    \hsize.5\hsize
+    \doexample
+    }%
+  \exampleskip\exampleskip
+  \moveleft .25\hsize\hbox{\colorbox{.9 .9 .9}{\copy\codebox\copy\processbox}}%
+  \exampleskip\exampleskip
+  \prevdepth=\prevcodedepth
+  }
+
+
+%\output{%
+%  \shipout\vbox to\dimexpr(\vsize+3\baselineskip){%
+%    \box255
+%    \vfil
+%    \hbox to\hsize{\mainfont\hfil\the\pageno\hfil}%
+%    }
+%  \advancepageno
+%  }
+%
+
+\gates def {headers}{%
+  \setbox255=\vbox to\dimexpr(\outputsize+3\baselineskip){%
+    \box255
+    \vfil
+    \hbox to\hsize{\mainfont\hfil\the\pageno\hfil}%
+    }%
+  }
+
+\gates def {ship}{%
+  \shipout\box255
+  }
+
+\vbox to 2\baselineskip{%
+  \vfil
+  \hbox to\hsize{\hfil\titlefont \usevalue document : title }
+  \vfil}
+
+\vskip\baselineskip
+\it
+\hfill \usevalue document : author \par
+\hfill \usevalue document : date \par
+\hfill v.\usevalue document : version \par
+
+\rm
+
+\vskip2\baselineskip
+
+
+\noindent\yax is Yet Another Key System, or \yax Ain't Keys, however you want it.
+It has some peculiarities. First, keys are not keys, but attributes,
+which means they depend on a parameter. You don't set key individually
+in \yax (although you can do it), you define parameters, which have
+attributes, which have values. Second, parameters can have definitions,
+so that when you set it you can also execute a command, or execute it
+later; thus, \yax is halfway between key management and macro definition.
+Finally, the syntax of \yax is not traditional: there are as few braces
+as possible, which you can find tremendously annoying, but it can be
+changed.
+
+And, of course, \yax is format-independant. Files are provided for 
+La\TeX\ and Con\TeX t, so you can input it with \verb/\usepackage{yax}/
+or \verb/\usemodule[yax]/ respectively; anywhere else just use \verb/\input yax/.
+
+
+
+\describe!\yaxversion.
+Starting with version 1.01, this macro holds \yax's version. Current is \yaxversion.
+
+
+
+
+\section{Setting parameters}
+
+\noindent Here's an example of how values are set:
+
+\example
+\setparameter Zappa :
+  firstname = Frank
+  motto     = "Music is the best"
+  hairstyle = \moustache
+\example/
+
+\noindent Here we have defined a \ital{parameter}, `\verb/Zappa/', which
+has \ital{attributes} `\verb/firstname/', `\verb/motto/' and `\verb/hairstyle/'
+with \ital{values} `\verb/Frank/', `\verb/Music is the best/' and `\verb/\moustache/'
+respectively. 
+
+\describe*\setparameter.
+Here's how you set parameters more precisely. (This command is not the only way to set values.
+See below.)
+Its simplified syntax is as follows:
+
+\syntax
+\noindent\com\setparameter \paralist\ :
+  \attrlist\ = \value
+  \attrlist\ = \value
+  ...
+\noindent\com\par
+\syntax/
+
+\noindent First, the \com\par command that terminates the declaration:
+it was not chosen simply because it echoes \ital{parameter}, but above
+all because it can be implicit in a blank line, i.e. \com\setparameter
+can be delimited by a blank line. That's why in the first example there
+seemed to be nothing delimitating \com\setparameter: it is supposed to
+be followed by a blank line. I will regularly display parameter setting in this
+fashion, even though the following would be equally legitimate:
+
+\example
+\setparameter Zappa : firstname = Frank ... \par
+\example/
+
+\noindent barring readibility, obviously.
+
+As for the detail, \paralist is a list of space-delimited parameters,
+followed by a colon. Any space before the colon is removed, that's why
+
+\example
+\setparameter Zappa Boulez:  ... \par
+\setparameter Zappa Boulez : ... \par
+\example/
+
+\noindent set the attributes of the same \verb/Zappa/ and \verb/Boulez/ parameters.
+Which means, of course, that you can set the attributes of as many parameters
+as you wish by doing so. 
+
+The name of each parameter should be fully expandable. It can contain spaces,
+but then it should be enclosed between braces, since space delimits parameters
+in \paralist.
+
+Finally, you can use \com\setparameter several times on the same parameter(s),
+by default it does the same thing as using one big \com\setparameter. I say
+\ital{by default}, because things might occur between the two calls, e.g. the
+parameter might be active and have deleted its own attributes after the first
+call, which anyway is something we'll see later.
+
+Like \paralist, \attrlist is a list of space-delimited attributes.
+Each \attr is made of the same thing as a \param: i.e. anything expandable.
+However, at the beginning of a \attrlist, the strings \verb/e:/, \verb/g:/ and \verb/x:/
+have a special meaning: these prefixes are used to specify
+how an attribute or list of attributes is to be defined, and they are similar to \com\edef,
+\com\gdef and \com\xdef (with no prefix meaning \com\def), i.e.:
+
+\example
+\setparameter foo :
+     one       = \whatever
+  e: two       = \whatever
+  g: three     = \whatever
+  x: four five = \whatever
+\example/
+
+\noindent defines, for the parameter \verb/foo/, the attributes \verb/one/
+and \verb/three/ as \com\whatever and the attributes \verb/two/, \verb/four/ and \verb/five/
+as the full expansion of \com\whatever; moreover, \verb/one/ and \verb/two/
+are locally defined, whereas \verb/three/, \verb/four/ and \verb/five/ are globally
+defined. The space between the prefix and the name of the parameter is
+optional.
+
+Finally, \value may be given in three ways. First, it can be delimited by
+a space, e.g.:
+
+\example
+\setparameter Zappa :
+  firstname  = Frank
+  motto      = {Music is the best}
+  ...
+\example/
+
+\noindent here the space is simply the end of the line. The spaces in
+\verb/Music is the best/ aren't seen, because of the braces (which will
+be removed from the value). Don't forget that control sequences eats
+the subsequent space, hence a control sequence can't be at the end of
+a value supposedly delimited by space without braces. Actually, it can't be at
+the beginning either (see below).
+
+Otherwise, \arg{value} can be given between double quotes:
+
+\example
+\setparameter Zappa :
+  firstname  = "Frank"
+  motto      = "Music is the best"
+  hairstyle  = "\mustache"
+\example/
+
+\noindent which basically act as braces. The space inserted here by the
+end of the line is optional and the following can be done:
+
+\example
+\setparameter Zappa:firstname="Frank"motto="Music is the best"...\par
+\example/
+
+\noindent Finally, there's a special rule. Control sequences gobble the
+next space, but a \value can be made of one and only one control sequence,
+e.g.:
+
+\example
+\setparameter Zappa :
+  hairstyle  = \mustache
+  ...
+\example/
+
+\noindent i.e. if \yax sees a control sequence at the beginning of a value
+it will take this control sequence only as \arg{value}, which means that
+anything thereafter will be considered as belonging to the next \param
+name. Hence, all the following are bad ideas:
+
+\example
+\setparameter bad values :
+            % the space stops the value to "bad"
+  one   = bad space
+            % the control sequence is taken as the only token
+  two   = \control sequence 
+            % "\sequence" eats the delimitating space
+  three = control\sequence
+\example/
+
+\noindent but they'd all be ok with quotes or braces (which
+still require a space after):
+
+\example
+\setparameter good values :
+  one   = "bad space"
+  two   = "\control sequence"
+  three = {control\sequence}
+  four  = \LonelyCommand
+  five  = "\Command\Command"
+...
+\example/
+
+\noindent Finally, they are some exceptions to this rule: first,
+always put \com\par between braces, otherwise it will be seen
+as the end of the parameter. Second, always put a character denotation
+between either braces or quotes, even if it's the only control sequence.
+If you don't know what character denotation means, never mind. Just remember
+that \com\bgroup and \com\egroup are character denotations.
+
+Now I'm sure you ask: what is this lousy syntax? An answer is I don't
+like braces. Another answer is \yax is not designed to store complicated
+strings, although it can do it. Instead it aims at setting simple values
+in an orderly fasion, e.g.:
+
+\example
+\setparameter page :
+  pagewidth    = 30cm
+  pageheight   = 32cm
+  top bottom   = 2cm
+  lines        = 45
+  whatever     = \foo
+...
+\example/
+
+\noindent in which case it is very handy, especially when you're in a hurry:
+
+\example
+\setparameter page: pagewidth=32cm pageheight=30cm whatever=\foo...\par
+\example/
+
+\noindent Thus, I find commas to delimit values equally superfluous and find
+the odd quote better.
+
+However, good old key-value pairs separated by commas happen to be useful
+too, for instance when a command takes some options. Hence the following
+was introduced in v.\yaxversion:
+
+\describe*\setparameterlist\paralist\oarg{optional macro}\arg{attribute(s) = value list}.
+This produces exactly the same thing as \com\setparameter, only the syntax
+changes. Ignoring the optional argument in the middle, our example just above
+would be rewritten as:
+
+\example
+\setparameterlist{page}{pagewidth = 32cm, pageheight = 30cm, whatever=\foo}
+\example/
+
+\noindent Here you can forget about how values are given: the delimiter is
+the comma, end of story. There can be several parameters in the first argument,
+and several attributes before each `\verb"="' sign in the second; in both cases,
+they are separated by spaces, as above. Also, each list of attributes can be
+prefixed with \verb"e:", \verb"g:" and \verb"x:", again as with \com\setparameter.
+Finally, as shown in the example, space is trimmed away.
+
+But \com\setparameterlist has a feature that \com\setparameter doesn't have.
+If one of the \attr = \value pair doesn't contain a `\verb"="', i.e. if it
+isn't a pair at all, then one of the following happens: if there is no
+\arg{optional macro}, then the default value `\verb"true"' is assigned to
+all the attributes mentionned; besides, the entry can still be prefixed with
+\verb"e:", \verb"g:" or \verb"x:". For instance, the following two statements
+are equivalent:
+
+\example
+\setparameterlist{Zappa}{guitarist composer}
+\setparameterlist{Zappa}{guitarist composer = true}
+\example/
+
+On the other hand, if the \arg{optional macro} is present, then it should
+take one argument, and the entry is passed to it (trimmed, though). What
+happens then is none of \yax's concern, although of course the macro can
+itself set parameters.  For instance, in the following, \verb"a" and \verb"b"
+will be set to `\verb"what"' and `\verb"are you kidding"', whereas `\verb"eddie?"'
+is passed to \com\dosomething.
+
+\example
+\def\dosomething#1{ ... #1 ... }
+\setparameter{whatever}[\dosomething]{a = what, b = are you kidding, eddie?}
+\example/
+
+Another way to set a parameter is as follows:
+
+\describe*\copyparameter\paralist:\param\arg{space}.
+\describe\gcopyparameter\paralist:\param\arg{space}.
+All the attributes of the parameters in \paralist are copied
+to \param; if the latter already has some attributes, they're
+aren't deleted (but you can use \com\deleteparameter beforehand,
+see below) although they might be overwritten. If several parameters
+in \paralist have the same attribute, the value of the last parameter
+in the list wins. The difference between the two versions is that
+the second is global. The space shouldn't be forgotten, it's the
+same as explained in the \paramatt syntax \jumplink{values}{\ital{below}}.
+
+
+Finally, here's one fast way of setting a single attribute:
+
+\describe*\setattribute\paramatt=\value\arg{space}.
+\describe\esetattribute\paramatt=\value\arg{space}.
+\describe\gsetattribute\paramatt=\value\arg{space}.
+\describe\xsetattribute\paramatt=\value\arg{space}.
+This sets \attr (no list) for \param (no list) to \value; see
+\jumplink{values}{\ital{below}} for the \paramatt syntax. Note that the \arg{space} is for real,
+so don't forget it. The `=' sign may be surrounded by optional space.
+This command can be used instead of \com\setparameter for two reasons:
+first, it is much faster (because it doesn't take lists into account);
+second, if \param is active it is \ital{not} executed (see the section
+\jumplink{defpar}{\ital{Defining parameters}}).
+The \verb"e-", \verb"g-" and \verb"x-"versions sets the attribute
+with the \verb"e:", \verb"g:" and \verb"x:" prefixes respectively.
+
+\describe*\deleteattribute\paramatt.
+\describe\gdeleteattribute\paramatt.
+This deletes \paramatt, which now responds negatively
+to all previous commands, as if it was never defined.
+The second version makes this deletion global, the first
+keeps it local.
+
+\describe*\deleteparameter\paralist:.
+\describe\gdeleteparameter\paralist:.
+This deletes all paramaters in \paralist; it is equivalent to using
+the previous command on all the parameters' attributes. The
+first version is local, the second is global. And yes, the colon is
+really there, although it might get away.
+
+
+
+\sectioncommand{section}{The meta attribute}{The \ital{meta} attribute}
+\noindent You can give any attribute to any parameter (unless they're restricted,
+but that's not the point for the time being).
+However, there's one particular attribute which has a special meaning: \verb/meta/.
+The value of \verb/meta/ should be another parameter. Then, when querying
+the value of an attribute, say \verb/attr/, for a given parameter, say \verb/param/,
+\yax will do the following: if \verb/param/ has \verb/attr/, it is returned.
+Otherwise, if \verb/param/ has a \verb/meta/ attribute, whose value is for instance
+\verb/metaparam/, then \verb/attr/ is queried for the value of \verb/metaparam/.
+And if \verb/metaparam/ has no \verb/attr/ but has a \verb/meta/ attribute,
+this process continues, until either a parameter is found with \verb/attr/
+or there are no new \verb/meta/. For instance:
+
+\example
+\setparameter A : attr = value ... \par
+\setparameter B : meta = A ... \par
+\setparameter C : meta = B ... \par
+\example/
+
+\noindent If parameter \verb/C/ has no \verb/attr/, then it retrieves it
+from parameter \verb/A/ via \verb/B/ (or from \verb/B/ if it has one). On
+the other hand, if \verb/C/ has \verb/attr/, then its own value is returned.
+You can also query the value of an attribute for a parameter and forbid the
+search for \verb/meta/'s, as explained in the next section.
+
+Don't be afraid to create loop with \verb/meta/. The following is perfectly
+legitimate:
+
+\example
+\setparameter A : meta = C ... \par
+\setparameter B : meta = A ... \par
+\setparameter C : meta = B ... \par
+\example/
+
+\noindent and it can even be useful. \yax detects loops when searching
+\verb/meta/ paths and stops in time (with no value, obviously). Finally,
+you can set \verb/meta/ to a parameter that doesn't exist. It will simply
+return no value. 
+
+The use of \verb/meta/ is useful to create families
+of parameters and/or to set default values, e.g.:
+
+\example
+\setparameter mammal :
+  egg = no
+  fur = yes
+  ...
+\setparameter cat whale :
+  meta = mammal
+  ...
+\setparameter cat :     \setparameter whale :
+  foot  = clawed          fur   = no
+  tooth = fang            foot  = flipper
+  ...                     tooth = baleen
+                          ...
+\setparameter tiger mykitty : 
+  meta     = cat
+  stripped = yes
+  ...
+\setparameter tiger :       \setparameter mykitty :
+  foot = "very bad news"      foot = "bad news"
+  ...                         ...
+\example/
+
+Apart from that, \verb/meta/ behaves as any other attribute, i.e. it can
+be freely set and queried.
+
+
+
+
+
+
+
+
+\section{Using values}[values]
+
+\noindent Once attributes have been set, they can be queried by the macros
+that follow. But first, one last bit of odd syntax: \paramatt means anything
+up to the colon as the \param and then anything up to the next space as 
+the \attr. That's the reason why space in attribute names is a bad idea:
+the space is the main delimitator when using attributes. It is gobbled
+in the process. On the other hand,
+any space surrounding the colon is removed, so that `\verb/zappa:hairstyle/ '
+and `\verb/zappa : hairstyle/ ' denote the same attribute of the same parameter.
+Good news, though: if you don't like that syntax, the next section explains
+how to create commands with the same meaning but a different syntax.
+
+In what follows, fully expandable commands are marked with \color{.8 0 0}{\char"E01F}.
+
+\describe*!\nometa\arg{command}.
+All the commands that follow except \com\parameterloop can be prefixed with \com\nometa. In this case,
+\yax will return the value of the attribute for the specified parameter,
+as usual, or return no value, i.e. it will not search \verb/meta/ parameters.	
+So, in what follows, `\paramatt is defined' means two things. If \com\nometa
+isn't used, it means that \param has \attr or it has a metaparameter with
+\attr; on the other hand, if \com\nometa is used, it means that \param has
+\attr, end of story.
+
+\describe*!\ifattribute\paramatt\true\false.
+This returns \true if \paramatt is defined, \false otherwise. Since all
+commands below always check whether \paramatt is defined before trying
+to do anything with the value, this command can be avoided most of the
+time.
+
+\setparameter musician :
+  job = music
+
+\setparameter Zappa :
+  meta      = musician
+  firstname = Frank
+
+
+\Example
+\setparameter musician : job = music\par
+\setparameter Zappa :
+  meta      = musician
+  firstname = Frank
+
+                       % See this space?
+\ifattribute Zappa : job {Good, it is.}{...}\par
+\nometa\ifattribute Zappa : job {...}{Too bad.}
+\Example/
+
+
+
+
+
+\describe*!\usevalue\paramatt.
+\describe!\usevalueor\paramatt\orvalue.
+\describe!\usevalueand\paramatt\andvalue\orvalue.
+The first macro returns the value of \paramatt if it exists, or
+does nothing otherwise. Like all the \verb/-or/ and \verb/-and/
+variants below, \com\usevalueor executes \orvalue in case 
+\paramatt doesn't exist, while \com\usevalueand returns
+the value of \paramatt immediately followed by \andvalue
+(no brace added) if \paramatt exists, otherwise it executes
+\orvalue.
+
+\Example
+Zappa's job was \usevalueand Zappa : job 
+                             { (and then some!)}
+                             {unknown}
+and he played the \usevalueor Zappa : instrument 
+                              {guitar}.
+\Example/
+
+
+\iflines4{}{\breakpage}
+\describe*!\passvalue\codarg\paramatt.
+\describe!\passvalueor\codarg\paramatt\orvalue.
+\describe!\passvalueand\codarg\paramatt\andvalue\orvalue.
+These return \codarg\barg{value} if \paramatt is defined,
+with the \verb/-or/ and \verb/-and/ variants as above.
+
+\Example
+\def\whichwas#1{(which was #1)}
+Zappa's job \passvalue\whichwas Zappa : job \ took
+most of his time, because it's a time-consuming
+occupation \nometa\passvalueor\whichwas Zappa : job
+                               {(you know which)}.
+\Example/
+
+\describe*!\passvaluenobraces\codarg\paramatt.
+\describe!\passvaluenobracesor\codarg\paramatt\orvalue.
+\describe!\passvaluenobracesand\codarg\paramatt\andvalue\orvalue.
+These are the same as \com\passvalue and variants except the
+value of the attribute is concatenated to \codarg without braces
+(which means that no braces are added in the process, not that
+braces are removed from the value if it has any).
+
+\describe*\settovalue\arg{dimen or count}\paramatt.
+\describe\settovalueor\arg{dimen or count}\paramatt\orvalue.
+\describe\settovalueand\arg{dimen or count}\paramatt\andvalue\orvalue.
+This sets the first argument to the value of \paramatt if it exists.
+If the first argument is more than one token (e.g. \verb/\count0/
+vs. \verb/\parindent/), it must be surrounded by braces; and actually
+it can even be something like \verb/\advance\count0/. Of course
+\arg{dimen or count} must be a dimension or a count, and the value 
+of \paramatt must be accordingly a dimension
+or a number (\yax doesn't check either of them).
+
+\Example
+\setparameter para  : parskip = 2pt \par
+Note that 
+\settovalueor\parskip para : parskip
+                      {\parskip=1pt\relax}
+(\the\parskip) is basically the same thing as
+\parskip=\usevalueor para : foo {1pt\relax}
+(\the\parskip).
+\Example/
+
+What the previous example shows is that since \com\usevalue
+is thoroughly expandable one can say:
+
+\example
+\mydimen=\usevalueor parameter : attribute {0pt}
+\example/
+
+\noindent and it will set \com\mydimen to the value
+of \paramatt or to \verb/0pt/. The difference with \com\settovalueor
+is that in the construction with \com\usevalueor the assignement
+is obligatorily made (hence the \verb/-or/ variant), whereas
+with \com\settovalueor the or-clause can do something else
+(e.g. send an error message). And \com\settovalue insert a
+prophylactic \com\relax.
+
+
+
+
+\describe*\storevalue\comarg\paramatt.
+\describe\storevalueor\comarg\paramatt\orvalue.
+\describe\storevalueand\comarg\paramatt\andvalue\orvalue.
+These define \comarg as the value of \paramatt if it exists.
+
+\Example
+\setparameter Zappa : hairstyle = \moustache\par
+\storevalue\beard Zappa : hairstyle
+\meaning\beard
+\Example/
+
+
+
+\describe*!\ifvalue\paramatt=\value\ \true\false.
+This returns \true if the value of \paramatt is \value
+and \false otherwise (including unexisting \paramatt).
+Note that when comparing the value of \paramatt with
+\value, catcodes aren't part of the picture.
+Here \value is delimited by the following space, but
+there might be optional space after the `\verb/=/' sign.
+Because of this, it is not possible to test for the
+emptyness of a value with \com\ifvalue, i.e.
+
+\example
+\ifvalue foo : bar = {} {true}{false}
+\example/
+
+\noindent won't work. Instead, either use \com\ifcasevalue below or \com\passvalue
+with an emptyness-tester (e.g. \verb/texapi/'s
+\com\ifemptystring, since \yax is based on \verb/texapi/
+(what, me, self-advertising?)).
+
+\Example
+\bgroup \catcode`\Z=13
+\setparameter foo : g: bar = Z \par
+\egroup
+\edef\foobar{%
+  \ifvalue foo : bar = Z {yes}{no},
+  even though catcodes are different.}
+\meaning\foobar
+\Example/
+
+
+
+\iflines2{}{\breakpage}
+\describe*!\ifcasevalue\paramatt.
+  \describe\val\value\ \codarg.
+  \describe\val\value\ \codarg.
+          \verb/.../ \par\noindent
+  \describe\elseval \codarg.
+  \describe\endval\relax.
+This executes \codarg following \value matching
+the value of \paramatt. If \paramatt doesn't exist, or
+matches no \value, then \com\elseval is executed. Once again
+catcodes aren't taken into account when values are compared.
+The exact syntax is: \value is anything from \com\val to the
+next space, and \codarg is anything that follows up to the next
+\com\val, \com\elseval or \com\endval (any space on the right
+is removed, so no need to stick \com\val to \codarg).
+Apart from \com\endval, everything here is optional: there might
+be as many \com\val-clauses as needed, including none, and the
+\com\elseval-clause need not be present (in which case, if no
+match occurs, nothing happens). Finally, although this is
+similar to \TeX's primitive \com\ifcase, there's no need
+to jump before anything with \com\expandafter to avoid
+bumping into conditional structure. 
+
+\Example
+\def\doitalic#1{{\it#1}}
+\setparameter type : font = italic \par
+\ifcasevalue type : font
+  \val italic \doitalic
+  \val bold   \dobold
+\endval{Some text.}
+
+\edef\foo{%
+  \ifcasevalue type : font
+    \val bold This is bold
+    \elseval  This is something else
+  \endval}
+\meaning\foo
+\Example/
+
+
+
+\describe*!\parameterloop\paralist:\arg{code}.
+This loops on all the attributes for all the parameters in \paralist,
+and passes the following thing to \arg{code}: the parameter, the attribute,
+and the value. Hence \arg{code} can be anything, but it should be prepared
+to handle three arguments. The order in which parameters are enumerated is the
+order in \paralist, and for attributes it is the order in which they were set
+for a given parameter. Only actual attributes are enumerated: if you loop over
+\verb"ParameterA", which doesn't have \verb"AttributeA" but has a \verb"meta"
+parameter with that attribute, then \verb"AttributeA" will \emph{not} be
+enumerated in the loop.
+
+\Example
+\setparameter musician : job = music\par
+\setparameter zappa :
+  meta       = musician
+  instrument = guitar
+
+\def\showvalues#1#2#3{#1 : #2 = #3\par}
+\parameterloop musician zappa : \showvalues
+\Example/
+
+
+\section{Using another syntax}
+
+\noindent If you don't like \yax's native syntax, and want for instance
+good old braces to delimit \param and \attr, you might be tempted
+to do something like:
+
+\example
+\def\myusevalue#1#2{\usevalue #1:#2 }
+\example/
+
+\noindent On the other hand, if you don't mind \yax's syntax
+but want other names for the commands, then you'll probably go:
+
+\example
+\let\myusevalue\usevalue
+\example/
+
+\noindent Both are bad ideas. Indeed, in neither example will
+\com\myusevalue work properly with \com\nometa. Besides, you
+have to create the \verb/-or/ and \verb/-and/ variants by hand.
+Not to mention that in the first example \com\myusevalue wastes
+time calling \com\usevalue (and what if it is redefined?) when
+it could be in direct relation with internal code. So here's how
+to circumvent \yax's syntax and/or create new names.
+
+\describe*\newsyntax\arg{syntax}\barg{prefix}.
+This creates commands whose names are \verb/\/\arg{prefix}\comarg
+and whose syntax for arguments is \arg{syntax}. The latter is
+a parameter text which must contain \verb/#1/ and \verb/#2/ (for
+\param and \attr respectively) with whatever to delimit them.
+For instance:
+
+\example
+\newsyntax#1#2{x}
+\newsyntax#1 #2!{y}
+\example/
+
+\noindent will create among others an \com\xusevalue command whose usage is
+\com\xusevalue\param\attr and a \com\yusevalue command whose
+usage is \com\yusevalue\param\ \attr\tcode! and both will do the
+same thing as \com\usevalue. There must be braces around \arg{prefix}
+and none around \arg{syntax} (i.e. the latter is delimited by
+the left brace of the former). If \arg{prefix} is empty,
+you redefine the default commands, which is dangerous.
+
+To be precise, the commands copied are (omitting the \verb/-or/
+and \verb/-and/ variants, which are created too, if any):
+\com\setattribute, \com\esetattribute, \com\gsetattribute, \com\xsetattribute,
+\com\ifattribute, \com\usevalue, \com\passvalue, \com\passvaluenobraces,
+\com\settovalue, \com\storevalue, \com\ifvalue, \com\ifcasevalue,
+\com\deleteattribute and \com\restrictattribute (which you'll learn
+about in the next section).
+
+\describe*\copysyntax\arg{prefix1}\arg{prefix2}.
+This defines all the commands above with \arg{prefix1} as
+those same commands with \arg{prefix2}.
+
+\describe*\letyaxcommand\arg{command1}\arg{command2}.
+This at the very least \com\let \arg{command1} to \arg{command2}.
+Besides, if \arg{command2} can take a \com\nometa prefix,
+\arg{command1} can too. Finally, if \arg{command2} has 
+\verb/-or/ and \verb/-and/ variants, these are created with
+\arg{command1}. E.g.:
+
+\example
+\letyaxcommand\defval\storevalue
+\example/
+
+\noindent defines \com\defval, \com\defvalor and \com\defvaland
+as \com\storevalue and its variants. If \arg{command2} has been
+created with \com\newsyntax or \com\copysyntax, \arg{command1}
+of course has the same syntax.
+
+
+\Example
+\newsyntax#1#2{x}
+\letyaxcommand\uv\xusevalue
+\uvand{noparameter}{noattribute}{yes}{no}
+\Example/
+
+
+\section{Restrictions on parameters and attributes}
+
+
+\describe*\restrictparameter\paralist:\attrlist\tcode{\char`\\par}.
+After this declaration, the \param's in \paralist (where they are separated
+by space as in \com\setparameter) can take only those \attr's in
+\attrlist (which are also separated by space). It affects \com\setparameter
+only, producing an error message when an \attr not belonging to
+\attrlist is given a value (and the assignment isn't made, of course).
+Even if it doesn't belong to \attrlist, the \verb/meta/ attribute is
+always allowed. Several \com\restrictparameter declarations on the
+same parameter(s) actually accumulate the allowed attributes in \paralist, 
+e.g. after
+
+\example
+\restrictparameter foo : one two three\par
+\restrictparameter foo : four\par
+\example/
+
+\noindent one can set the attributes \verb/one/, \verb/two/, \verb/three/
+and \verb/four/ for \verb/foo/, and not only \verb/four/. The idea behind
+\com\restrictparameter is not so much hiding attributes from the user
+as making the use of a parameter clearer by indicating which attributes
+are in use with it, especially if it can be executed (see below).
+
+\describe*\restrictattribute\paramatt\ \vallist\tcode{\char`\\par}.
+This restricts \paramatt to take only the values in \vallist (separated
+by space).
+
+\describe*\restrictallattributes\attr\ \vallist\tcode{\char`\\par}.
+This restricts \attr, whatever the \param in which it appears, to
+take only the values in \vallist. In this command, \attr is
+found as anything before the first space, e.g.:
+
+\example
+\restrictallattributes attribute value1 value2 value3\par
+\restrictallattributes {attri bute} value1 value2 value3\par
+\example/
+
+\noindent (the second example if you want to have space in attribute
+names). Note that if an attribute is restricted with both
+\com\restrictattribute and \com\restrictallattributes, 
+only the former restriction holds. E.g.:
+
+\example
+\restrictattribute foo:bar one\par
+\restrictallattributes bar two three\par
+\setparameter foo: 
+  bar = two % Will produce an error message.
+  ...
+\example/
+
+
+
+\section{Defining parameters}[defpar]
+
+\describe*\defparameter\paralist\barg{definition}.
+Parameters aren't just a way of organizing attributes. They
+can have a definition and act as commands whose arguments
+are the values of their attributes. The \paralist (with
+parameters once again separated by space) must be
+braceless, whereas \arg{definition} must be enclosed in
+braces (like a real definition). No parameter text is
+allowed. However, \arg{definition} can contain `\verb/#1/',
+which doesn't refer to any argument but to the parameter
+being defined instead, so that one can use the commands
+defined in the previous section without specifying the name
+of the parameter. E.g.
+
+\example
+\defparameter foo bar {%
+  \usevalue #1 : one
+  \passvalueor\mycomm #1 : whatever {...}%
+  ...}
+\example/
+
+\noindent defines \verb/foo/ and \verb/bar/ respectively
+to
+
+\example
+\usevalue foo : one
+\passvalueor\mycomm foo : whatever {...}%
+...
+\usevalue bar : one
+\passvalueor\mycomm bar : whatever {...}%
+...
+\example/
+
+\describe*!\executeparameter\param:.
+This executes the definition of \param with the the latest values
+of its attributes. If \param hasn't been defined, nothing happens.
+
+\Example
+\defparameter foo {The value is \usevalue#1:bar }
+\setparameter foo : bar = whatever\par
+\executeparameter foo:
+\Example/
+
+
+\describe*\defactiveparameter\paralist\barg{definition}.
+This does the same thing as \com\defparameter, i.e. define the 
+parameters in \paralist, but it also set them as `active,'
+which means that they're automatically executed each time
+their attributes are defined with \com\setparameter. You
+can still use \com\executeparameter.
+
+\Example
+\setparameter metasection : skip = 2 font = \it\par
+\setparameter mysection : % not yet active
+  meta = metasection\par
+\defactiveparameter mysection {%
+  \vskip \usevalueor #1 : skip 0\baselineskip
+  {\usevalue #1 : font \usevalue #1 : title }%
+  \par}  
+
+And now we're going to have a new section.
+\setparameter mysection : title = "A new section"\par
+Fascinating. Once again?
+\setparameter mysection : title = "Once again"\par
+Cool.  
+\Example/
+
+
+%{\it\noindent See next page for the last example.}
+
+
+\Example
+\setparameter metasection : 
+  skip   = 2
+  inline = false
+  font = \it
+
+\setparameter mysection mysubsection :
+  meta = metasection
+
+\setparameter mysection :
+  font = \sc
+
+\setparameter mysubsection :
+  skip   = 1
+  inline = true
+
+\defparameter mysection mysubsection {%
+  \vskip \usevalueor #1 : skip 0\baselineskip
+  {\usevalue #1 : font \usevalue #1 : title }%
+  \ifvalue #1 : inline = true {. \ignorespaces}%
+                              \par}%  
+
+\def\section#1{%
+  \setparameter mysection : title = {#1}\par
+  \executeparameter mysection :}
+
+\def\subsection#1{%
+  \setparameter mysubsection : title = {#1}\par
+  \executeparameter mysubsection :}
+
+
+... and this is the end of our paragraph.
+\section{New ideas}
+Here we are going to expose bold new ideas.
+\subsection{First bold new idea}
+Lore, aim, hip, sum... what do you think about
+it? Pig latin, you say?
+\subsection{Second bold new idea}
+Perhaps Do lore, aim... then, huh?
+\section{New new ideas}
+Etc.
+\Example/
+
+\finishpdffile
+\bye

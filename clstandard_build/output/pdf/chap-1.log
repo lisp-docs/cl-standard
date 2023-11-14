@@ -1,0 +1,16 @@
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdftex 2023.11.13)  14 NOV 2023 14:49
+entering extended mode
+ restricted \write18 enabled.
+ %&-line parsing enabled.
+**chap-1.tex
+(./chap-1.tex
+! Undefined control sequence.
+l.3 \secn
+         =1
+? 
+! Emergency stop.
+l.3 
+    
+End of file on the terminal!
+
+!  ==> Fatal error occurred, no output PDF file produced!

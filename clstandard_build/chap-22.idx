@@ -1,0 +1,130 @@
+
+!2G:printer control variable!!22--1
+!2G:printer escaping!!22--2
+!2R:ratio!!22--3
+!2R:float!!22--3
+!2R:complex!!22--3
+!2G:pretty printer!!22--14
+!2G:logical blocks!!22--14
+!2G:conditional newlines!!22--14
+!2G:sections!!22--14
+!2G:format control!!22--16
+!2G:pprint dispatch table!!22--16
+!2G:current pprint dispatch table!!22--16
+!2T:linear-style conditional newline!!22--17
+!2T:miser-style conditional newline!!22--17
+!2T:fill-style conditional newline!!22--18
+!2T:C (format directive)!!22--24
+!2T:Tilde C (format directive)!!22--24
+!2T:Percent (format directive)!!22--25
+!2T:Tilde Percent (format directive)!!22--25
+!2T:Ampersand (format directive)!!22--25
+!2T:Tilde Ampersand (format directive)!!22--25
+!2T:Vertical-Bar (format directive)!!22--25
+!2T:Tilde Vertical-Bar (format directive)!!22--25
+!2T:Tilde (format directive)!!22--25
+!2T:Tilde Tilde (format directive)!!22--25
+!2T:R (format directive)!!22--25
+!2T:Tilde R (format directive)!!22--25
+!2T:D (format directive)!!22--26
+!2T:Tilde D (format directive)!!22--26
+!2T:B (format directive)!!22--26
+!2T:Tilde B (format directive)!!22--26
+!2T:O (format directive)!!22--27
+!2T:Tilde O (format directive)!!22--27
+!2T:X (format directive)!!22--27
+!2T:Tilde X (format directive)!!22--27
+!2T:F (format directive)!!22--27
+!2T:Tilde F (format directive)!!22--27
+!2T:E (format directive)!!22--28
+!2T:Tilde E (format directive)!!22--28
+!2T:G (format directive)!!22--29
+!2T:Tilde G (format directive)!!22--29
+!2T:Dollarsign (format directive)!!22--30
+!2T:Tilde Dollarsign (format directive)!!22--30
+!2T:A (format directive)!!22--31
+!2T:Tilde A (format directive)!!22--31
+!2T:S (format directive)!!22--31
+!2T:Tilde S (format directive)!!22--31
+!2T:W (format directive)!!22--31
+!2T:Tilde W (format directive)!!22--31
+!2T:Underscore (format directive)!!22--32
+!2T:Tilde Underscore (format directive)!!22--32
+!2T:Less-Than-Sign (format directive)!!22--32
+!2T:Tilde Less-Than-Sign (format directive)!!22--32
+!2T:I (format directive)!!22--33
+!2T:Tilde I (format directive)!!22--33
+!2T:Slash (format directive)!!22--33
+!2T:Tilde Slash (format directive)!!22--33
+!2T:T (format directive)!!22--34
+!2T:Tilde T (format directive)!!22--34
+!2T:Less-Than-Sign (format directive)!!22--34
+!2T:Tilde Less-Than-Sign (format directive)!!22--34
+!2T:Greater-Than-Sign (format directive)!!22--35
+!2T:Tilde Greater-Than-Sign (format directive)!!22--35
+!2T:Asterisk (format directive)!!22--35
+!2T:Tilde Asterisk (format directive)!!22--35
+!2T:Left-Bracket (format directive)!!22--36
+!2T:Tilde Left-Bracket (format directive)!!22--36
+!2T:Right-Bracket (format directive)!!22--37
+!2T:Tilde Right-Bracket (format directive)!!22--37
+!2T:Left-Brace (format directive)!!22--37
+!2T:Tilde Left-Brace (format directive)!!22--37
+!2T:Right-Brace (format directive)!!22--38
+!2T:Tilde Right-Brace (format directive)!!22--38
+!2T:Question-Mark (format directive)!!22--38
+!2T:Tilde Question-Mark (format directive)!!22--38
+!2T:Left-Paren (format directive)!!22--39
+!2T:Tilde Left-Paren (format directive)!!22--39
+!2T:Right-Paren (format directive)!!22--39
+!2T:Tilde Right-Paren (format directive)!!22--39
+!2T:P (format directive)!!22--39
+!2T:Tilde P (format directive)!!22--39
+!2T:Semicolon (format directive)!!22--40
+!2T:Tilde Semicolon (format directive)!!22--40
+!2T:Circumflex (format directive)!!22--40
+!2T:Tilde Circumflex (format directive)!!22--40
+!2T:Newline (format directive)!!22--41
+!2T:Tilde Newline (format directive)!!22--41
+!2R:copy-pprint-dispatch!!22--46
+!2R:formatter!!22--46
+!2R:pprint-dispatch!!22--47
+!2R:pprint-exit-if-list-exhausted!!22--48
+!2R:pprint-fill, pprint-linear, pprint-tabular!!22--49
+!2R:pprint-indent!!22--50
+!2R:pprint-logical-block!!22--51
+!2R:pprint-newline!!22--53
+!2T:linear-style conditional newline!!22--54
+!2T:miser-style conditional newline!!22--54
+!2T:fill-style conditional newline!!22--54
+!2T:mandatory-style conditional newline!!22--54
+!2R:pprint-pop!!22--55
+!2G:dot!!22--55
+!2T:Dot Dot Dot!!22--55
+!2C:...!!22--55
+!2T:Sharpsign Sharpsign (reader macro)!!22--56
+!2R:pprint-tab!!22--56
+!2R:print-object!!22--57
+!2R:print-unreadable-object!!22--59
+!2R:set-pprint-dispatch!!22--60
+!2R:write, prin1, print, pprint, princ!!22--61
+!2R:write-to-string, prin1-to-string, princ-to-string!!22--64
+!2R:*print-array*!!22--66
+!2R:*print-base*, *print-radix*!!22--67
+!2G:current output base!!22--67
+!2R:*print-case*!!22--68
+!2R:*print-circle*!!22--69
+!2R:*print-escape*!!22--70
+!2R:*print-gensym*!!22--71
+!2R:*print-level*, *print-length*!!22--72
+!2R:*print-lines*!!22--73
+!2T:Dot Dot!!22--74
+!2C:..!!22--74
+!2R:*print-miser-width*!!22--74
+!2R:*print-pprint-dispatch*!!22--75
+!2R:*print-pretty*!!22--75
+!2R:*print-readably*!!22--76
+!2R:*print-right-margin*!!22--78
+!2R:print-not-readable!!22--79
+!2R:print-not-readable-object!!22--79
+!2R:format!!22--80

@@ -1,0 +1,17 @@
+
+!2G:file!!20--1
+!2G:filename!!20--1
+!2G:stream!!20--1
+!2G:stream associated with a file!!20--1
+!2G:stream associated with a file!!20--1
+!2G:truename!!20--2
+!2R:directory!!20--3
+!2R:probe-file!!20--3
+!2R:ensure-directories-exist!!20--4
+!2R:truename!!20--5
+!2R:file-author!!20--6
+!2R:file-write-date!!20--7
+!2R:rename-file!!20--8
+!2R:delete-file!!20--9
+!2R:file-error!!20--10
+!2R:file-error-pathname!!20--11

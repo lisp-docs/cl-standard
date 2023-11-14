@@ -1,0 +1,13 @@
+!ChapTwelve Chapter 12 Numbers
+!Numbers Chapter 12 Numbers
+!NumericOperations Section 12.1.1\ Numeric Operations
+!NumericContagionRules Section 12.1.1.2\ Contagion in Numeric Operations
+!RationalComputations Section 12.1.3\ Rational Computations
+!FloatSubstitutability Section 12.1.3.3\ Rule of Float Substitutability
+!FloatingPointComputations Section 12.1.4{}Floating-point Computations
+!RuleOfFloatAndRationalContagion Section 12.1.4.1{}Rule of Float and Rational Contagion
+!RuleOfFloatPrecisionContagion Section 12.1.4.4\ Rule of Float Precision Contagion
+!ComplexComputations Section 12.1.5\ Complex Computations
+!RuleOfComplexContagion Section 12.1.5.2\ Rule of Complex Contagion
+!RuleOfCanonRepForComplexRationals Section 12.1.5.3\ Rule of Canonical Representation for Complex Rationals
+!IntervalDesignators Section 12.1.6\ Interval Designators

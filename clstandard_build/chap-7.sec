@@ -1,0 +1,25 @@
+!ChapSeven Chapter 7 Objects
+!Objects Chapter 7 Objects
+!ObjectCreationAndInit Section 7.1\ Object Creation and Initialization
+!DeclaringInitargValidity Section 7.1.2\ Declaring the Validity of Initialization Arguments
+!InitargRules Section 7.1.4\ Rules for Initialization Arguments
+!SharedInitialize Section 7.1.5\ Shared-Initialize
+!ChangingInstanceClass Section 7.2\ Changing the Class of an Instance
+!InitNewLocalSlots Section 7.2.2\ Initializing Newly Added Local Slots
+!InstanceReInit Section 7.3\ Reinitializing an Instance
+!MetaObjects Section 7.4\ Meta-Objects
+!Slots Section 7.5\ Slots
+!SlotInheritance Section 7.5.3\ Inheritance of Slots and Slot Options
+!GFsAndMethods Section 7.6\ Generic Functions and Methods
+!IntroToGFs Section 7.6.1\ Introduction to Generic Functions
+!IntroToMethods Section 7.6.2\ Introduction to Methods
+!SpecializerQualifierAgreement Section 7.6.3\ Agreement on Parameter Specializers and Qualifiers
+!GFMethodLambdaListCongruency Section 7.6.4\ Congruent Lambda-lists for all Methods of a Generic Function
+!KwdArgsInGFsAndMeths Section 7.6.5\ Keyword Arguments in Generic Functions and Methods
+!MethodSelectionAndCombination Section 7.6.6\ Method Selection and Combination
+!DeterminingtheEffectiveMethod Section 7.6.6.1\ Determining the Effective Method
+!SelApplMeth Section 7.6.6.1.1\ Selecting the Applicable Methods
+!ApplyMethCombToSortedMethods Section 7.6.6.1.3\ Applying method combination to the sorted list of applicable methods
+!StdMethComb Section 7.6.6.2\ Standard Method Combination
+!BuiltInMethCombTypes Section 7.6.6.4\ Built-in Method Combination Types
+!MethodInheritance Section 7.6.7\ Inheritance of Methods

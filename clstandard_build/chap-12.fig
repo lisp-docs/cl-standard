@@ -1,0 +1,18 @@
+!212--1. Operators relating to Arithmetic.!!12--1
+!212--2. Defined names relating to Exponentials, Logarithms, and Trigonometry.!!12--1
+!212--3. Operators for numeric comparison and predication.!!12--1
+!212--4. Defined names relating to numeric type manipulation and coercion.!!12--2
+!212--5. Defined names relating to logical operations on numbers.!!12--3
+!212--6. Defined names relating to byte manipulation.!!12--4
+!212--7. Defined names relating to implementation-dependent details about numbers.!!12--4
+!212--8. Functions Affected by Rule of Float Substitutability!!12--6
+!212--9. Trigonometric Identities for Complex Domain!!12--9
+!212--10. Quadrant Numbering for Branch Cuts!!12--9
+!212--11. Random-state defined names!!12--10
+!212--12. Recommended Minimum Floating-Point Precision and Exponent Size!!12--14
+!212--13. Uses of /=, =, {$\spLT $}, {$\spGT $}, {$\spLT $}=, and {$\spGT $}=!!12--22
+!212--14. Mathematical definition of arc sine, arc cosine, and arc tangent!!12--29
+!212--15. Quadrant information for arc tangent!!12--31
+!212--16. Mathematical definitions for hyperbolic functions!!12--33
+!212--17. Bit-Wise Logical Operations!!12--68
+!212--18. Bit-wise Logical Operations on Integers!!12--72

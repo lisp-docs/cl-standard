@@ -1,0 +1,25 @@
+This is the README file for the texapi package.
+Author: Paul Isambert.
+E-mail: zappathustra AT free DOT fr
+Comments and suggestions are welcome.
+Date: October 2011.
+
+The package is set of macros to write
+format-independent (and -aware) packages.
+It is, of course, format-independent,
+and requires e-TeX.
+Relevant information can be found in texapi-doc.pdf
+
+Files in this distributions:
+
+texapi.tex     => The package (no wrapper files for format, of course).
+texapi-doc.tex => The source of the documentation.
+texapi-doc.pdf => The typeset documentation.
+
+To process the documentation source, you need the 
+PiTeX files (available on CTAN) on top of plain TeX
+with LuaTeX at least v.0.6. Non-free fonts are used.
+... err, no actually, don't typeset it, the PiTeX version
+on CTAN is way too old. It'll be updated someday.
+
+Licensing of this package is covered by LPPL.

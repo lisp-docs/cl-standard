@@ -1,0 +1,78 @@
+!0Programming Language---Common Lisp !!i
+!11. Introduction !!i
+!21.1\ Scope, Purpose, and History !!1--1
+!31.1.1\ Scope and Purpose !!1--1
+!31.1.2\ History !!1--1
+!21.2\ Organization of the Document !!1--4
+!21.3\ Referenced Publications !!1--5
+!21.4\ Definitions !!1--7
+!31.4.1\ Notational Conventions !!1--7
+!41.4.1.1\ Font Key !!1--7
+!41.4.1.2\ Modified BNF Syntax !!1--7
+!51.4.1.2.1\ Splicing in Modified BNF Syntax !!1--8
+!51.4.1.2.2\ Indirection in Modified BNF Syntax !!1--9
+!51.4.1.2.3\ Additional Uses for Indirect Definitions in Modified BNF Syntax !!1--9
+!41.4.1.3\ Special Symbols !!1--10
+!41.4.1.4\ Objects with Multiple Notations !!1--12
+!51.4.1.4.1\ Case in Symbols !!1--12
+!51.4.1.4.2\ Numbers !!1--13
+!51.4.1.4.3\ Use of the Dot Character !!1--13
+!51.4.1.4.4\ NIL !!1--13
+!41.4.1.5\ Designators !!1--14
+!41.4.1.6\ Nonsense Words !!1--15
+!31.4.2\ Error Terminology !!1--15
+!31.4.3\ Sections Not Formally Part Of This Standard !!1--18
+!31.4.4\ Interpreting Dictionary Entries !!1--19
+!41.4.4.1\ The ``Affected By'' Section of a Dictionary Entry !!1--19
+!41.4.4.2\ The ``Arguments'' Section of a Dictionary Entry !!1--19
+!41.4.4.3\ The ``Arguments and Values'' Section of a Dictionary Entry !!1--19
+!41.4.4.4\ The ``Binding Types Affected'' Section of a Dictionary Entry !!1--19
+!41.4.4.5\ The ``Class Precedence List'' Section of a Dictionary Entry !!1--19
+!41.4.4.6\ Dictionary Entries for Type Specifiers !!1--20
+!51.4.4.6.1\ The ``Compound Type Specifier Kind'' Section of a Dictionary Entry !!1--20
+!51.4.4.6.2\ The ``Compound Type Specifier Syntax'' Section of a Dictionary Entry !!1--20
+!51.4.4.6.3\ The ``Compound Type Specifier Arguments'' Section of a Dictionary Entry !!1--21
+!51.4.4.6.4\ The ``Compound Type Specifier Description'' Section of a Dictionary Entry !!1--21
+!41.4.4.7\ The ``Constant Value'' Section of a Dictionary Entry !!1--21
+!41.4.4.8\ The ``Description'' Section of a Dictionary Entry !!1--21
+!41.4.4.9\ The ``Examples'' Section of a Dictionary Entry !!1--21
+!41.4.4.10\ The ``Exceptional Situations'' Section of a Dictionary Entry !!1--21
+!41.4.4.11\ The ``Initial Value'' Section of a Dictionary Entry !!1--21
+!41.4.4.12\ The ``Argument Precedence Order'' Section of a Dictionary Entry !!1--22
+!41.4.4.13\ The ``Method Signature'' Section of a Dictionary Entry !!1--22
+!41.4.4.14\ The ``Name'' Section of a Dictionary Entry !!1--22
+!41.4.4.15\ The ``Notes'' Section of a Dictionary Entry !!1--24
+!41.4.4.16\ The ``Pronunciation'' Section of a Dictionary Entry !!1--24
+!41.4.4.17\ The ``See Also'' Section of a Dictionary Entry !!1--24
+!41.4.4.18\ The ``Side Effects'' Section of a Dictionary Entry !!1--24
+!41.4.4.19\ The ``Supertypes'' Section of a Dictionary Entry !!1--24
+!41.4.4.20\ The ``Syntax'' Section of a Dictionary Entry !!1--24
+!51.4.4.20.1\ Special ``Syntax'' Notations for Overloaded Operators !!1--25
+!51.4.4.20.2\ Naming Conventions for Rest Parameters !!1--25
+!51.4.4.20.3\ Requiring Non-Null Rest Parameters in the ``Syntax'' Section !!1--25
+!51.4.4.20.4\ Return values in the ``Syntax'' Section !!1--26
+!61.4.4.20.4.1\ No Arguments or Values in the ``Syntax'' Section !!1--26
+!61.4.4.20.4.2\ Unconditional Transfer of Control in the ``Syntax'' Section !!1--26
+!41.4.4.21\ The ``Valid Context'' Section of a Dictionary Entry !!1--26
+!41.4.4.22\ The ``Value Type'' Section of a Dictionary Entry !!1--26
+!21.5\ Conformance !!1--28
+!31.5.1\ Conforming Implementations !!1--28
+!41.5.1.1\ Required Language Features !!1--28
+!41.5.1.2\ Documentation of Implementation-Dependent Features !!1--28
+!41.5.1.3\ Documentation of Extensions !!1--28
+!41.5.1.4\ Treatment of Exceptional Situations !!1--28
+!51.5.1.4.1\ Resolution of Apparent Conflicts in Exceptional Situations !!1--28
+!61.5.1.4.1.1\ Examples of Resolution of Apparent Conflicts in Exceptional Situations !!1--28
+!41.5.1.5\ Conformance Statement !!1--29
+!31.5.2\ Conforming Programs !!1--29
+!41.5.2.1\ Use of Implementation-Defined Language Features !!1--29
+!51.5.2.1.1\ Use of Read-Time Conditionals !!1--30
+!41.5.2.2\ Character Set for Portable Code !!1--30
+!21.6\ Language Extensions !!1--31
+!21.7\ Language Subsets !!1--32
+!21.8\ Deprecated Language Features !!1--33
+!31.8.1\ Deprecated Functions !!1--33
+!31.8.2\ Deprecated Argument Conventions !!1--33
+!31.8.3\ Deprecated Variables !!1--33
+!31.8.4\ Deprecated Reader Syntax !!1--34
+!21.9\ Symbols in the COMMON-LISP Package !!1--35

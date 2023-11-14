@@ -1,0 +1,64 @@
+
+!2G:cons!!14--1
+!2G:tree!!14--1
+!2G:leaves!!14--1
+!2G:list!!14--2
+!2G:proper list!!14--2
+!2G:improper list!!14--2
+!2G:dotted list!!14--2
+!2G:circular list!!14--2
+!2G:association list!!14--2
+!2R:list!!14--4
+!2G:list!!14--4
+!2G:proper list!!14--4
+!2G:empty list!!14--4
+!2G:dotted list!!14--4
+!2G:circular list!!14--4
+!2R:null!!14--4
+!2R:cons!!14--5
+!2R:atom!!14--5
+!2R:cons!!14--6
+!2R:consp!!14--6
+!2R:atom!!14--7
+!2R:rplaca, rplacd!!14--8
+!2R:car, cdr, caar, cadr, cdar, cddr, caaar, caadr, cadar, caddr, cdaar, cdadr, cddar, cdddr, caaaar, caaadr, caadar, caaddr, cadaar, cadadr, caddar, cadddr, cdaaar, cdaadr, cdadar, cdaddr, cddaar, cddadr, cdddar, cddddr!!14--9
+!2R:copy-tree!!14--12
+!2R:sublis, nsublis!!14--13
+!2R:subst, subst-if, subst-if-not, nsubst, nsubst-if, nsubst-if-not!!14--15
+!2R:tree-equal!!14--18
+!2R:copy-list!!14--19
+!2R:list, list*!!14--20
+!2R:list-length!!14--21
+!2R:listp!!14--22
+!2R:make-list!!14--23
+!2R:push!!14--23
+!2R:pop!!14--24
+!2R:first, second, third, fourth, fifth, sixth, seventh, eighth, ninth, tenth!!14--25
+!2R:nth!!14--27
+!2R:endp!!14--28
+!2R:null!!14--28
+!2R:nconc!!14--29
+!2R:append!!14--30
+!2R:revappend, nreconc!!14--31
+!2R:butlast, nbutlast!!14--33
+!2R:last!!14--34
+!2R:ldiff, tailp!!14--35
+!2R:nthcdr!!14--37
+!2R:rest!!14--38
+!2R:member, member-if, member-if-not!!14--39
+!2R:mapc, mapcar, mapcan, mapl, maplist, mapcon!!14--40
+!2R:acons!!14--43
+!2R:assoc, assoc-if, assoc-if-not!!14--43
+!2R:copy-alist!!14--45
+!2R:pairlis!!14--46
+!2R:rassoc, rassoc-if, rassoc-if-not!!14--47
+!2R:get-properties!!14--48
+!2R:getf!!14--49
+!2R:remf!!14--51
+!2R:intersection, nintersection!!14--52
+!2R:adjoin!!14--54
+!2R:pushnew!!14--55
+!2R:set-difference, nset-difference!!14--56
+!2R:set-exclusive-or, nset-exclusive-or!!14--58
+!2R:subsetp!!14--59
+!2R:union, nunion!!14--61

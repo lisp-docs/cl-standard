@@ -1,0 +1,49 @@
+
+!2G:metaclass!!4--1
+!2G:compound type specifier!!4--4
+!2G:derived type specifier!!4--5
+!2G:class!!4--8
+!2G:instance!!4--8
+!2G:direct superclass!!4--8
+!2G:direct subclass!!4--8
+!2G:superclass!!4--8
+!2G:subclass!!4--8
+!2G:class precedence list!!4--8
+!2G:shadow!!4--8
+!2G:local precedence order!!4--9
+!2G:metaclass!!4--9
+!2G:slot specifier!!4--10
+!2G:local precedence order!!4--12
+!2G:class precedence list!!4--12
+!2R:nil!!4--19
+!2R:boolean!!4--19
+!2R:function!!4--20
+!2R:compiled-function!!4--22
+!2R:generic-function!!4--22
+!2G:generic function!!4--22
+!2R:standard-generic-function!!4--23
+!2R:class!!4--23
+!2R:built-in-class!!4--23
+!2R:structure-class!!4--24
+!2R:standard-class!!4--24
+!2R:method!!4--24
+!2R:standard-method!!4--25
+!2R:structure-object!!4--25
+!2R:standard-object!!4--25
+!2R:method-combination!!4--26
+!2R:t!!4--26
+!2R:satisfies!!4--26
+!2R:member!!4--27
+!2R:not!!4--27
+!2R:and!!4--28
+!2R:or!!4--28
+!2R:values!!4--29
+!2R:eql!!4--30
+!2R:coerce!!4--30
+!2R:deftype!!4--33
+!2R:subtypep!!4--34
+!2R:type-of!!4--37
+!2R:typep!!4--39
+!2R:type-error!!4--41
+!2R:type-error-datum, type-error-expected-type!!4--41
+!2R:simple-type-error!!4--42

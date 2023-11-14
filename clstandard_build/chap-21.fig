@@ -1,0 +1,8 @@
+!221--1. Some General-Purpose Stream Operations!!21--1
+!221--2. Operators relating to Input Streams.!!21--1
+!221--3. Operators relating to Output Streams.!!21--2
+!221--4. Operators relating to Bidirectional Streams.!!21--2
+!221--5. Defined Names related to Specialized Streams!!21--4
+!221--6. Standardized Stream Variables!!21--4
+!221--7. Operators that accept either Open or Closed Streams!!21--5
+!221--8. Operators that accept Open Streams only!!21--5

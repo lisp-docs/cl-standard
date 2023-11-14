@@ -1,0 +1,87 @@
+
+!2R:number!!12--11
+!2R:complex!!12--11
+!2R:real!!12--12
+!2R:float!!12--13
+!2R:short-float, single-float, double-float, long-float!!12--14
+!2R:rational!!12--16
+!2R:ratio!!12--16
+!2R:integer!!12--17
+!2R:signed-byte!!12--17
+!2R:unsigned-byte!!12--18
+!2R:mod!!12--19
+!2R:bit!!12--19
+!2R:fixnum!!12--19
+!2R:bignum!!12--20
+!2R:=, /=, {$\spLT $}, {$\spGT $}, {$\spLT $}=, {$\spGT $}=!!12--20
+!2R:max, min!!12--22
+!2R:minusp, plusp!!12--24
+!2R:zerop!!12--25
+!2R:floor, ffloor, ceiling, fceiling, truncate, ftruncate, round, fround!!12--25
+!2R:sin, cos, tan!!12--28
+!2R:asin, acos, atan!!12--29
+!2R:pi!!12--32
+!2R:sinh, cosh, tanh, asinh, acosh, atanh!!12--33
+!2R:*!!12--35
+!2R:+!!12--36
+!2R:$-$!!12--36
+!2R:/!!12--37
+!2R:1+, 1$-$!!12--38
+!2R:abs!!12--39
+!2R:evenp, oddp!!12--40
+!2R:exp, expt!!12--41
+!2R:gcd!!12--42
+!2R:incf, decf!!12--43
+!2R:lcm!!12--44
+!2R:log!!12--45
+!2R:mod, rem!!12--47
+!2R:signum!!12--48
+!2R:sqrt, isqrt!!12--49
+!2R:random-state!!12--50
+!2R:make-random-state!!12--51
+!2R:random!!12--52
+!2R:random-state-p!!12--53
+!2R:*random-state*!!12--53
+!2R:numberp!!12--54
+!2R:cis!!12--55
+!2R:complex!!12--56
+!2R:complexp!!12--57
+!2R:conjugate!!12--57
+!2R:phase!!12--58
+!2R:realpart, imagpart!!12--59
+!2R:upgraded-complex-part-type!!12--60
+!2R:realp!!12--60
+!2R:numerator, denominator!!12--61
+!2R:rational, rationalize!!12--62
+!2R:rationalp!!12--63
+!2R:ash!!12--64
+!2R:integer-length!!12--65
+!2R:integerp!!12--66
+!2R:parse-integer!!12--66
+!2R:boole!!12--67
+!2R:boole-1, boole-2, boole-and, boole-andc1, boole-andc2, boole-c1, boole-c2, boole-clr, boole-eqv, boole-ior, boole-nand, boole-nor, boole-orc1, boole-orc2, boole-set, boole-xor!!12--70
+!2R:logand, logandc1, logandc2, logeqv, logior, lognand, lognor, lognot, logorc1, logorc2, logxor!!12--71
+!2R:logbitp!!12--73
+!2R:logcount!!12--74
+!2R:logtest!!12--75
+!2R:byte, byte-size, byte-position!!12--76
+!2R:deposit-field!!12--77
+!2R:dpb!!12--78
+!2R:ldb!!12--79
+!2T:order of evaluation!!12--79
+!2T:evaluation order!!12--79
+!2R:ldb-test!!12--80
+!2R:mask-field!!12--81
+!2R:most-positive-fixnum, most-negative-fixnum!!12--82
+!2R:decode-float, scale-float, float-radix, float-sign, float-digits, float-precision, integer-decode-float!!12--82
+!2R:float!!12--85
+!2R:floatp!!12--86
+!2R:most-positive-short-float, least-positive-short-float, least-positive-normalized-short-float, most-positive-double-float, least-positive-double-float, least-positive-normalized-double-float, most-positive-long-float, least-positive-long-float, least-positive-normalized-long-float, most-positive-single-float, least-positive-single-float, least-positive-normalized-single-float, most-negative-short-float, least-negative-short-float, least-negative-normalized-short-float, most-negative-single-float, least-negative-single-float, least-negative-normalized-single-float, most-negative-double-float, least-negative-double-float, least-negative-normalized-double-float, most-negative-long-float, least-negative-long-float, least-negative-normalized-long-float!!12--87
+!2R:short-float-epsilon, short-float-negative-epsilon, single-float-epsilon, single-float-negative-epsilon, double-float-epsilon, double-float-negative-epsilon, long-float-epsilon, long-float-negative-epsilon!!12--88
+!2R:arithmetic-error!!12--89
+!2R:arithmetic-error-operands, arithmetic-error-operation!!12--89
+!2R:division-by-zero!!12--90
+!2R:floating-point-invalid-operation!!12--90
+!2R:floating-point-inexact!!12--91
+!2R:floating-point-overflow!!12--91
+!2R:floating-point-underflow!!12--91

@@ -1,0 +1,45 @@
+
+!2G:package!!11--1
+!2G:current package!!11--1
+!2G:internal symbol!!11--2
+!2G:external symbol!!11--2
+!2G:present!!11--2
+!2G:accessible!!11--2
+!2G:shadowing symbol!!11--3
+!2G:shadowing symbol!!11--4
+!2P:common-lisp!!11--4
+!2P:cl!!11--4
+!2T:redefinition!!11--5
+!2P:common-lisp-user!!11--7
+!2P:cl-user!!11--7
+!2P:keyword!!11--7
+!2R:package!!11--8
+!2R:export!!11--8
+!2R:find-symbol!!11--9
+!2R:find-package!!11--11
+!2R:find-all-symbols!!11--12
+!2R:import!!11--12
+!2R:list-all-packages!!11--14
+!2R:rename-package!!11--14
+!2R:shadow!!11--15
+!2R:shadowing-import!!11--16
+!2R:delete-package!!11--17
+!2R:make-package!!11--20
+!2R:with-package-iterator!!11--21
+!2R:unexport!!11--24
+!2R:unintern!!11--25
+!2R:in-package!!11--26
+!2R:unuse-package!!11--27
+!2R:use-package!!11--28
+!2R:defpackage!!11--29
+!2R:do-symbols, do-external-symbols, do-all-symbols!!11--33
+!2R:intern!!11--35
+!2R:package-name!!11--36
+!2R:package-nicknames!!11--37
+!2R:package-shadowing-symbols!!11--38
+!2R:package-use-list!!11--38
+!2R:package-used-by-list!!11--39
+!2R:packagep!!11--40
+!2R:*package*!!11--40
+!2R:package-error!!11--41
+!2R:package-error-package!!11--42

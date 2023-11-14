@@ -1,0 +1,115 @@
+
+!2G:standard syntax!!2--1
+!2G:readtable!!2--1
+!2G:current readtable!!2--1
+!2G:standard readtable!!2--1
+!2G:initial readtable!!2--2
+!2G:standard character!!2--2
+!2G:syntax type!!2--5
+!2G:token!!2--6
+!2G:reader macro function!!2--8
+!2G:non-terminating!!2--8
+!2G:terminating!!2--8
+!2G:multiple escape!!2--9
+!2G:single escape!!2--9
+!2C:(!!2--23
+!2T:Left-Parenthesis (reader macro)!!2--23
+!2R:list!!2--23
+!2G:dot!!2--23
+!2C:.!!2--23
+!2C:)!!2--23
+!2T:Right-Parenthesis (reader macro)!!2--23
+!2C:'!!2--24
+!2T:Single-Quote (reader macro)!!2--24
+!2T:quotation (of forms)!!2--24
+!2R:quote!!2--24
+!2C:;!!2--24
+!2T:Semicolon (reader macro)!!2--24
+!2T:comment!!2--24
+!2T:Double-Quote (reader macro)!!2--26
+!2T:quotation (of strings)!!2--26
+!2R:string!!2--26
+!2C:`!!2--26
+!2T:Backquote (reader macro)!!2--26
+!2T:quotation (of forms)!!2--26
+!2R:quote!!2--26
+!2R:list!!2--26
+!2R:cons!!2--26
+!2C:,!!2--28
+!2T:Comma (reader macro)!!2--28
+!2T:quotation (of forms)!!2--28
+!2R:quote!!2--28
+!2R:list!!2--28
+!2R:cons!!2--28
+!2C:\#!!2--29
+!2T:Sharpsign (reader macro)!!2--29
+!2T:Sharpsign Backslash (reader macro)!!2--31
+!2T:Backslash (sharpsign reader macro)!!2--31
+!2R:character!!2--31
+!2T:Sharpsign Single-Quote (reader macro)!!2--31
+!2T:Single-Quote (sharpsign reader macro)!!2--31
+!2R:function!!2--31
+!2T:Sharpsign Left-Parenthesis (reader macro)!!2--31
+!2T:Left-Parenthesis (sharpsign reader macro)!!2--31
+!2R:vector!!2--31
+!2R:simple-vector!!2--31
+!2T:Sharpsign Asterisk (reader macro)!!2--32
+!2T:Asterisk (sharpsign reader macro)!!2--32
+!2R:bit-vector!!2--32
+!2R:simple-bit-vector!!2--32
+!2T:Sharpsign Colon (reader macro)!!2--33
+!2T:Colon (sharpsign reader macro)!!2--33
+!2R:symbol!!2--33
+!2T:Sharpsign Dot (reader macro)!!2--33
+!2T:Dot (sharpsign reader macro)!!2--33
+!2R:eval!!2--33
+!2R:*read-eval*!!2--33
+!2T:Sharpsign B (reader macro)!!2--33
+!2T:B (sharpsign reader macro)!!2--33
+!2R:*read-base*!!2--33
+!2T:Sharpsign O (reader macro)!!2--33
+!2T:O (sharpsign reader macro)!!2--33
+!2R:*read-base*!!2--33
+!2T:Sharpsign X (reader macro)!!2--34
+!2T:X (sharpsign reader macro)!!2--34
+!2R:*read-base*!!2--34
+!2T:Sharpsign R (reader macro)!!2--34
+!2T:R (sharpsign reader macro)!!2--34
+!2R:*read-base*!!2--34
+!2T:Sharpsign C (reader macro)!!2--34
+!2T:C (sharpsign reader macro)!!2--34
+!2R:complex!!2--34
+!2T:Sharpsign A (reader macro)!!2--35
+!2T:A (sharpsign reader macro)!!2--35
+!2R:array!!2--35
+!2T:Sharpsign S (reader macro)!!2--36
+!2T:S (sharpsign reader macro)!!2--36
+!2R:structure!!2--36
+!2T:Sharpsign P (reader macro)!!2--36
+!2T:P (sharpsign reader macro)!!2--36
+!2R:pathname!!2--36
+!2T:Sharpsign Equal-Sign (reader macro)!!2--36
+!2T:Equal-Sign (sharpsign reader macro)!!2--36
+!2R:*print-circle*!!2--36
+!2T:Sharpsign Sharpsign (reader macro)!!2--37
+!2T:Sharpsign (sharpsign reader macro)!!2--37
+!2R:*print-circle*!!2--37
+!2T:Sharpsign Plus (reader macro)!!2--37
+!2T:Plus (sharpsign reader macro)!!2--37
+!2R:*features*!!2--37
+!2T:Sharpsign Minus (reader macro)!!2--37
+!2T:Minus (sharpsign reader macro)!!2--37
+!2R:*features*!!2--37
+!2T:Sharpsign Vertical-Bar (reader macro)!!2--38
+!2T:Vertical-Bar (sharpsign reader macro)!!2--38
+!2T:comment!!2--38
+!2T:Sharpsign Less-Than-Sign (reader macro)!!2--39
+!2T:Less-Than-Sign (sharpsign reader macro)!!2--39
+!2T:Sharpsign Whitespace!!2--39
+!2T:Sharpsign Right-Parenthesis!!2--40
+!2T:Dot Dot!!2--40
+!2C:..!!2--40
+!2T:Dot Dot Dot!!2--40
+!2C:...!!2--40
+!2T:Sharpsign Whitespace!!2--40
+!2T:Sharpsign Right-Parenthesis!!2--40

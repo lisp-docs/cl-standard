@@ -1,0 +1,30 @@
+
+!2G:sequence!!17--1
+!2G:sequence function!!17--1
+!2G:satisfy the test!!17--2
+!2G:satisfy the test!!17--2
+!2G:satisfy the test!!17--4
+!2G:satisfy the test!!17--4
+!2R:sequence!!17--5
+!2R:copy-seq!!17--5
+!2R:elt!!17--6
+!2R:fill!!17--7
+!2R:make-sequence!!17--8
+!2R:subseq!!17--9
+!2R:map!!17--10
+!2R:map-into!!17--12
+!2R:reduce!!17--13
+!2R:count, count-if, count-if-not!!17--15
+!2R:length!!17--16
+!2R:reverse, nreverse!!17--17
+!2R:sort, stable-sort!!17--18
+!2R:find, find-if, find-if-not!!17--20
+!2R:position, position-if, position-if-not!!17--21
+!2R:search!!17--23
+!2R:mismatch!!17--24
+!2R:replace!!17--25
+!2R:substitute, substitute-if, substitute-if-not, nsubstitute, nsubstitute-if, nsubstitute-if-not!!17--26
+!2R:concatenate!!17--29
+!2R:merge!!17--30
+!2R:remove, remove-if, remove-if-not, delete, delete-if, delete-if-not!!17--32
+!2R:remove-duplicates, delete-duplicates!!17--35

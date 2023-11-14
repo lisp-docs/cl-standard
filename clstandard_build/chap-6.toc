@@ -1,0 +1,59 @@
+!0Programming Language---Common Lisp !!i
+!16. Iteration !!i
+!26.1{}The LOOP Facility !!6--1
+!36.1.1{}Overview of the Loop Facility !!6--1
+!46.1.1.1{}Simple vs Extended Loop !!6--1
+!56.1.1.1.1{}Simple Loop !!6--1
+!56.1.1.1.2{}Extended Loop !!6--1
+!46.1.1.2{}Loop Keywords !!6--1
+!46.1.1.3{}Parsing Loop Clauses !!6--1
+!46.1.1.4\ Expanding Loop Forms !!6--2
+!46.1.1.5\ Summary of Loop Clauses !!6--3
+!56.1.1.5.1\ Summary of Variable Initialization and Stepping Clauses !!6--3
+!56.1.1.5.2\ Summary of Value Accumulation Clauses !!6--3
+!56.1.1.5.3\ Summary of Termination Test Clauses !!6--4
+!56.1.1.5.4\ Summary of Unconditional Execution Clauses !!6--4
+!56.1.1.5.5\ Summary of Conditional Execution Clauses !!6--5
+!56.1.1.5.6\ Summary of Miscellaneous Clauses !!6--5
+!46.1.1.6\ Order of Execution !!6--5
+!46.1.1.7\ Destructuring !!6--6
+!46.1.1.8\ Restrictions on Side-Effects !!6--8
+!36.1.2\ Variable Initialization and Stepping Clauses !!6--8
+!46.1.2.1\ Iteration Control !!6--8
+!56.1.2.1.1\ The for-as-arithmetic subclause !!6--9
+!66.1.2.1.1.1{}Examples of for-as-arithmetic subclause !!6--10
+!56.1.2.1.2{}The for-as-in-list subclause !!6--11
+!66.1.2.1.2.1{}Examples of for-as-in-list subclause !!6--11
+!56.1.2.1.3\ The for-as-on-list subclause !!6--12
+!66.1.2.1.3.1\ Examples of for-as-on-list subclause !!6--12
+!56.1.2.1.4\ The for-as-equals-then subclause !!6--12
+!66.1.2.1.4.1\ Examples of for-as-equals-then subclause !!6--12
+!56.1.2.1.5\ The for-as-across subclause !!6--12
+!66.1.2.1.5.1\ Examples of for-as-across subclause !!6--13
+!56.1.2.1.6\ The for-as-hash subclause !!6--13
+!56.1.2.1.7\ The for-as-package subclause !!6--14
+!66.1.2.1.7.1\ Examples of for-as-package subclause !!6--15
+!46.1.2.2\ Local Variable Initializations !!6--15
+!56.1.2.2.1{}Examples of WITH clause !!6--16
+!36.1.3\ Value Accumulation Clauses !!6--17
+!46.1.3.1{}Examples of COLLECT clause !!6--19
+!46.1.3.2{}Examples of APPEND and NCONC clauses !!6--19
+!46.1.3.3{}Examples of COUNT clause !!6--20
+!46.1.3.4{}Examples of MAXIMIZE and MINIMIZE clauses !!6--20
+!46.1.3.5{}Examples of SUM clause !!6--20
+!36.1.4\ Termination Test Clauses !!6--21
+!46.1.4.1{}Examples of REPEAT clause !!6--22
+!46.1.4.2{}Examples of ALWAYS, NEVER, and THEREIS clauses !!6--22
+!46.1.4.3{}Examples of WHILE and UNTIL clauses !!6--24
+!36.1.5{}Unconditional Execution Clauses !!6--24
+!46.1.5.1{}Examples of unconditional execution !!6--24
+!36.1.6{}Conditional Execution Clauses !!6--25
+!46.1.6.1{}Examples of WHEN clause !!6--25
+!36.1.7\ Miscellaneous Clauses !!6--26
+!46.1.7.1{}Control Transfer Clauses !!6--27
+!56.1.7.1.1{}Examples of NAMED clause !!6--27
+!46.1.7.2{}Initial and Final Execution !!6--27
+!36.1.8{}Examples of Miscellaneous Loop Features !!6--27
+!46.1.8.1{}Examples of clause grouping !!6--28
+!36.1.9\ Notes about Loop !!6--30
+!26.2\ {Iteration} Dictionary !!6--31

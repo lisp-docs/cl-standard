@@ -1,0 +1,20 @@
+
+!2R:readtable!!23--4
+!2R:copy-readtable!!23--4
+!2R:make-dispatch-macro-character!!23--5
+!2R:read, read-preserving-whitespace!!23--6
+!2R:read-delimited-list!!23--8
+!2R:read-from-string!!23--10
+!2R:readtable-case!!23--11
+!2R:readtablep!!23--12
+!2R:set-dispatch-macro-character, get-dispatch-macro-character!!23--13
+!2R:set-macro-character, get-macro-character!!23--14
+!2R:set-syntax-from-char!!23--16
+!2R:with-standard-io-syntax!!23--17
+!2R:*read-base*!!23--19
+!2G:current input base!!23--19
+!2R:*read-default-float-format*!!23--19
+!2R:*read-eval*!!23--20
+!2R:*read-suppress*!!23--21
+!2R:*readtable*!!23--22
+!2R:reader-error!!23--23

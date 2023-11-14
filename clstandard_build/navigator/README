@@ -1,0 +1,27 @@
+This is the README file for the navigator package.
+Author: Paul Isambert.
+E-mail: zappathustra AT free DOT fr
+Comments and suggestions are welcome.
+Date: May 2016.
+Version: 1.1.
+
+Navigator offers access to PDF features such as:
+anchors, outlines (bookmarks), links and actions, embedded files, and raw PDF
+code. It works with all formats (some limitations in ConTeXt), and with
+pdfTeX, LuaTeX and XeTeX (i.e.  xdvipdfmx), trying to implement a similar
+behavior between those drivers.
+
+It requires texapi and YaX, both v.1.03.
+
+Relevant information can be found in navigator-doc.pdf.
+
+
+The files in this distribution are:
+
+navigator.tex      The bulk of the code.
+navigator.sty      A wrapper file for LaTeX.
+t-navigator.tex    A wrapper file for ConTeXt.
+navigator-doc.pdf  The manual.
+navigator-doc.tex  The source of the manual.
+  
+Licensing of this package is covered by LPPL.

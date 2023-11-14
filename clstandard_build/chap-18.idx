@@ -1,0 +1,15 @@
+
+!2R:hash-table!!18--4
+!2R:make-hash-table!!18--4
+!2R:hash-table-p!!18--5
+!2R:hash-table-count!!18--6
+!2R:hash-table-rehash-size!!18--7
+!2R:hash-table-rehash-threshold!!18--8
+!2R:hash-table-size!!18--9
+!2R:hash-table-test!!18--9
+!2R:gethash!!18--10
+!2R:remhash!!18--11
+!2R:maphash!!18--12
+!2R:with-hash-table-iterator!!18--13
+!2R:clrhash!!18--14
+!2R:sxhash!!18--15

@@ -1,0 +1,31 @@
+
+!2G:namestring!!19--1
+!2G:pathname!!19--1
+!2K:local!!19--4
+!2K:common!!19--5
+!2K:wild!!19--5
+!2K:wild-inferiors!!19--5
+!2K:unspecific!!19--6
+!2K:absolute!!19--7
+!2K:relative!!19--7
+!2K:wild!!19--8
+!2K:wild-inferiors!!19--8
+!2K:up!!19--8
+!2K:back!!19--8
+!2R:pathname!!19--15
+!2R:logical-pathname!!19--15
+!2R:pathname!!19--15
+!2R:make-pathname!!19--17
+!2R:pathnamep!!19--19
+!2R:pathname-host, pathname-device, pathname-directory, pathname-name, pathname-type, pathname-version!!19--20
+!2R:load-logical-pathname-translations!!19--22
+!2R:logical-pathname-translations!!19--23
+!2R:logical-pathname!!19--27
+!2R:*default-pathname-defaults*!!19--28
+!2R:namestring, file-namestring, directory-namestring, host-namestring, enough-namestring!!19--28
+!2R:parse-namestring!!19--30
+!2R:wild-pathname-p!!19--33
+!2R:pathname-match-p!!19--34
+!2R:translate-logical-pathname!!19--35
+!2R:translate-pathname!!19--36
+!2R:merge-pathnames!!19--38

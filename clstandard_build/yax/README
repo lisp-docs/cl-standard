@@ -1,0 +1,26 @@
+This is the README file for the YaX package.
+Author: Paul Isambert.
+E-mail: zappathustra AT free DOT fr
+Comments and suggestions are welcome.
+Date: January 2011.
+
+The package is a format-independent key system,
+with some peculiarities.
+It is format-independent and based on texapi
+(and thus requires e-TeX at least).
+Relevant information can be found in yax-doc.pdf
+
+Files in this distributions:
+
+yax.tex     => The bulk of the code.
+t-yax.tex   => A wrapper file for ConTeXt.
+yax.sty     => A wrapper file for LaTeX.
+yax-doc.tex => The source of the documentation.
+yax-doc.pdf => The typeset documentation.
+
+To process the documentation source, you need the 
+piTeX files (available on CTAN) on top of plain TeX
+with LuaTeX at least v.0.6... except the current version
+of PiTeX on CTAN is too old.
+
+Licensing of this package is covered by LPPL.

@@ -1,0 +1,16 @@
+!ChapNineteen Chapter 19 Filenames
+!Filenames Chapter 19 Filenames
+!NamingFiles Section 19.1\ Overview of Filenames
+!PathnamesAsFilenames Section 19.1.2\ Pathnames as Filenames
+!PathnameConcepts Section 19.2\ Pathnames
+!PathnameComponents Section 19.2.1\ Pathname Components
+!PathnameComponentCase Section 19.2.2.1.2\ Case in Pathname Components
+!SpecialComponentValues Section 19.2.2.2\ Special Pathname Component Values
+!WildComponents Section 19.2.2.2.2\ :WILD as a Component Value
+!UnspecificComponent Section 19.2.2.2.3\ :UNSPECIFIC as a Component Value
+!WildcardRestrictions Section 19.2.2.3\ Restrictions on Wildcard Pathnames
+!ConstructingPathnames Section 19.2.2.5{}Restrictions on Constructing Pathnames
+!MergingPathnames Section 19.2.3{}Merging Pathnames
+!LogicalPathnames Section 19.3\ Logical Pathnames
+!LogPathNamestrings Section 19.3.1\ Syntax of Logical Pathname Namestrings
+!LogicalPathCompUnspecific Section 19.3.2.1\ Unspecific Components of a Logical Pathname

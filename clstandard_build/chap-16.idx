@@ -1,0 +1,13 @@
+
+!2R:string!!16--2
+!2R:base-string!!16--2
+!2R:simple-string!!16--3
+!2R:simple-base-string!!16--4
+!2R:simple-string-p!!16--4
+!2R:char, schar!!16--5
+!2R:string!!16--6
+!2R:string-upcase, string-downcase, string-capitalize, nstring-upcase, nstring-downcase, nstring-capitalize!!16--7
+!2R:string-trim, string-left-trim, string-right-trim!!16--9
+!2R:string=, string/=, string{$\spLT $}, string{$\spGT $}, string{$\spLT $}=, string{$\spGT $}=, string-equal, string-not-equal, string-lessp, string-greaterp, string-not-greaterp, string-not-lessp!!16--10
+!2R:stringp!!16--12
+!2R:make-string!!16--13

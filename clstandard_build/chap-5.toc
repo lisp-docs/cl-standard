@@ -1,0 +1,21 @@
+!0Programming Language---Common Lisp !!i
+!15. Data and Control Flow !!i
+!25.1\ Generalized Reference !!5--1
+!35.1.1\ Overview of Places and Generalized Reference !!5--1
+!45.1.1.1\ Evaluation of Subforms to Places !!5--1
+!55.1.1.1.1{}Examples of Evaluation of Subforms to Places !!5--2
+!45.1.1.2\ Setf Expansions !!5--3
+!55.1.1.2.1\ Examples of Setf Expansions !!5--4
+!35.1.2\ Kinds of Places !!5--5
+!45.1.2.1\ Variable Names as Places !!5--5
+!45.1.2.2\ Function Call Forms as Places !!5--5
+!45.1.2.3\ VALUES Forms as Places !!5--9
+!45.1.2.4\ THE Forms as Places !!5--9
+!45.1.2.5\ APPLY Forms as Places !!5--9
+!45.1.2.6\ Setf Expansions and Places !!5--10
+!45.1.2.7\ Macro Forms as Places !!5--10
+!45.1.2.8\ Symbol Macros as Places !!5--10
+!45.1.2.9\ Other Compound Forms as Places !!5--10
+!35.1.3\ Treatment of Other Macros Based on SETF !!5--11
+!25.2\ Transfer of Control to an Exit Point !!5--13
+!25.3\ {Data and Control Flow} Dictionary !!5--14

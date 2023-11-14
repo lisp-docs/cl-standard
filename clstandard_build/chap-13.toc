@@ -1,0 +1,26 @@
+!0Programming Language---Common Lisp !!i
+!113. Characters !!i
+!213.1\ Character Concepts !!13--1
+!313.1.1\ Introduction to Characters !!13--1
+!313.1.2\ Introduction to Scripts and Repertoires !!13--1
+!413.1.2.1\ Character Scripts !!13--1
+!413.1.2.2\ Character Repertoires !!13--2
+!313.1.3\ Character Attributes !!13--2
+!313.1.4\ Character Categories !!13--2
+!413.1.4.1\ Graphic Characters !!13--3
+!413.1.4.2\ Alphabetic Characters !!13--3
+!413.1.4.3\ Characters With Case !!13--3
+!513.1.4.3.1\ Uppercase Characters !!13--3
+!513.1.4.3.2\ Lowercase Characters !!13--4
+!513.1.4.3.3\ Corresponding Characters in the Other Case !!13--4
+!513.1.4.3.4\ Case of Implementation-Defined Characters !!13--4
+!413.1.4.4\ Numeric Characters !!13--4
+!413.1.4.5\ Alphanumeric Characters !!13--4
+!413.1.4.6\ Digits in a Radix !!13--4
+!313.1.5\ Identity of Characters !!13--5
+!313.1.6\ Ordering of Characters !!13--5
+!313.1.7\ Character Names !!13--5
+!313.1.8\ Treatment of Newline during Input and Output !!13--6
+!313.1.9\ Character Encodings !!13--7
+!313.1.10\ Documentation of Implementation-Defined Scripts !!13--7
+!213.2\ {Characters} Dictionary !!13--8

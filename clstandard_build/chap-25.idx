@@ -1,0 +1,72 @@
+
+!2G:decoded time!!25--2
+!2G:universal time!!25--3
+!2G:internal time!!25--4
+!2R:decode-universal-time!!25--5
+!2R:encode-universal-time!!25--6
+!2R:get-universal-time, get-decoded-time!!25--6
+!2R:sleep!!25--7
+!2R:apropos, apropos-list!!25--8
+!2R:describe!!25--9
+!2R:describe-object!!25--10
+!2R:trace, untrace!!25--12
+!2R:step!!25--13
+!2R:time!!25--14
+!2R:internal-time-units-per-second!!25--15
+!2R:get-internal-real-time!!25--15
+!2R:get-internal-run-time!!25--16
+!2R:disassemble!!25--17
+!2R:documentation, (setf documentation)!!25--17
+!2R:t!!25--18
+!2R:function!!25--18
+!2R:function!!25--18
+!2R:compiler-macro!!25--18
+!2R:function!!25--18
+!2R:compiler-macro!!25--18
+!2R:setf!!25--18
+!2R:t!!25--18
+!2R:function!!25--18
+!2R:function!!25--18
+!2R:compiler-macro!!25--18
+!2R:function!!25--18
+!2R:compiler-macro!!25--18
+!2R:setf!!25--18
+!2R:t!!25--18
+!2R:method-combination!!25--18
+!2R:method-combination!!25--18
+!2R:t!!25--18
+!2R:method-combination!!25--18
+!2R:method-combination!!25--18
+!2R:t!!25--19
+!2R:t!!25--19
+!2R:t!!25--19
+!2R:t!!25--19
+!2R:t!!25--19
+!2R:type!!25--19
+!2R:t!!25--19
+!2R:type!!25--19
+!2R:type!!25--19
+!2R:structure!!25--19
+!2R:t!!25--19
+!2R:type!!25--19
+!2R:t!!25--19
+!2R:type!!25--19
+!2R:type!!25--19
+!2R:structure!!25--19
+!2R:variable!!25--19
+!2R:variable!!25--19
+!2R:room!!25--21
+!2R:ed!!25--22
+!2R:inspect!!25--23
+!2R:dribble!!25--23
+!2R:$-$!!25--24
+!2R:+, ++, +++!!25--25
+!2R:*, **, ***!!25--26
+!2R:/, //, ///!!25--27
+!2R:lisp-implementation-type, lisp-implementation-version!!25--28
+!2R:short-site-name, long-site-name!!25--28
+!2R:machine-instance!!25--29
+!2R:machine-type!!25--30
+!2R:machine-version!!25--30
+!2R:software-type, software-version!!25--31
+!2R:user-homedir-pathname!!25--32

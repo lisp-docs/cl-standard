@@ -1,0 +1,27 @@
+
+!2G:character!!13--1
+!2G:repertoire!!13--2
+!2G:null!!13--2
+!2G:graphic!!13--3
+!2G:non-graphic!!13--3
+!2R:character!!13--8
+!2R:base-char!!13--8
+!2R:standard-char!!13--9
+!2R:extended-char!!13--9
+!2R:char=, char/=, char{$\spLT $}, char{$\spGT $}, char{$\spLT $}=, char{$\spGT $}=, char-equal, char-not-equal, char-lessp, char-greaterp, char-not-greaterp, char-not-lessp!!13--10
+!2R:character!!13--12
+!2R:characterp!!13--13
+!2R:alpha-char-p!!13--14
+!2R:alphanumericp!!13--15
+!2R:digit-char!!13--16
+!2R:digit-char-p!!13--16
+!2R:graphic-char-p!!13--17
+!2R:standard-char-p!!13--18
+!2R:char-upcase, char-downcase!!13--19
+!2R:upper-case-p, lower-case-p, both-case-p!!13--20
+!2R:char-code!!13--21
+!2R:char-int!!13--22
+!2R:code-char!!13--22
+!2R:char-code-limit!!13--23
+!2R:char-name!!13--24
+!2R:name-char!!13--25

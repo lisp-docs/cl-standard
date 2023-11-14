@@ -1,0 +1,50 @@
+ 
+/* start css.sty */
+p{margin-top:0;margin-bottom:0}
+p.indent{text-indent:0;}
+p + p{margin-top:1em;}
+p + div, p + pre {margin-top:1em;}
+div + p, pre + p {margin-top:1em;}
+a { overflow-wrap: break-word; word-wrap: break-word; word-break: break-word; hyphens: auto; }
+@media print {div.crosslinks {visibility:hidden;}}
+table.tabular{border-collapse: collapse; border-spacing: 0;}
+a img { border-top: 0; border-left: 0; border-right: 0; }
+center { margin-top:1em; margin-bottom:1em; }
+td center { margin-top:0em; margin-bottom:0em; }
+.Canvas { position:relative; }
+img.math{vertical-align:middle;}
+div.par-math-display, div.math-display{text-align:center;}
+body{ margin:1em auto; max-width:80ch; padding:0 .62em; }
+h1,h2,h3,h4,h5 { line-height:1.2; }
+@media print{ body{ max-width:none } }
+.partHead, likepartHead { font-size: 2em; }
+.chapterHead, likechapterHead { font-size: 1.7411em; }
+.sectionHead, likesectionHead { font-size: 1.5157em; }
+.subsectionHead, likesubsectionHead { font-size: 1.3195em; }
+.subsubsectionHead, likesubsubsectionHead { font-size: 1.1487em; }
+ @media (prefers-color-scheme: dark) { img[src^="includer"]{filter: invert(1); } } 
+.obeylines-h,.obeylines-v {white-space: nowrap; }
+div.obeylines-v p { margin-top:0; margin-bottom:0; }
+.overline{ text-decoration:overline; }
+.overline img{ border-top: 1px solid black; }
+td.displaylines {text-align:center; white-space:nowrap;}
+.centerline {text-align:center;}
+.rightline {text-align:right;}
+.underline{ text-decoration:underline; }
+.underline img{ border-bottom: 1px solid black; margin-bottom:1pt; }
+div.proclaim { margin-top: 1em; margin-bottom: 1em; }
+p.item {text-indent:-2em; margin-left:2em;}
+p.itemitem {text-indent:-2em; margin-left:4em;}
+span.item, span.itemitem {width:2em; margin-right:0.4em;}
+td.eqalign3 { text-align:right; margin-left:10em;}
+.eqalign td { white-space: nowrap; }
+div.eqalign {text-align:center;}
+td.eqalignno3, td.leqalignno3 { text-align:right; margin-left:10em;}
+.leqalignno td, .eqalignno td { white-space: nowrap; }
+.leqalignno td.noalign, .eqalignno td.noalign { width:5%; white-space: normal; }
+table.leqalignno, table.eqalignno {width:100%;}
+img.cdots{vertical-align:middle;}
+div.pmatrix {text-align:center;}
+table.pmatrix {width:100%;}
+/* end css.sty */
+

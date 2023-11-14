@@ -1,0 +1,74 @@
+
+!2G:stream!!21--1
+!2G:character!!21--1
+!2G:stream!!21--1
+!2G:binary!!21--1
+!2G:stream!!21--1
+!2G:input!!21--1
+!2G:stream!!21--1
+!2G:output!!21--1
+!2G:stream!!21--1
+!2G:bidirectional!!21--2
+!2G:stream!!21--2
+!2G:open!!21--2
+!2G:closed!!21--2
+!2G:interactive stream!!21--2
+!2G:file stream!!21--3
+!2G:stream variable!!21--4
+!2R:stream!!21--7
+!2R:broadcast-stream!!21--7
+!2R:concatenated-stream!!21--8
+!2R:echo-stream!!21--9
+!2R:file-stream!!21--9
+!2R:string-stream!!21--10
+!2R:synonym-stream!!21--10
+!2R:two-way-stream!!21--11
+!2R:input-stream-p, output-stream-p!!21--11
+!2R:interactive-stream-p!!21--12
+!2R:open-stream-p!!21--12
+!2R:stream-element-type!!21--13
+!2R:streamp!!21--14
+!2R:read-byte!!21--15
+!2R:write-byte!!21--16
+!2R:peek-char!!21--17
+!2R:read-char!!21--18
+!2R:read-char-no-hang!!21--19
+!2R:terpri, fresh-line!!21--21
+!2R:unread-char!!21--22
+!2R:write-char!!21--23
+!2R:read-line!!21--24
+!2R:write-string, write-line!!21--25
+!2R:read-sequence!!21--26
+!2R:write-sequence!!21--27
+!2R:file-length!!21--28
+!2R:file-position!!21--29
+!2R:file-string-length!!21--31
+!2R:open!!21--32
+!2R:stream-external-format!!21--36
+!2R:with-open-file!!21--37
+!2R:close!!21--39
+!2R:with-open-stream!!21--40
+!2R:listen!!21--41
+!2R:clear-input!!21--42
+!2R:finish-output, force-output, clear-output!!21--43
+!2R:y-or-n-p, yes-or-no-p!!21--44
+!2R:make-synonym-stream!!21--46
+!2R:synonym-stream-symbol!!21--46
+!2R:broadcast-stream-streams!!21--47
+!2R:make-broadcast-stream!!21--47
+!2R:make-two-way-stream!!21--48
+!2R:two-way-stream-input-stream, two-way-stream-output-stream!!21--49
+!2R:echo-stream-input-stream, echo-stream-output-stream!!21--49
+!2R:make-echo-stream!!21--50
+!2R:concatenated-stream-streams!!21--50
+!2R:make-concatenated-stream!!21--51
+!2R:get-output-stream-string!!21--52
+!2R:make-string-input-stream!!21--53
+!2R:make-string-output-stream!!21--53
+!2R:with-input-from-string!!21--54
+!2R:with-output-to-string!!21--55
+!2R:*debug-io*, *error-output*, *query-io*, *standard-input*, *standard-output*, *trace-output*!!21--57
+!2R:*terminal-io*!!21--59
+!2R:stream-error!!21--60
+!2R:stream-error-stream!!21--60
+!2R:end-of-file!!21--61

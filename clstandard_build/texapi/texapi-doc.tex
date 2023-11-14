@@ -1,0 +1,1941 @@
+\input pitex % which \input's texapi (and YaX)
+
+\setparameter document:
+  author   = "Paul Isambert"
+  title    = \texapi
+  pdftitle = TeXapi
+  version  = \texapiversion
+  date     = "\the\month/\the\day/\the\year"
+  subject  = "The TeXapi documentation."
+  display  = outlines
+
+\setparameter page:
+  width        = 32cm
+  height       = 32cm
+  lines        = 46
+  hsize        = 10cm
+  baselineskip = 14pt
+  left         = 10cm
+  top          = 5cm
+  parindent    = 2em
+
+\setparameter font:
+  command = \mainfont
+  name    = "Chaparral Pro"
+  size    = 12pt
+  small = 11pt
+  big = 20pt
+
+\setparameter font:
+  command = \tcodefont
+  name    = "Lucida Console"
+  size    = 9.5pt
+  bold italic   = none
+  features = "space = mono"
+
+\setparameter font:
+  command = \cscodefont
+  name    = "Lucida Console"
+  size    = 8.5pt
+  bold italic   = none
+  features = "space = mono"
+
+\def\codefont{%
+  \ifcslist \cscodefont
+  \else \tcodefont\fi}
+\def\tcode#1{{\codefont#1}}%
+
+% 
+%
+% OUTPUT
+%
+\newbox\codebox
+\newdimen\sepdim
+\sepdim=1.2pc
+
+\pdfdef\&{&}
+\newdimen\originalvsize
+\originalvsize=\vsize
+
+\output={%
+  \setbox255=\vtop{\unvbox255}
+  \setbox\codebox=\vtop{\unvbox\codebox}
+  \ht255=\baselineskip
+  \ht\codebox=\baselineskip
+  \shipout\vbox{%
+    \vbox to 0pt{%
+      \vss
+      \hbox to \hsize{%
+        \spaceskip .8em plus .6em minus .3em
+        \mainfont\big\sc\descriptiontitle
+        \unless\ifx\bookmarktitle\prevbookmarktitle
+          \passexpanded{\outline0}{\bookmarktitle}%
+        \fi}
+      \kern2\baselineskip}%
+    \hbox{%
+      \box255
+      \kern\sepdim
+      \pdfliteral{
+        q
+        .95 g
+        -3 200 300 -1000 re f
+        Q
+      }
+      \box\codebox
+      }%
+    }
+  \advancepageno
+  \global\let\prevbookmarktitle\bookmarktitle
+  \global\vsize=\originalvsize
+  }
+
+%
+%
+% \cslist
+
+\def\red{\color{.9 0 0}}
+\def\rcom#1{\red{\com#1}}
+\newbox\cslistbox
+\newife\ifexpcs
+\newif\ifcslist
+\newbox\tempbox
+\newdimen\tempdimen
+\newdimen\cswidth
+\newcount\cslistcount
+\def\zilch{\zilch}
+\extraboxspace=1.5pt
+\def\macrobox{\colorbox{.92 .92 .92}}
+\def\definecs#1#2{
+  \quitvmode
+  \hbox  to\cswidth{\iffexpcs\macrobox{\unless\ifx#1\zilch\rcom#1\fi}\hfill}%
+  \setcatcodes{/=13}%
+  \scantextokens{#2}%
+  \restorecatcodes
+  }
+\def\longdefinecs#1#2\end{\definecs#1{#2}}
+\def\getwidth#1#2\end{%
+  \bgroup
+    \setbox0=\hbox{\codefont\string#1}%
+    \ifdim\wd0>\cswidth
+      \global\cswidth=\wd0
+    \fi
+  \egroup
+  }
+\def\cslist#1{%
+  \vskip\baselineskip
+  \cslisttrue \cslistcount=0
+  \cswidth=0pt
+  \dofornoempty{#1,}##1,{%
+    \deftrim\temp{##1}%
+    \passexpanded{\iffprefix!}{\temp}
+             {\passexpanded{\removeprefixin!}{\temp}\temp}%
+    \expandafter\getwidth\temp\end
+    }{}%
+%
+  \tempdimen=0pt
+  \dofornoempty{#1,}##1,{%
+    \advance\cslistcount1
+    \deftrim\temp{##1}%
+    \passexpanded{\ifprefix!}{\temp}
+             {\expcstrue\passexpanded{\removeprefixin!}{\temp}\temp}
+             {\expcsfalse}%
+    \setbox\tempbox\hbox{\expandafter\longdefinecs\temp\end\kern\sepdim}%
+    \ifdim\wd\tempbox>\tempdimen
+      \tempdimen=\wd\tempbox
+    \fi
+    }{}%
+%
+  \setbox\cslistbox=\vtop{%
+    \dofornoempty{#1,}##1,{%
+      \deftrim\temp{##1}%
+      \passexpanded{\ifprefix!}{\temp}
+               {\expcstrue\passexpanded{\removeprefixin!}{\temp}\temp}
+               {\expcsfalse}%
+      \llap{\hbox to\tempdimen{\expandafter\longdefinecs\temp\end\hfil}}%
+      }{}%
+    }%
+  \dp\cslistbox=0pt
+  \noindent \box\cslistbox
+  \def\par{%
+    \endgraf
+    \let\par\endgraf
+    \ifnum\prevgraf<\cslistcount
+      \vskip\the\numexpr(\cslistcount-\prevgraf)\baselineskip
+    \fi}%
+  \cslistfalse \ignorespaces
+  }
+%
+\bgroup
+\setcatcodes{/=13}
+\gdef/#1/{\arg{#1}}
+\egroup
+
+\def\true{\arg{true}}
+\def\false{\arg{false}}
+\def\csarg{\arg{csname}}
+\def\comarg{\arg{command}}
+
+
+%
+% EXAMPLES
+%
+
+\newverbatim\example{\codefont\parindent0pt}
+                     {\vskip\baselineskip\printverbatim\relax
+                      \vskip\baselineskip\removenextindent}
+\newverbatim\Example{}{%
+  \global\setbox\codebox=\vbox{%
+    \parindent0pt
+    \ifvoid\codebox
+      \quitvmode\vrule height \topskip depth 0pt width 0pt
+    \else
+      \dimen0=\dp\codebox
+      \box\codebox
+      \vskip\baselineskip
+      \color{1 1 1}{\hrule width \hsize height 1pt depth 1pt}%
+      \kern-2pt
+      \vskip\baselineskip
+      \prevdepth=\dimen0
+    \fi
+    \let\exampleskip\relax
+    \cslisttrue \codefont
+    \overfullrule=0pt
+    \printverbatim
+    \vskip\baselineskip
+    \mainfont\small
+    \doverbatim
+    }%
+  }
+
+\newblock\description
+  {\getdescriptiontitle}
+  {\penalty-10000\relax}
+
+\def\getdescriptiontitle#1{%
+  \def\bookmarktitle{#1}%
+  \def\descriptiontitle{}%
+  \dofor{#1 }##1 {%
+    \dofor{##1}####1{%
+      \addright\descriptiontitle{\lowercase{####1}\hskip0pt plus 8pt minus 2pt}%
+      }{}%
+    \addright\descriptiontitle{\unskip\spacecs}%
+    }{}%
+  \addright\descriptiontitle{\unskip}%
+  }
+\def\texapi{%
+  {\codefont texapi}%
+  \antigobblespace
+  }
+
+\overfullrule=0pt
+
+
+
+\description{Writing macros with texapi}
+
+\setbox\codebox=\vbox to \hsize{%
+  \small
+  \hfill \vrule height\topskip width0pt Author: \usevalue document : author \par
+  \hfill Version: \usevalue document : version \par
+  \hfill Date: \usevalue document : date \par
+  \vskip\baselineskip
+  \noindent Typeset in Chaparral Pro (Carol Twombly)
+  and Lucida Console\hfil\penalty-10000 (Charles Bigelow and Kris Holmes)
+  with Lua\TeX\ v.\directlua{tex.print(tex.luatexversion/100)}.
+
+  }
+
+The first motivation for this set of macros is selfish:
+after rewriting the same lines over and over and wasting
+so many excruciating (yes!) hours debugging intricate loops
+with one typo, I decided I could use a toolkit containing
+the painful code without errors (hopefully) and use it
+for future packages.
+
+The second motivation is more ambitious: I think it's a pity
+so many packages are written for one format and are thus
+unusable outside it, even though those packages could be useful
+to anybody. This is so, I believe, because a format mixes two
+different things: decisions about typesetting (mainly) and utility macros.
+The former are the essence of a format, whereas the latter are just
+shorthands you can use or not, replace, or ignore completely.
+But the fact is that users of a format tend to use the utility macros
+shipped with it, and thus writes macros that can't be reused elsewhere,
+even though nothing crucial hinges on what utility macros one uses.
+Thus, \texapi aims at providing a good deal of this kind of macros
+whitout relying on any particular format, so that one can write
+code without having to take into account how it will be used.
+Moreover, \texapi is also format-aware, meaning some commands
+are defined differently depending on the format being used,
+and one doesn't have to create as many macros as there are formats.
+
+There is at least one basic assumptions, namely that formats
+should contain plain \TeX's allocation macros. This the case for
+all formats I know.
+
+\vskip\baselineskip
+In what follows, commands have a \macrobox{grey background} when they
+are fully expandable, e.g. they can be used inside \com\csname...\com\endcsname,
+provided you don't use them with unexpandable arguments, of course.
+On the other hand, all unexpandable commands are protected.
+
+Arguments are denoted by \arg{text}, where `text' makes the intended use
+clearer and doesn't denote any particular type of argument, except in
+the case of \comarg, which denotes a control sequence (something expandable,
+actually), and \csarg, which denotes an argument suitable to \com\csname.
+Braces are indicated only when mandatory, but of course they can be used to delimit
+arguments as usual.
+
+\vskip\baselineskip
+Finally, the following may be a useful indication (added in version 1.01).
+
+\vskip-\baselineskip
+\cslist{
+  \texapiversion
+  }
+This a macro that holds \texapi's version number.
+The current version is \texapiversion.
+
+\description/
+
+
+
+\description{Engine and format detection}
+
+\cslist{
+  \texenginenumber
+  }
+This is a \com\chardef'ined number set according to the
+engine used: 0 means e-\TeX, or an unknown engine with
+e-\TeX\ extensions; 1 means Xe\TeX\ (detected because
+\com\XeTeXinterchartoks exists); 2 means pdf\TeX\ (detected
+thanks to \com\pdfstrcmp); 3 means Lua\TeX\ (detected thanks
+to \com\directlua). Numbering here allows one to detect a
+pdf\TeX-based engine with \com\texenginenumber>1. Con\TeX t
+has an equivalent \com\texengine, with pdf\TeX=1 and Xe\TeX=2,
+though.
+
+\cslist{
+  \formatnumber
+  }
+This number does the same with formats. Here, 0 means an unknown
+format, 1 means plain (because \com\fmtname is `\tcode{plain}'),
+2 means eplain (because \com\fmtname is `\tcode{eplain}'),
+3 means Con\TeX t (because there exists an \com\inspectnextoptionalcharacter
+command), 4 means La\TeX2e (because \com\fmtname is `\tcode{LaTeX2e}')
+and 5 means La\TeX3 (because there exists an \com\ExplSyntaxOn command).
+There's no distinction yet between La\TeX3 on top of La\TeX2e and La\TeX3
+as a format per se. Since \com\formatnumber is set only if it doesn't
+already exist, you can write your package with, say, \tcode{code.tex}
+containing the main code and \tcode{code.sty} and \tcode{t-code.tex}
+as wrapper files for La\TeX\ and Con\TeX t respectively, with \com\formatnumber
+already set accordingly.
+
+\Example
+\def\myengine{%
+  \ifcase\texenginenumber
+    e-\or Xe\or pdf\or Lua\fi\TeX 
+  }
+\def\myformat{%
+  \ifcase\formatnumber
+    unknown\or plain\or eplain\or
+    ConTeXt\or LaTeX\or LaTeX3\fi
+  }
+This documentation has been typeset
+with \myformat\ under \myengine.
+\Example/
+
+\cslist{
+  \priminput,
+  \primunexpanded
+  }
+Both La\TeX\ and Con\TeX t redefines \com\input, and in Con\TeX t
+\com\unexpanded has not the meaning of the e-\TeX\ primitive. These
+two commands are thus the primitive \com\input and \com\unexpanded
+respectively.
+
+\cslist{
+  \loadmacrofile/file/
+  }
+The behavior of this command depends on \com\formatnumber. The \arg{file}
+should be given without extension, and the following happens: in Con\TeX t,
+\com\usemodule\tcode{[\arg{file}]} is executed, in La\TeX\ \com\RequirePackage\barg{file}
+is used, and in other formats it is simply \com\input\arg{file}\tcode{.tex}.
+This makes sense only with packages that are distributed as described above,
+i.e. with the main code in one file and wrapper files for La\TeX\ and Con\TeX t,
+like Ti\ital{k}Z or \ital{librarian}.
+
+\cslist{
+  \senderror/package//message/
+  }
+This sends an error message according to the format's custom. In \tcode{plain}
+and \tcode{eplain} (and in an unknown format), it produces
+\tcode{\com\errmessage\string{\arg{package} error: \arg{message}\string}}.  In
+La\TeX, it produces
+\com\PackageError\barg{package}\barg{message}{\codefont\string{\string}} (no
+help message) and in Con\TeX t \tcode{\com\writestatus\string{\arg{package}
+error\string}}\barg{message} (which is far from Con\TeX t's sophisticated
+communication system but, well...).
+
+\description/
+
+
+
+
+
+
+
+\description{Argument manipulation}
+
+\cslist{
+  !\emptycs,
+  !\spacecs,
+  \spacechar
+  }
+Pretty useful macros whose meaning is clear, but whatever: \com\emptycs is
+an emptily defined command, \com\spacecs expands to a space, and \com\spacechar
+denotes a space, i.e. it is an implicit space and not really a macro.
+
+\cslist{
+  !\gobbleone,
+  !\gobbleoneand/code/
+  }
+Those, as you might imagine, gobble the following argument; the second version
+also excutes \arg{code} afterwards. There are actually nine
+such commands in each case, and they are (for the sake of completeness)
+\com\gobbleone, \com\gobbletwo, \com\gobblethree, \com\gobblefour,
+\com\gobblefive, \com\gobblesix, \com\gobbleseven, \com\gobbleeight\
+(watch out, two \ital{e}'s) and \com\gobblenine for the first version,
+and \com\gobbleoneand, \com\gobbletwoand, \com\gobblethreeand,
+\com\gobblefourand, \com\gobblefiveand, \com\gobblesixand,
+\com\gobblesevenand, \com\gobbleeightand and \com\gobblenineand. Note
+that \com\gobblenineand\arg{code} takes two expansion steps to
+return \arg{code}, instead of only one in the other cases.
+
+\Example
+This is \gobbletwoand{very } uninteresting.
+\Example/
+
+\cslist{
+  !\unbrace/code/
+  }
+This is the kind of command you probably can't see the point of until
+you need it. It returns its \arg{code} untouched, but with outermost
+braces removed if any.
+
+\cslist{
+  !\swapargs/arg1//arg2/,
+  !\swapbraced/arg1//arg2/,
+  !\swapleftbraced/arg1//arg2/,
+  !\swaprightbraced/arg1//arg2/
+  }
+The first of those returns \arg{arg2}\arg{arg1} into the stream, without
+any brace to delimit them.
+On the contrary, \com\swapbraced returns \barg{arg2}\barg{arg1}. And, as
+you might imagine, \com\swapleftbraced returns
+\barg{arg2}\arg{arg1} whereas \com\swaprightbraced returns \arg{arg2}\barg{arg1}.
+
+\cslist{
+  !\passexpanded/arg1//arg2/,
+  !\passexpandednobraces/arg1//arg2/
+  }
+The first one returns \arg{arg1}\barg{arg2 expanded once} and the second
+\arg{arg1}\arg{arg2 expanded once}. It's some sort
+of long \com\expandafter built on \com\swapargs and associates,
+and if \arg{arg1} is a single token it's faster to use \com\expandafter
+itself. It's not a real \com\expandafter, though, since \arg{arg2} is
+expanded to the left of \arg{arg1} and then moved back to its
+right. Which, with e.g. an \com\else as \arg{arg2}, will lead
+to results you probably haven't foreseen and expected.
+If \arg{arg2} is some material you want to turn into a command with
+\com\csname, see \com\passcs below.
+
+\Example
+\def\foo#1#2{\detokenize{(1=#1,2=#2)}}
+\def\bar{two}
+\foo{one}\bar
+\passexpanded{\foo{one}}\bar
+\Example/
+
+\description/
+
+
+
+
+
+
+
+
+
+\description{Defining \& using commands}
+
+\cslist{
+  \defcs\csarg/parameter text/\barg{definition},
+  \edefcs\csarg/parameter text/\barg{definition},
+  \gdefcs\csarg/parameter text/\barg{definition},
+  \xdefcs\csarg/parameter text/\barg{definition}
+  }
+These work exactly like \com\def, \com\edef, \com\gdef
+and \com\xdef, except they define a command with name
+\csarg. The \arg{parameter text} is the usual one,
+and any the space at the beginning is significant. I.e.
+\verb/\defcs{foo}#1{...}/ and \verb/\defcs{foo} #1{...}/
+aren't equivalent at all. Prefixes can be appended as with
+\com\def.
+
+\Example
+\defcs{foo}#1{This is foo: #1.}
+\foo{bar}
+\Example/
+
+
+\cslist{
+  \letcs\csarg\comarg,
+  \lettocs\comarg\csarg,
+  \letcstocs\csarg\csarg
+  }
+These \com\let the first command or command named \csarg\ to
+the meaning of the second one. In both \com\lettocs and \com\letcstocs,
+if the command with name \csarg\ is undefined, it is not let to \com\relax.
+So these are different from \com\let with \com\expandafter's. The \com\letcs
+command can also be used to create an implicit character, of course.
+
+\Example
+\expandafter\let\expandafter\foo
+                \csname undefined\endcsname
+\lettocs\bar{reallyundefined}
+\letcstocs{reallyundefined}{reallyundefined}
+
+Compare this: \meaning\foo,
+and that: \meaning\bar.
+And better yet: \meaning\reallyundefined.
+\Example/
+
+
+\cslist{
+  \addleft\comarg/material/,
+  \addleftcs\csarg/material/,
+  \eaddleft\comarg/material/,
+  \eaddleftcs\csarg/material/
+  }
+This redefines \comarg\ or a command named \csarg\ to
+itself with \arg{material} added at the beginning. The e-variant
+performs an \com\edef so that \arg{material} is fully expanded
+(but not \comarg). The usual prefixes can be appended.
+
+\cslist{
+  \addright\comarg/material/,
+  \addrightcs\csarg/material/,
+  \eaddright\comarg/material/,
+  \eaddrightcs\csarg/material/
+  }
+This is the same thing as above, but the material is added 
+at the end. In both the left and right version, the command
+thus redefined should be a simple command working by itself
+(i.e. no argument and no delimiter). In the \csarg\ case,
+no check is performed to ensure that \csarg\ is defined
+(but in the worst case it ends up as \com\relax, because of
+its being called after the implicit \com\def\ (get it?)).
+
+\Example
+\defcs{foo}{bar}
+\addleftcs{foo}{In a }
+\addright\foo{ (how fascinating).}
+\foo
+\Example/
+
+\cslist{
+  !\usecs\csarg,
+  !\usecsafter\csarg,
+  !\passcs/code/\csarg,
+  !\passexpandedcs/code/\csarg,
+  \noexpandcs\csarg,
+  \unexpandedcs\csarg
+  }
+Various ways to use a command with name \csarg:
+\com\usecs performs a simple \com\csname\csarg\com\endcsname\
+(and doesn't even check whether \csarg\ is defined or not, so
+this might relax it a little bit), \com\usecsafter does the equivalent
+of \com\expandafter\com\command, \com\passcs puts \csarg\ as a real
+(unbraced) command after \arg{code}, whereas \com\passexpandedcs passes
+the expansion of the control sequence with name \csarg\ to \arg{code}; \com\noexpandcs and \com\unexpandedcs
+return \csarg\ with a \com\noexpand prefix or its expansion as argument to
+\com\unexpanded\ (\com\primunexpanded, really).
+
+\Example
+\def\bar{whatever} \def\foo#1{[#1]}
+I use it: \usecs{bar}, 
+I use it after: \usecsafter{foo}\bar,
+and I pass it: \passcs\foo{bar}.
+\Example/
+\Example
+\def\foo{\bar}
+I don't expand it:
+\edef\foobar{\noexpandcs{foo}}%
+\meaning\foobar.
+Or just a little bit:
+\edef\foobar{\unexpandedcs{foo}}%
+\meaning\foobar.
+\Example/
+
+\cslist{
+  !\commandtoname\comarg
+  }
+This returns the name of \comarg, i.e. \comarg\ without its backslash
+(and made of catcode-12 characters, since it's based on \com\string).
+
+\description/
+
+
+
+
+
+
+
+
+
+\description{Tests with commands}
+
+\cslist{
+  !\reverse
+  }
+Conditionals in \texapi\ (not only those on this page) can be prefixed with
+\com\reverse, so that if they're true the \false\ argument is executed (if
+specified), and if they're false, the \true\ argument is executed. So this is
+equivalent to \com\unless, to which \com\reverse defaults (since version
+1.04) in case the following command isn't recognized as a \texapi conditional.
+
+\Example
+\reverse\iffalse
+  Wow, \verb"\reverse" can replace \verb"\unless"!
+  We must be using version 1.04 at least!
+\fi
+\Example/
+
+\cslist{
+  !\ifcommand\comarg\true\false,
+  !\iffcommand\comarg\true
+  }
+This conditional executes \true\ if \comarg\ is defined.
+So it is a straight version of \com\ifdefined. The \com\iff...
+version, like all \texapi's \com\iff..., considers only the
+\true\ case (which becomes the \false\ case if the conditional
+is prefixed with \com\reverse).
+
+\Example
+\ifcommand\TeX{Cool}{Too bad}.
+Nothing: \iffcommand\undefined{Whatever}.
+\Example/
+
+\cslist{
+  !\ifcs\csarg\true\false,
+  !\iffcs\csarg\true
+  }
+Same as above, but with an \com\ifcsname this time.
+It goes without saying that \csarg\ isn't let to \com\relax
+thereafter if it was undefined.
+
+\Example
+\reverse\iffcs{undefined}{This command is undefined.}
+\Example/
+
+\cslist{
+  !\ifemptycommand\comarg\true\false,
+  !\iffemptycommand\comarg\true
+  }
+This is true if \comarg\ is defined with an empty
+definition text, i.e. it is equivalent to \com\emptycs.
+This is not true if \comarg\ takes arguments, though,
+so \com\gobbleone isn't empty in this sense.
+
+\cslist{
+  !\ifemptycs\csarg\true\false,
+  !\iffemptycs\csarg\true
+  }
+Same as above with a command named \csarg.
+
+\Example
+\def\foo{}
+\ifemptycommand\foo{Empty}{Not empty}.
+\reverse\iffemptycs{gobbleone}{It ain't empty}.
+\Example/
+
+
+
+\cslist{
+  !\ifxcs\csarg\comarg\true\false,
+  !\iffxcs\csarg\comarg\true
+  }
+This is true if \csarg\ has the same definition as \comarg,
+or they're both undefined.
+
+\cslist{
+  !\ifxcscs\csarg\csarg\true\false,
+  !\iffxcscs\csarg\csarg\true
+  }
+This is true if both \csarg's have the same definition,
+or they're both undefined.
+
+\Example
+\iffxcs{undefined}\undefinedtoo
+       {Same definitions.}
+\ifxcscs{foo}{TeX}
+        {These are the same}
+        {These are different}.
+\Example/
+
+\description/
+
+
+
+
+
+
+
+
+
+
+\description{Various conditionals}
+
+\cslist{
+  \newife\comarg
+  }
+This defines a conditional like plain \TeX's \verb/\newif/,
+except it takes two arguments (the \true\ and \false\ values)
+instead of an \com\else ... \com\fi structure. Besides,
+this conditional is reversible with \com\reverse, and
+a `double-f\kern1pt' (i.e. \com\iff...) version is also created,
+which takes the \true\ part only. As with
+\verb/\newif/, \comarg\ must begin with \tcode{if}.
+(The \ital{e} means \ital{expandable}, although there's
+nothing more expandable in the conditionals thus constructed
+than in those defined with \verb/\newif/, but anyway.)
+
+\Example
+\newife\iffoo
+\iffoo{There is foo}{There is no foo}.
+\footrue
+\reverse\iffoo{There is no foo}{There is foo}.
+\ifffoo{With three f's in a row}.
+\Example/
+
+\cslist{
+  !\straightenif/\TeX\ conditional//arg/\true\false,
+  !\straighteniff/\TeX\ conditional//arg/\true
+  }
+Apart from \com\ifdefined and \com\ifcsname\ (in the guise
+of \com\ifcommand and \com\ifcs respectively), none of \TeX's
+primitive conditionals are redefined in a straight fashion,
+i.e. with two arguments instead of \com\else ... \com\fi.
+These commands let you use \TeX's conditionals in such a way.
+\arg{\TeX\ conditional} means such a primitive without a
+backslash (so this construction can be used inside real
+conditionals), e.g. \tcode{ifnum} or \tcode{ifvoid}.
+The \arg{arg} is whatever you normally feed to this conditional.
+It is brutally concatenated, and you're the one in charge
+of adding space if needed, as for instance with \tcode{ifnum}.
+Chaos will ensue if you fail to do so. With conditionals that don't
+require anything, e.g. \tcode{iftrue} or \tcode{ifvmode},
+leave \arg{arg} empty (but don't forget it).
+Finally, \true\ and \false\ are executed accordingly, and the
+whole macro can be prefixed with \com\reverse.
+
+\Example
+                       % See this space?
+\straightenif{ifnum}{1=1 }{Reality is preserved}
+                          {Bad news}.
+\reverse\straighteniff{if}{ab}
+             {Different letters, obviously.}
+\straightenif{iftrue}{}{Good}{Bad}.
+\Example/
+
+\cslist{
+  !\ifwhatever/conditional/\true\false,
+  !\iffwhatever/conditional/\true
+  }
+This command (introduced in v.1.04) takes a \arg{conditional} which is
+either a \TeX\ conditional (normally expecting \com\fi and perhaps \com\else
+before that) or a conditional whose \true\ and \false\ parts are normally
+given as arguments, like those created by \com\newife. In the first case, it
+is equivalent to \com\straightenif, in the second case it is redundant.
+However, it is useful when one is expecting a conditional whose nature is
+unknown. If \arg{conditional} is a \TeX\ conditional, you're in charge of
+adding space if needed, as with \com\straightenif; unlike the latter, though,
+the \com\if... command itself is given as usual (i.e. no need to remove the
+backslash), which also means it cannot be properly nested in a \TeX\
+conditional (unless itself is embedded in \com\straightenif). Finally, if
+\arg{conditional} is an argument-taking conditional, the \tcode{iff} form (in
+case it comes from \texapi) cannot be used, and conditionals poking at the
+next token cannot be used either. The whole macro can be prefixed with
+\com\reverse.
+
+\Example
+                    % See this space too?
+\ifwhatever{\ifnum5=5 }{True.}{False.}
+\newife\iftest
+\reverse\iffwhatever\iftest{True too.}
+\Example/
+
+\description/
+
+
+
+
+
+\description{Conditional expressions}
+
+\cslist{
+  !\ifexpression/expression/\true\false,
+  !\iffexpression/expression/\true
+  }
+This (introduced in v.1.04) evaluates \arg{expression}, which is made of
+subexpressions separated by \com& (and) or \com| (or), a subexpression being
+either a conditional or a braced expression, possibly prefixed with \com-
+(not). The `not' operator has precedence over `and', which has precedence over
+`or', braces being used to group evaluation. The conditionals making up the
+expressions are the same as those passed to \com\ifwhatever (which is used
+internally), i.e. \TeX\ conditionals or argument-taking ones. Space is ignored
+at the beginning of an operand, but not at the end, unless the operand is a
+braced expression. However, such a space is often harmless there (if the
+conditional is a \texapi conditional), and sometimes useful (to delimit for
+instance a number in an \com\ifnum, see the example on the right); it should be
+removed in the usual cases (e.g. after \com\ifcat\ \tcode{XY}). The macro can
+be prefixed with \com\reverse.
+
+\Example
+\def\iffibonacci#1{%
+  \ifexpression{%
+    -\ifnum#1<0 & -\ifnum#1>100 &
+    { \ifnum#1=0  | \ifnum#1=1  |
+      \ifnum#1=2  | \ifnum#1=3  |
+      \ifnum#1=5  | \ifnum#1=8  |
+      \ifnum#1=13 | \ifnum#1=21 |
+      \ifnum#1=34 | \ifnum#1=55 |
+      \ifnum#1=89 }
+    }{#1 is a Fibonacci number lower than 100.}
+     {#1 isn't a Fibonnaci number lower than 100.}%
+  }
+
+\iffibonacci{55}
+\Example/
+
+In the example on the right, the first two conditionals (excluding negative
+numbers and numbers lower than 100) are logically useless, but they save time
+(the third subexpression isn't evaluated in case one of the first two is
+true), and they illustrate how negation and grouping work.
+
+
+
+\cslist{
+  !\ifelseif/statements/
+  }
+This (introduced in v.1.04) is a simple way to evaluate successive
+conditionals until one is found true; the \arg{statements} are any number of
+pairs \arg{conditional}\arg{statement}; when the first true \arg{conditional}
+is found, its associated \arg{statement} is executed and the rest is
+discarded. The conditionals there are the same as with \com\ifwhatever. The
+macro can be prefixed with \com\reverse, in which case the statement
+associated with the first false conditional is executed. If no conditional is
+true (or false, if \com\reverse is used), nothing happens; a default case can
+nonetheless be constructed with a last statement whose conditional is
+\com\iftrue (or \com\iffalse with \com\reverse), as illustrated in the example
+on the right. Spaces are ignored.
+
+The construction is the same thing as embedding each conditional into the
+\false\ part of the previous one; however, it is simpler to write and to read.
+
+\Example
+\def\checkanswer#1{%
+  \ifelseif{%
+    {\ifexpression{ \ifstring{#1}{yes} | 
+                    \ifstring{#1}{true}} }
+      {You agree.}
+    {\ifexpression{ \ifstring{#1}{no} |
+                    \ifstring{#1}{false}} }
+      {You disagree.}
+    \iftrue
+      {I don't understand your answer.}}%
+  }
+
++\checkanswer{You bet!}+
+\Example/
+
+
+\cslist{
+  !\afterfi/code/,
+  !\afterdummyfi/code/
+  }
+You shouldn't use these. The first one closes the current conditional and
+executes \arg{code}. The second one lets go one \com\fi and executes
+\arg{code}. So these are kinds of \com\expandafter's when \arg{code} isn't
+just a command. Anything before the incoming \com\fi is gobbled. The reason
+why you should use one or the other should be clear to you, otherwise you'll
+probably be messing with a conditional.
+
+\Example
+\iftrue
+  \afterdummyfi{\afterfi{Here we are.}}
+\else
+  \iffalse
+    Whatever.
+  \fi
+\fi
+\Example/
+
+\description/
+
+
+
+
+
+
+
+
+\description{Poking at what comes next}
+
+\cslist{
+  \skipspace/code/
+  }
+This gobbles any incoming space, if any, and executes \arg{code}.
+Of course it doesn't require there to be any space to work properly.
+(This was called \com\nospace prior to version 1.02.)
+
+\vskip\baselineskip
+
+All the following conditionals can be prefixed with \com\reverse.
+And in case your head's buzzing, their names are quite regular:
+take an \com\if, \com\ifcat or \com\ifx, add `\tcode{next}', and create
+variants by doubling the \tcode{f} and/or adding \tcode{nospace}
+at the end.
+
+\Example
+\skipspace{foo} bar
+\Example/
+
+\cslist{
+  \ifnext/token/\true\false,
+  \iffnext/token/\true,
+  \ifnextnospace/token/\true\false,
+  \iffnextnospace/token/\true
+  }
+These poke at the next token and see whether it
+has the same character code as \arg{token}. In other
+words, an \com\if test is performed between \arg{token}
+and the next token in the input stream. However, neither
+\arg{token} nor the incoming token are expanded, so that
+they can be control sequences and no unwanted expansion 
+will occur. Control sequences are all equal according to
+this test (which can very well take an undefined control
+sequence as \arg{token}). The nospace version must be
+pretty clear: the macro discards all incoming spaces until
+it finds a non-space token to test (unfortunately,
+an implicit space and a space character are undistinguishable
+as far as this test (and the next ones) is concerned, so in
+the very unlikely case where an implicit space was waiting
+in the stream, it'll be gobbled in the nospace variant).
+
+\Example
+Here comes \ifnext e{an }{a }e.
+Here comes \reverse\ifnext e{a }{an }b.
+Here comes
+\iffnextnospace\foo{a control sequence: } \TeX.
+\Example/
+
+\cslist{
+  \ifcatnext/token/\true\false,
+  \iffcatnext/token/\true,
+  \ifcatnextnospace/token/\true\false,
+  \iffcatnextnospace/token/\true
+  }
+These are the same as above with an \com\ifcat test
+instead of \com\if. Again, control sequences aren't expanded
+and they all have the same category code.
+
+\Example
+\def\tex{\TeX\iffcatnext a{ }}
+A \tex is a \tex is a \tex.
+\Example/
+
+\cslist{
+  \ifxnext/token/\true\false,
+  \iffxnext/token/\true,
+  \ifxnextnospace/token/\true\false,
+  \iffxnextnospace/token/\true
+  }
+Once again like the previous commands, this time with
+an \com\ifx, i.e. the definitions of control sequences
+are compared, and in case \arg{token} and/or the next
+token are unexpandable thing, both character code and
+category code are compared. So these are performing 
+real \com\ifx tests.
+
+\Example
+\def\foo{not \string\TeX}
+\reverse\iffxnextnospace\TeX
+  {The incoming command isn't \string\TeX: } \foo.
+\Example/
+
+\description/
+
+
+
+
+
+
+\description{String manipulation}
+
+\cslist{
+  !\ifstring/string1//string2/\true\false,
+  !\iffstring/string1//string2/\true
+  }
+These return \true\ if the two strings are identical.
+Category codes aren't taken into account when strings
+are compared.
+
+\Example
+Two \ifstring{abc}{abc}{equal}{unequal} strings
+and an \reverse\iffemptystring{something}{unempty} one.
+\Example/
+
+
+\cslist{
+  !\ifemptystring/string/\true\false,
+  !\iffemptystring/string/\true
+  }
+These return \true\ if \arg{string} is empty.
+
+
+
+
+\cslist{
+  \newstring/string/
+  }
+The following operations (\com\ifprefix, \com\removesuffix, etc.)
+aren't fully expandable by default. However, if a string has been
+previously declared with \com\newstring, they magically become
+fully expandable.
+
+So, in what follows, macros aren't marked as expandable, although
+they can be if the preceding condition is fulfilled. Besides, these
+macro aren't \com\protected even though their default behavior would
+require that they be. But you can always append a \com\noexpand to
+an unprotected command, whereas you cannot force the execution of a
+protected one. (This protecting issue is of course totally irrelevant
+for the \com\removeprefixin and \com\removesuffixin commands, which aren't
+expandable by definition and are thus protected.)
+
+
+
+
+\cslist{
+  \ifprefix/prefix//string/\true\false,
+  \iffprefix/prefix//string/\true
+  }
+This test is true if \arg{string} begins with \arg{prefix}.
+Category codes do matter. 
+
+\Example
+\newstring{abc}
+\edef\foo{\ifprefix{abc}{abcd}{True}{False}.}
+\edef\bar{\reverse\iffsuffix{abc}{whatever}{No suffix}.}
+\edef\foobar{\ifcontains{abc}{gee}{Yes}{No}.}
+\meaning\foo\par
+\meaning\bar\par
+\meaning\foobar
+\Example/
+
+\cslist{
+  \ifsuffix/suffix//string/\true\false,
+  \iffsuffix/suffix//string/\true
+  }
+True if \arg{string} ends with \arg{suffix}.
+
+\cslist{
+  \ifcontains/string1//string2/\true\false,
+  \iffcontains/string1//string2/\true
+  }
+Finally, this is true if \arg{string2} contains \arg{string1}.
+
+
+\cslist{
+  \removeprefix/prefix//string/,
+  \removesuffix/suffix//string/
+  }
+These return \arg{string} without \arg{prefix} (resp.
+\arg{suffix}). No test is performed to check that
+\arg{string} indeed begins (resp. ends) with \arg{prefix}
+(resp \arg{suffix}), so these macros make sense only after
+the adequate tests.
+
+\cslist{
+  \removeprefixand/prefix//string//code/,
+  \removesuffixand/suffix//string//code/
+  }
+These do the same as the previous one, but feed the
+resulting string to \arg{code}, between braces. Once again,
+no test is performed beforehand.
+
+\cslist{
+  \removeprefixin/prefix//string/\comarg,
+  \removesuffixin/suffix//string/\comarg
+  }
+These define \comarg\ as \arg{string} without \arg{prefix}
+(resp. \arg{suffix}). No test either. Sorry.
+
+\cslist{
+  \splitstringat/string1//string2//code/
+  }
+This cuts \arg{string2} in two at \arg{string1}'s first occurrence 
+and passes the two parts as braced arguments to \arg{code}. And,
+again: no test. (This was called \com\splitstring prior to version
+1.02.)
+
+\Example
+\def\record#1 : #2.{%
+  \par\bgroup
+    \it\ifprefix*{#1}{\removeprefix*{#1} [live]}{#1}
+  \egroup
+  (\ifcontains/{#2}{\splitstringat/{#2}{\dodate}}{#2})
+  }
+\def\dodate#1#2{recorded #1, released #2}
+
+A somewhat incomplete list of fantastic
+records by Frank Zappa:
+\record Absolutely Free : 1967.
+\record The Grand Wazoo : 1972.
+\record L\"ather : 1977/1996.
+\record *Make a Jazz Noise Here : 1988/1991.
+\Example/
+
+\description/
+
+
+
+
+
+
+\description{Various things on the same page}
+
+\cslist{
+  \setcatcodes\barg{list}
+  }
+The \arg{list} argument here means comma separated
+\arg{characters}\verb/=/\arg{category code}, with
+an \ital{s} to \ital{characters} because you can
+concatenate them if you want them to share the same
+\arg{category code}. So, as you might have guessed,
+this set all \arg{characters} to characters with
+catcode \arg{category code}. And it also sets 
+\com\restorecatcodes accordingly. The changes are
+local. The \verb/#/ character requires a backslash
+(so do braces and the backslash itself, but that's obvious).
+
+\cslist{
+  \restorecatcodes
+  }
+This restores the catcodes of the characters changed
+with the previous command, which is cumulative, i.e.
+\com\restorecatcodes restores catcodes changed by all preceding
+\com\setcatcodes commands, not only the last one. Since
+changes are local, \com\restorecatcodes may be useless in a group
+(and the effect of \com\restorecatcodes itself is local too).
+
+\Example
+\setcatcodes{\\\#\{\}\%=12,\|=0}
+Hey, were're verbatimizing:
+\def\foo#1{\bar{#1}}%
+|restorecatcodes
+\Example/
+
+\Example
+\bgroup
+And now in a group:\par
+\setcatcodes{z=13}
+\defz{ZZZZZZZZZZZZZZZZZZZZZZZZZZ}
+I'm sleeping: z.\par
+\egroup
+And I'm not: z.
+\Example/
+
+
+
+\vskip\baselineskip
+The trimming macros below are adapted from Will Robertson's \tcode{trimspace}
+package. Note that trimming on the right is dangerous for braces:
+\verb"\trimright{{hello} }" and \verb"\trimright{{hello}}" both result in
+\verb"hello", not \verb"{hello}".
+
+
+\cslist{
+  !\trimleft/string/,
+  !\trimright/string/,
+  !\trim/string/
+  }
+These return \arg{string} with one space removed at the beginning
+or end or both. There's no need to check beforehand whether there
+are indeed such spaces.
+
+\Example
++\trim{ bar }+
+\Example/
+
+\cslist{
+  !\passtrimleft/string//code/,
+  !\passtrimright/string//code/,
+  !\passtrim/string//code/
+  }
+These return \arg{string} trimmed of spaces as a braced argument to
+\arg{code}.
+
+\cslist{
+  \deftrimleft\comarg/string/,
+  \deftrimright\comarg/string/,
+  \deftrim\comarg/string/
+  }
+The same thing again, except now those commands define \comarg\
+to \arg{string}, etc.
+
+\Example
+\deftrimleft\foo{ bar }
++\foo+
+\Example/
+
+\description/
+
+
+
+
+
+
+
+\description{While statements}
+
+\cslist{%
+  !\repeatuntil/number//code/
+  }
+This executes \arg{code} \arg{number} times. The \arg{number}
+argument can be a \com\count register, an integer defined with
+\com\chardef, etc., and of course a string of digits. In any case,
+it is really an argument and must be surrounded by braces if it is
+made of more than one token.
+
+\Example
+We have seen \repeatuntil\pageno{I} pages.\par
+\edef\foo{\repeatuntil3{.}}
+\meaning\foo
+\Example/
+
+
+\cslist{
+  !\dowhile/condition//code/
+  }
+This repeats \arg{code} while \arg{condition} is true. The latter
+must be a `straight' \tcode{if}, i.e. either one of \texapi's
+\com\if... or a \com\straightenif\barg{\TeX\ conditional} construction,
+in both cases without the \true\ and \false\ arguments, because \true\ is actually
+\arg{code}, and \false\ would make no sense. Finally, the conditional
+must be a simple \com\if..., not an \com\iff... version. Once again, this
+makes sense: the \ital{if and only if} clause is implicit in a \ital{while}
+statement. If you use an \com\iff..., you'll end up with many empty braces,
+which is harmless unless you're in a context of expansion. You can use \com\reverse
+in \arg{condition}.
+
+\Example
+\newife\ifbreakloop \def\foo{}
+\dowhile{\reverse\ifbreakloop}
+        {\addleft\foo{a}%
+         \passexpanded\iffstring\foo{aaaa}
+                      \breaklooptrue}
+\foo
+\Example/
+
+\Example
+\edef\foo{%
+  The inconvenience of iff...:
+  \dowhile{\straighteniff{ifnum}{4=5 }}
+          {whatever}
+  }
+\meaning\foo
+\Example/
+
+
+
+\cslist{
+  \newwhile\comarg/number//transformations//code/
+  }
+The \com\dowhile macro is not very powerful since
+you must generally change something somewhere to make
+it stops, and thus its expandability is somewhat perfunctory.
+That's why there is \com\newwhile. It creates an expandable \comarg\ which takes
+\arg{number} arguments (up to 9, as usual) and repeats \arg{code}
+indefinetely. So, at first sight, it's bad news. But the point
+is \arg{code} is supposed to launch the \com\breakwhile macro below sooner or
+later, i.e. stop the loop. Besides, on each iteration (barring the first), \arg{transformations}
+are applied to the arguments, and this means: the first argument is
+replaced by the first transformation, the second argument by the second
+transformation, etc. So there must be as many transformations as there
+are arguments, transformations themselves being just code that can
+make reference to the arguments. If you don't want to transform an
+argument, just repeat it in the transformation.
+
+\cslist{
+  !\breakwhile/code/
+  }
+This breaks the current while loop and executes \arg{code}, which can make
+reference to the arguments of the loop.
+
+\cslist{
+  !\changewhile/new arguments/
+  }
+This replaces the default \arg{transformations} defined with \com\newwhile
+and passes the \arg{new arguments} for the next iteration. There
+must be as many arguments as required by the loop. The original
+\arg{transformations} remain in force for the next iterations.
+
+\Example
+                        % Transformations.
+\newwhile\largestsquare2{\numexpr(#1+1)}{#2}{%
+  \reverse\straighteniff{ifnum}{\numexpr(#1*#1)<#2 }
+                     {The largest number whose square
+                      is smaller than #2 is
+                      \breakwhile{\the\numexpr(#1-1).}}}
+\largestsquare{1}{50}\par
+\largestsquare{1}{200}
+\Example/
+
+
+\description/
+
+
+
+
+\description{For statements on the fly}
+
+\cslist{
+  \dofor/list//parameter text/\barg{definition}/coda/
+  }
+This runs \arg{definition} on each occurrence of 
+\arg{parameter text} in \arg{list}. The \arg{parameter text}
+is a real one, hence the braces around \arg{definition}.
+The \arg{coda} is executed if and only if the loop goes
+to its natural end, i.e. it is not terminated by one of
+the commands below. It must be present, even if you don't
+want one (in which case, leave it empty), and it can't make
+any reference to the arguments of the parameter text.
+A loop thus executed is absolutely
+not expandable. You can embed as many loops as you want
+(but don't forget to double the \verb/#/).
+
+\cslist{
+  \dofornoempty
+  }
+This is the same as above, except \arg{definition} is not executed
+when the \ital{first} argument is empty.
+
+
+\cslist{
+  \breakfor/code/
+  }
+This breaks the current loop and executes \arg{code};
+the \arg{coda} of the loop is not executed.
+
+\cslist{
+  \retrieverest/code/
+  }
+This also breaks the loop, but it retrieves the remaining
+arguments in the list and pass them as a braced argument
+to \arg{code}.
+
+\cslist{
+  \pausefor/code/
+  }
+This interrupts the loop and executes \arg{code}; the loop
+being interrupted means you're in the middle of the list, and
+you can process it. Such a pause must be terminated by a
+\com\resumefor if you don't want nasty internal code
+to surface.
+
+\cslist{
+  \resumefor\com\dofor
+  }
+This restarts the current loop. It is necessary to specify
+\com\dofor, because \com\resumefor is more general and is
+used to restart any kind of loop, especially those defined
+with \com\newfor (see next page).
+
+\Example
+\dofor{a,b,c,}#1,{[#1]}{}
+\Example/
+
+\Example
+\dofor{(a=13)(b=3)(c=54)(d=33)(e=22)}(#1=#2){%
+  \straighteniff{ifnum}{#2>50 }
+    {\breakfor{There's a number larger than 50: #1=#2.}}}
+  {No number larger than 50.}
+\Example/
+
+\Example
+\dofornoempty{dd,e,,acb,3,ee4,,,}#1,{%
+  \dofor{#1}##1{[##1]}{}...%
+  }{}
+\Example/
+
+\vskip\baselineskip
+
+The \com\dofor loop does not perform any kind of normalisation
+on the list. I.e. the list must be exactly designed to match
+the parameter text, including spaces and other unwelcome guests.
+
+The \com\dofor macro is useful for straightforward loops used once
+or twice in a document. But for fully fledged total-control
+fully expandable hey-that's-too-cool loops, you should use the
+\com\newfor construction.
+
+
+\description/
+
+
+
+
+
+
+
+
+
+
+
+
+
+\description{For statements: first steps}
+
+\cslist{
+  \newfor\comarg\barg{optional passed arguments},
+  \zilch\kern-4em/parameter text/\barg{definition}[/optional coda/]
+  }
+This creates a recursive \comarg\ that will consume all input
+with structure \arg{parameter text}. Let's forget
+\barg{optional arguments} for a while, since they're optional
+(albeit braced). Let's forget the optional coda as well. So
+it boils down to:
+
+\vskip\baselineskip
+\noindent\com\newfor\comarg\arg{parameter text}\barg{definition}
+\vskip\baselineskip
+
+\noindent so that basically \com\newfor works like \com\def.
+The \arg{parameter text} is a real parameter
+text as with \com\def, just like \barg{definition} is a real
+definition, hence the braces. The only difference is there must
+be at least one argument,  because we need something to loop
+upon. I.e. \arg{parameter text} is at least \verb/#1/.
+
+Now you can launch \comarg\ on an argument which is made of as
+many occurrences of \arg{parameter text} as you wish, and on each
+occurrence \arg{definition} will be executed. So you've created
+a loop. And the good news is that this loop is fully expandable.
+
+It is your job to make sure that what is fed to \comarg\ has
+the correct argument structure.
+
+If \arg{coda} is specified, it is executed when the loop ends,
+if it ends naturally, i.e. by exhausting its input, and not
+by some of the loop-breaking commands on the next page. There
+can be no call to arguments of \arg{parameter text} in the 
+\arg{coda}, e.g.
+
+\example
+\newfor\foo#1{...}[...#1...]
+\example/
+
+\noindent is impossible. (You'll get raw inner code.) Such
+reference to arguments in the \arg{coda} is possible only
+with passed arguments, as you'll see in two pages
+from here.
+
+(Note that if there's no \arg{coda}, any space will be gobbled
+after \barg{definition}. This is so because I thought it was better
+to be able to write \tcode{[\arg{code}]} after a space, e.g.
+a line end, than to stick it to \barg{definition}, even though
+that brings this little inconvenience, which is probably harmless
+since \com\newfor is very unlikely to end up anywhere in horizontal
+mode, i.e. in a paragraph.)
+
+Macro thus created can be freely embedded into one another.
+
+\Example
+\newfor\foo#1,{(#1)}
+\foo{a,b,c,}
+\Example/
+
+
+\cslist{
+  \newfornoempty
+  }
+The \com\newfornoempty is similar to \com\newfor, except \arg{definition}
+is not executed in the case the \ital{first} argument is empty.
+
+
+\Example
+\newfornoempty\foo(#1,#2){[#1/#2]}
+                         [Input exhausted.]
+\edef\bar{\foo{(a,b)(c,d)(,e)(f,)}}
+\meaning\bar
+\Example/
+
+\Example
+\newfor\values#1=#2,{%
+  The value of #1 is #2.\par
+  }
+\def\setvalues#1{%
+  \ifsuffix,{#1}{\values{#1}}
+                {\values{#1,}}%
+  }
+\setvalues{A=12,B=45,}
+\setvalues{C=34}
+\Example/
+
+\Example
+\newstring, % \pdfliteral requires full expansion!
+\def\drawline#1{
+  0 0 m % Initializes the path
+  \ifsuffix,{#1}{\drawlinefor{#1}}
+                {\drawlinefor{#1,}}
+  }                             % l = line
+\newfor\drawlinefor#1 #2,{#1 #2 l }[S]% S = draw path
+\pdfliteral{
+  q  % kind of PDF \bgroup
+  1 0 0 RG \drawline{20 10, 40 -15, 100 0,}
+  0 1 0 RG \drawline{30 -15, 60 10, 130 0}
+  Q} % kind of PDF \egroup
+\Example/
+
+\description/
+
+
+
+
+
+
+
+
+\description{For statements: interruptions}
+\advance\vsize by 2\baselineskip
+
+\noindent (The commands on this page are the same as those
+introduced with \com\dofor; they're explained
+more thoroughly here.)
+
+\cslist{
+  !\breakfor/code/
+  }
+Used inside a loop created with \com\newfor, this
+interrupts it, gobbles the remaining input, and 
+executes \arg{code}. If the loop had a \arg{coda},
+it is not executed. Any material between the \com\breakfor
+command and the end of the definition of the loop
+is gobbled. It is especially bad with conditionals,
+so you should use \com\afterfi, or better yet a
+\com\straightenif version.
+
+\Example
+\newfor\foo#1{%
+  \straighteniff{if}{\noexpand#1z}
+    {\breakfor{There is a `z'!}}
+    #1... % This will be gobbled.
+  }[There is no `z'...]
+
+\foo{abcdef}\par
+\foo{abzdef}
+\Example/
+
+\cslist{
+  !\retrieverest/code/
+  }
+This does the same thing as \com\breakfor, i.e. breaks the
+current loop, but it passes the rest of the material initially
+passed to the loop as a braced argument to \arg{code}. Arguments
+in that remaining material
+aren't extracted from their surrounding delimiters, if any.
+
+\Example
+\def\remainder#1{(And `#1' was still to come.)}
+\newfor\foo#1=#2,{%
+  \unless\ifnum#1=#2 
+    \afterfi{% Thrilling...
+      \retrieverest{There is a false equation!
+                    \remainder}}%
+  \fi}
+\foo{3=3,2=2,451=451,7=4,78=78,9=0,}
+\Example/
+
+
+\cslist{
+  !\pausefor/code/,
+  !\resumefor/loop command/
+  }
+The \com\pausefor command stops the loop and executes \arg{code}.
+That means that you're in the middle of the material being processed and
+you can act on it. It is useful if the material isn't totally
+regular. For instance, a typical Bib\TeX\ entry is a list of
+`\tcode{\arg{field}=\arg{value}}' pairs, with each pair
+terminated by a comma and the \arg{value} either between braces
+or quotes. Thus, you can't have a simple
+
+\example
+\newfor\bibfor#1=#2,{#1...#2}
+\example/{}{}
+
+\noindent to process the entry, because a \arg{value} may be delimited
+by quotes and still contain a comma, and quotes mean nothing to \TeX,
+so the comma will be mistaken for the delimiter. An oversimplified
+solution with \com\pausefor can be seen on the right. The loop actually
+works on the predictable part only (before the equal sign), is interrupted,
+the value is retrieved, and the loop is resumed.
+(Why one would want to process a Bib\TeX\ entry
+with \TeX\ in the first place is a question I can personally answer.)
+
+Once \com\pausefor is used, there must be somewhere down your code
+a \com\resumefor\comarg\ statement, to launch the loop again, otherwise
+you'll end up stumbling on some nasty internal code. It is impossible
+to know (in a perfectly expandable way) the loop we're currently in, hence
+the \comarg\ as a argument to \com\resumefor: it is the loop one wants to
+start again. Yes, it means you can also process the rest of the material
+with another loop, the consequences of which I leave it to you to ponder.
+Passed arguments, if any, should follow \comarg\ after \com\resumefor.
+
+
+\Example
+\newfor\bibfor#1={%
+  \pausefor{\getvalue{#1}}}
+\def\getvalue#1{%
+  \trim{#1}:
+  \ifnextnospace"{\getquotevalue}
+                 {\getcommavalue}
+  }
+\def\getquotevalue"#1",{\showvalue{#1}}
+\def\getcommavalue#1,{\showvalue{#1}}
+\def\showvalue#1{%
+  {\it\trim{#1}}.\par\resumefor\bibfor}
+
+\bibfor{
+  Author = {John Doe},
+  Title  = "Me, myself and I",
+  Year   = 1978,}
+\Example/
+
+\description/
+
+
+
+
+
+
+
+\description{For statements: passed arguments}
+\advance\vsize by \baselineskip
+
+
+Suppose you want to retrieve the largest number in
+a list a numbers. The first example on the right shows
+you how to do so. But this solution won't work
+if you need the loop to be expandable, because there's
+a number assignment.
+
+\Example
+\newcount\largest
+\newfor\findlargest#1,{%
+  \ifnum#1>\largest
+    \largest=#1
+  \fi}
+  [The largest number is \the\largest.]
+
+\findlargest{45,33,1,4844,12,655,}
+\Example/
+
+That's why loops defined with \com\newfor can pass
+arguments from one iteration to the next. The number of those arguments
+are the \barg{optional passed arguments} in the description
+of \com\newfor two pages ago. So, a typical fully-fledged
+use of \com\newfor is:
+
+\example
+\newfor\myloop{2}#3=#4,{...#1...#2...#3...#4...}
+                       [...#1...#2...]
+\example/
+
+\noindent which means that \com\myloop takes four arguments,
+two of which are actually passed arguments, the third and the
+four being in the recursive list that \com\myloop runs on.
+Besides, as you can see, passed arguments can appear in
+\arg{coda}.
+Now a call to \com\myloop looks like:
+
+\example
+\myloop{one}{two}{a=1,b=2,...}
+\example/
+
+\noindent where \tcode{one} and \tcode{two} are passed
+arguments. There can be up to 8 passed arguments (since there must
+be at least one argument to loop on), and if there are
+{\it n} of them, numbering of arguments in \arg{parameter text} must
+start at {\it n}+1, as in the above example.
+
+
+\cslist{
+  \passarguments/arg1//arg2/...
+  }
+Passed arguments are automatically retrieved from one iteration
+to the next. However, if you can't change them, they aren't very
+interesting. Hence this command: it passes \arg{arg1}, \arg{arg2}, etc.,
+to the next iteration, replacing the previous ones. There
+must be as many arguments to \com\passarguments as required
+by the loop, even if you don't want to pass new values for
+all (in which case, just pass the previous value).
+Beware: \com\passarguments ends the current iteration, just
+like \com\breakfor,
+and any remaining material in the definition of the loop
+is gobbled.
+
+Thus, the second version of our \com\findlargest command
+works as follows: it takes one harmless passed argument,
+and loops on the following list. Obviously, 45 is larger
+than 0, so it is passed as the new first argument; then,
+33 is not larger than 45, so nothing happen, and 45 is
+implicitly passed again as the first argument, and so
+on and so forth, until finally the \arg{coda} prints
+the largest number in the list. And, as illustrated
+by the \com\edef, everything expands nicely.
+
+\Example
+\newfor\findlargest{1}#2,{%
+  \straighteniff{ifnum}{#2>#1 }
+                {\passarguments{#2}}%
+  }
+  [The largest number is #1.]
+
+\edef\foo{\findlargest{0}{45,33,1,4844,12,655,}}
+\meaning\foo
+\Example/
+
+\description/
+
+
+
+
+
+
+
+
+\description{For statements: examples}
+
+
+Loops created with \com\newfor are somewhat tricky
+to get a hand on, so here are some examples. First
+of all, you might think that it would be nice to
+be able to define a loop whose argument structure
+is defined but not its replacement text, so that you
+can call it on similar lists but with different
+operations. For instance, a generic loop that works
+on all comma-separated lists. You can't do that exactly
+with \com\newfor, but you can easily use passed arguments
+to do something similar, e.g.:
+
+\example
+\newfor\commalist{1}#2,{#1{#2}}
+\commalist\tree{leaf,fruit,twig,}
+\commalist\scale{b minor,f sharp,whatever lydian}
+\example/
+
+\noindent with \com\tree and \com\scale defined to
+process one argument: \com\commalist itself has no real
+definition, and you don't have to bother about passed
+arguments (although you can still use them).
+
+\Example
+\newfor\sortnum{1}#2,{%
+  \subsortnum{#2}{}{#1}%
+  }[Sorted list: #1]
+\newfor\subsortnum{2}#3,{%
+  \straightenif{ifnum}{#1<#3 }
+         {\retrieverest{\passtosortnum{#2#1,#3,}}}
+         {\passarguments{#1}{#2#3,}}%
+  }[\passarguments{#2#1,}]
+\def\passtosortnum#1#2{\passarguments{#1#2}}
+
+\sortnum{}{5,12,-161,3,0,63,22,-45,}
+\Example/
+
+The first example sorts a list of numbers separated
+by commas. The first loop, \com\sortnum, takes a passed
+argument which contains the numbers already sorted (so
+it is empty at the beginning) and it runs on the list
+to be sorted. The second loop, \com\subsortnum, takes
+two passed arguments: the first one is the number under
+investigation, the second one is the list of numbers
+smaller than the number under investigation (so it is
+empty too at the beginning), and it is updated each
+time we find such a number as the third, non-passed
+arguments to \com\subsortnum, which is an element of
+the list of already sorted numbers as preserved in
+\com\sortnum's first passed argument... got that?
+
+Let's follow some iterations. The first call is:
+
+\example
+            % incoming arguments 
+\sortnum{}5,12,-161,3,0,63,22,-45,
+\example/
+
+\noindent and it calls
+
+\example
+\subsortnum{5}{}{}
+\example/
+
+\noindent so that \com\subsortnum terminates immediately:
+it has no input. So it calls its coda:
+
+\example
+\passarguments{5,}
+\example/
+
+\noindent (where \tcode{5} is really the first argument following
+the empty second one). Since \com\subsortnum has terminated, this
+call to \com\passarguments is for \com\sortnum, hence the following
+iteration is:
+
+\example
+              % incoming arguments
+\sortnum{5,}12,-161,3,0,63,22,-45,
+--> \subsortnum{12}{}5,
+\example/
+
+\noindent Ah, something new. 12 is larger than 5, so the conditional
+is false. So \com\subsortnum passes the following to itself:
+
+\example
+\passarguments{12}{5,}
+--> \subsortnum{12}{5,}{}
+\example/
+
+\noindent and once again it terminates, hence:
+
+\example
+\passarguments{5,12,}   % incoming arguments
+--> \sortnum{5,12,}-161,3,0,63,22,-45,
+                         % incoming argument
+--> \subsortnum{-161}{}5,12,
+\example/
+
+\noindent and obviously -161 is smaller than 5, so the rest of the list
+is retrieved with \com\retrieverest and passed as the second argument of
+\com\passtosortnum. Once again, since this terminates \com\subsortnum,
+\com\passarguments in \com\passtosortnum is for \com\sortnum:
+
+\example
+\passtosortnum{-161,5,}{12,}
+                          % incoming arguments
+--> \sortnum{-161,5,12,}3,0,63,22,-45,
+                         % incoming arguments
+--> \subsortnum{3}{}-161,5,12,
+--> \subsortnum{3}{-161,}5,12,
+--> \passarguments{161,3,5,12,}
+--> \sortnum{-161,3,5,12,}0,63,22,-45,
+...
+\example/
+
+
+\noindent and so on and so forth.
+
+Replace the test with any other one and you
+have a generic sorting function, as in the example
+on the right, which sorts entries alphabetically
+or chronologically. It is possible to make things both 
+cleverer and simpler. (The Lua code compares two
+strings, and it could very well have handled the
+\com\year version.)
+
+\Example
+\newfor\sortbooks{2}#3(#4),{%
+  \subsortbooks#1{#3(#4)}{}{#2}
+  }[\bgroup\it#2\egroup]
+\newfor\subsortbooks{3}#4(#5),{%
+  #1#2{#4}{#5}{#3}
+  }[\passarguments#1{#3#2,}]
+
+\def\alpha#1(#2)#3#4#5{%
+  \directlua{
+    if "#1"<"#3" then 
+      tex.print("\noexpand\\firstoftwo")
+    else 
+      tex.print("\noexpand\\secondoftwo")
+    end}
+    {\retrieverest{%
+      \passtosortbooks\alpha{#5#1(#2),#3(#4),}}}
+    {\passarguments\alpha{#1(#2)}{#5#3(#4),}}
+  }
+\def\year#1(#2)#3#4#5{
+  \straightenif{ifnum}{#2<#4 }
+      {\retrieverest{%
+        \passtosortbooks\year{#5#1(#2),#3(#4),}}}
+      {\passarguments\year{#1(#2)}{#5#3(#4),}}
+  }
+\def\passtosortbooks#1#2#3{\passarguments#1{#2#3}}
+
+\def\books{
+  Oblivion (2004),
+  Infinite Jest (1996),
+  Brief Interviews with Hideous Men (1999),
+  Girl with Curious Hair (1989),
+  The Broom of the System (1987),
+  The Pale King (2011),% No parasitic space!
+  }
+David Foster Wallace's books in alphabetical order:\par
+\passexpanded{\sortbooks\alpha{}}\books \par
+David Foster Wallace's books ordered by date:\par
+\passexpanded{\sortbooks\year{}}\books 
+\Example/
+
+\vskip\baselineskip
+
+The next example is a palindrome detector: it returns
+true if the string it is fed is made of a string followed
+by itself reverse (which is not the exact definition of
+a palindrome, which is a string that is its own reverse,
+but we keep things simple).
+
+The first loop, \com\palincount, simply counts the number
+of characters in the string; it also reaccumulates it
+as its second argument, something that could be avoided
+if there was a wrapper macro. Once it is finished, it
+passes the original string along with half the number
+of characters to \com\palincheck, which simply accumulates
+in reverse this number of characters, by decreasing it
+on each iteration. Once this number is exhausted, it
+compares what it has accumulated to what there remains
+to be processed, and if both strings match, the original
+string is a palindrome.
+
+\Example
+\newfor\palincount{2}#3{%
+  \passarguments{\numexpr(#1+1)}{#2#3}%
+  }[\palincheck{\numexpr(#1/2)}{}{#2}]
+\newfor\palincheck{2}#3{%
+  \reverse\straightenif{ifnum}{\numexpr(#1-1)>0 }
+               {\retrieverest{\compare{#3#2}}}
+               {\passarguments{\numexpr(#1-1)}{#3#2}}%
+  }
+\def\compare#1#2{%
+  \ifstring{#1}{#2}{TRUE}{FALSE}%
+  }
+
+\edef\foo{\palincount{0}{}{abcdeffedcba}}
+\edef\bar{\palincount{0}{}{abcdff}}
+\meaning\foo, \meaning\bar
+\Example/
+
+
+\description/
+
+
+\bye

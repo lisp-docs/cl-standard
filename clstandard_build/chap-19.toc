@@ -1,0 +1,53 @@
+!0Programming Language---Common Lisp !!i
+!119. Filenames !!i
+!219.1\ Overview of Filenames !!19--1
+!319.1.1\ Namestrings as Filenames !!19--1
+!319.1.2\ Pathnames as Filenames !!19--1
+!319.1.3\ Parsing Namestrings Into Pathnames !!19--2
+!219.2\ Pathnames !!19--3
+!319.2.1\ Pathname Components !!19--3
+!419.2.1.1\ The Pathname Host Component !!19--3
+!419.2.1.2\ The Pathname Device Component !!19--3
+!419.2.1.3\ The Pathname Directory Component !!19--3
+!419.2.1.4\ The Pathname Name Component !!19--3
+!419.2.1.5\ The Pathname Type Component !!19--3
+!419.2.1.6\ The Pathname Version Component !!19--3
+!319.2.2\ Interpreting Pathname Component Values !!19--3
+!419.2.2.1\ Strings in Component Values !!19--3
+!519.2.2.1.1\ Special Characters in Pathname Components !!19--4
+!519.2.2.1.2\ Case in Pathname Components !!19--4
+!619.2.2.1.2.1\ Local Case in Pathname Components !!19--4
+!619.2.2.1.2.2\ Common Case in Pathname Components !!19--4
+!419.2.2.2\ Special Pathname Component Values !!19--5
+!519.2.2.2.1\ NIL as a Component Value !!19--5
+!519.2.2.2.2\ :WILD as a Component Value !!19--5
+!519.2.2.2.3\ :UNSPECIFIC as a Component Value !!19--5
+!619.2.2.2.3.1\ Relation between component values NIL and :UNSPECIFIC !!19--6
+!419.2.2.3\ Restrictions on Wildcard Pathnames !!19--6
+!419.2.2.4\ Restrictions on Examining Pathname Components !!19--6
+!519.2.2.4.1\ Restrictions on Examining a Pathname Host Component !!19--7
+!519.2.2.4.2\ Restrictions on Examining a Pathname Device Component !!19--7
+!519.2.2.4.3\ Restrictions on Examining a Pathname Directory Component !!19--7
+!619.2.2.4.3.1\ Directory Components in Non-Hierarchical File Systems !!19--8
+!519.2.2.4.4\ Restrictions on Examining a Pathname Name Component !!19--9
+!519.2.2.4.5\ Restrictions on Examining a Pathname Type Component !!19--9
+!519.2.2.4.6\ Restrictions on Examining a Pathname Version Component !!19--9
+!519.2.2.4.7\ Notes about the Pathname Version Component !!19--9
+!419.2.2.5\ Restrictions on Constructing Pathnames !!19--9
+!319.2.3{}Merging Pathnames !!19--10
+!419.2.3.1{}Examples of Merging Pathnames !!19--10
+!219.3\ Logical Pathnames !!19--12
+!319.3.1\ Syntax of Logical Pathname Namestrings !!19--12
+!419.3.1.1\ Additional Information about Parsing Logical Pathname Namestrings !!19--12
+!519.3.1.1.1\ The Host part of a Logical Pathname Namestring !!19--13
+!519.3.1.1.2\ The Device part of a Logical Pathname Namestring !!19--13
+!519.3.1.1.3\ The Directory part of a Logical Pathname Namestring !!19--13
+!519.3.1.1.4\ The Type part of a Logical Pathname Namestring !!19--13
+!519.3.1.1.5\ The Version part of a Logical Pathname Namestring !!19--13
+!519.3.1.1.6\ Wildcard Words in a Logical Pathname Namestring !!19--13
+!519.3.1.1.7\ Lowercase Letters in a Logical Pathname Namestring !!19--13
+!519.3.1.1.8\ Other Syntax in a Logical Pathname Namestring !!19--13
+!319.3.2\ Logical Pathname Components !!19--14
+!419.3.2.1\ Unspecific Components of a Logical Pathname !!19--14
+!419.3.2.2\ Null Strings as Components of a Logical Pathname !!19--14
+!219.4\ {Filenames} Dictionary !!19--15

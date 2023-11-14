@@ -1,0 +1,98 @@
+!0Programming Language---Common Lisp !!i
+!13. Evaluation and Compilation !!i
+!23.1\ Evaluation !!3--1
+!33.1.1\ Introduction to Environments !!3--1
+!43.1.1.1\ The Global Environment !!3--1
+!43.1.1.2\ Dynamic Environments !!3--1
+!43.1.1.3\ Lexical Environments !!3--2
+!53.1.1.3.1\ The Null Lexical Environment !!3--2
+!43.1.1.4\ Environment Objects !!3--3
+!33.1.2\ The Evaluation Model !!3--3
+!43.1.2.1\ Form Evaluation !!3--3
+!53.1.2.1.1\ Symbols as Forms !!3--3
+!63.1.2.1.1.1\ Lexical Variables !!3--4
+!63.1.2.1.1.2\ Dynamic Variables !!3--4
+!63.1.2.1.1.3\ Constant Variables !!3--5
+!63.1.2.1.1.4\ Symbols Naming Both Lexical and Dynamic Variables !!3--5
+!53.1.2.1.2\ Conses as Forms !!3--5
+!63.1.2.1.2.1\ Special Forms !!3--6
+!63.1.2.1.2.2\ Macro Forms !!3--6
+!63.1.2.1.2.3\ Function Forms !!3--7
+!63.1.2.1.2.4{}Lambda Forms !!3--8
+!53.1.2.1.3{}Self-Evaluating Objects !!3--8
+!63.1.2.1.3.1{}Examples of Self-Evaluating Objects !!3--8
+!33.1.3\ Lambda Expressions !!3--9
+!33.1.4\ Closures and Lexical Binding !!3--9
+!33.1.5\ Shadowing !!3--11
+!33.1.6\ Extent !!3--12
+!33.1.7\ Return Values !!3--13
+!23.2\ Compilation !!3--14
+!33.2.1\ Compiler Terminology !!3--14
+!33.2.2\ Compilation Semantics !!3--15
+!43.2.2.1\ Compiler Macros !!3--15
+!53.2.2.1.1\ Purpose of Compiler Macros !!3--16
+!53.2.2.1.2\ Naming of Compiler Macros !!3--16
+!53.2.2.1.3\ When Compiler Macros Are Used !!3--17
+!63.2.2.1.3.1\ Notes about the Implementation of Compiler Macros !!3--17
+!43.2.2.2\ Minimal Compilation !!3--17
+!43.2.2.3\ Semantic Constraints !!3--18
+!33.2.3\ File Compilation !!3--19
+!43.2.3.1\ Processing of Top Level Forms !!3--20
+!53.2.3.1.1\ Processing of Defining Macros !!3--22
+!53.2.3.1.2\ Constraints on Macros and Compiler Macros !!3--22
+!33.2.4\ Literal Objects in Compiled Files !!3--23
+!43.2.4.1\ Externalizable Objects !!3--23
+!43.2.4.2\ Similarity of Literal Objects !!3--24
+!53.2.4.2.1\ Similarity of Aggregate Objects !!3--24
+!53.2.4.2.2\ Definition of Similarity !!3--24
+!43.2.4.3\ Extensions to Similarity Rules !!3--26
+!43.2.4.4\ Additional Constraints on Externalizable Objects !!3--26
+!33.2.5\ Exceptional Situations in the Compiler !!3--27
+!23.3\ Declarations !!3--29
+!33.3.1\ Minimal Declaration Processing Requirements !!3--29
+!33.3.2\ Declaration Specifiers !!3--29
+!33.3.3\ Declaration Identifiers !!3--29
+!43.3.3.1\ Shorthand notation for Type Declarations !!3--30
+!33.3.4\ Declaration Scope !!3--30
+!43.3.4.1\ Examples of Declaration Scope !!3--30
+!23.4\ Lambda Lists !!3--33
+!33.4.1\ Ordinary Lambda Lists !!3--33
+!43.4.1.1\ Specifiers for the required parameters !!3--34
+!43.4.1.2\ Specifiers for optional parameters !!3--35
+!43.4.1.3\ A specifier for a rest parameter !!3--35
+!43.4.1.4\ Specifiers for keyword parameters !!3--35
+!53.4.1.4.1\ Suppressing Keyword Argument Checking !!3--36
+!63.4.1.4.1.1{}Examples of Suppressing Keyword Argument Checking !!3--37
+!43.4.1.5{}Specifiers for {{$ $}}\hbox {{\bbfnine \&aux\/}} variables !!3--37
+!43.4.1.6{}Examples of Ordinary Lambda Lists !!3--37
+!33.4.2\ Generic Function Lambda Lists !!3--39
+!33.4.3\ Specialized Lambda Lists !!3--40
+!33.4.4\ Macro Lambda Lists !!3--41
+!43.4.4.1\ Destructuring by Lambda Lists !!3--42
+!53.4.4.1.1\ Data-directed Destructuring by Lambda Lists !!3--43
+!63.4.4.1.1.1\ Examples of Data-directed Destructuring by Lambda Lists !!3--43
+!53.4.4.1.2\ Lambda-list-directed Destructuring by Lambda Lists !!3--43
+!33.4.5\ Destructuring Lambda Lists !!3--45
+!33.4.6\ Boa Lambda Lists !!3--45
+!33.4.7\ Defsetf Lambda Lists !!3--47
+!33.4.8\ Deftype Lambda Lists !!3--47
+!33.4.9\ Define-modify-macro Lambda Lists !!3--47
+!33.4.10\ Define-method-combination Arguments Lambda Lists !!3--48
+!33.4.11\ Syntactic Interaction of Documentation Strings and Declarations !!3--48
+!23.5\ Error Checking in Function Calls !!3--49
+!33.5.1\ Argument Mismatch Detection !!3--49
+!43.5.1.1\ Safe and Unsafe Calls !!3--49
+!53.5.1.1.1\ Error Detection Time in Safe Calls !!3--50
+!43.5.1.2\ Too Few Arguments !!3--50
+!43.5.1.3\ Too Many Arguments !!3--50
+!43.5.1.4\ Unrecognized Keyword Arguments !!3--50
+!43.5.1.5\ Invalid Keyword Arguments !!3--50
+!43.5.1.6\ Odd Number of Keyword Arguments !!3--51
+!43.5.1.7\ Destructuring Mismatch !!3--51
+!43.5.1.8\ Errors When Calling a Next Method !!3--51
+!23.6\ Traversal Rules and Side Effects !!3--52
+!23.7\ Destructive Operations !!3--53
+!33.7.1\ Modification of Literal Objects !!3--53
+!33.7.2\ Transfer of Control during a Destructive Operation !!3--54
+!43.7.2.1\ Examples of Transfer of Control during a Destructive Operation !!3--54
+!23.8\ {Evaluation and Compilation} Dictionary !!3--55

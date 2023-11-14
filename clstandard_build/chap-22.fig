@@ -1,0 +1,7 @@
+!222--1. Standardized Printer Control Variables!!22--1
+!222--2. Additional Influences on the Lisp printer.!!22--2
+!222--3. Example of Logical Blocks, Conditional Newlines, and Sections!!22--15
+!222--4. Defined names related to pretty printing.!!22--15
+!222--5. Format directives related to Pretty Printing!!22--15
+!222--6. Examples of format control strings!!22--23
+!222--7. Argument correspondences for the WRITE function.!!22--63

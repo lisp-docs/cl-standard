@@ -1,0 +1,47 @@
+
+!2G:dimension!!15--1
+!2G:rank!!15--1
+!2G:vector!!15--1
+!2G:fill pointer!!15--2
+!2G:active!!15--2
+!2G:upgraded array element type!!15--3
+!2G:expressed array element type!!15--3
+!2G:actual array element type!!15--3
+!2G:string!!15--3
+!2G:bit vector!!15--3
+!2R:array!!15--5
+!2R:simple-array!!15--6
+!2R:vector!!15--7
+!2R:simple-vector!!15--8
+!2R:bit-vector!!15--9
+!2R:simple-bit-vector!!15--9
+!2R:make-array!!15--10
+!2R:adjust-array!!15--14
+!2R:adjustable-array-p!!15--17
+!2R:aref!!15--18
+!2R:array-dimension!!15--19
+!2R:array-dimensions!!15--20
+!2R:array-element-type!!15--20
+!2R:array-has-fill-pointer-p!!15--21
+!2R:array-displacement!!15--22
+!2R:array-in-bounds-p!!15--23
+!2R:array-rank!!15--24
+!2R:array-row-major-index!!15--24
+!2R:array-total-size!!15--25
+!2R:arrayp!!15--26
+!2R:fill-pointer!!15--27
+!2R:row-major-aref!!15--28
+!2R:upgraded-array-element-type!!15--29
+!2R:array-dimension-limit!!15--30
+!2R:array-rank-limit!!15--30
+!2R:array-total-size-limit!!15--30
+!2R:simple-vector-p!!15--31
+!2R:svref!!15--31
+!2R:vector!!15--32
+!2R:vector-pop!!15--33
+!2R:vector-push, vector-push-extend!!15--34
+!2R:vectorp!!15--35
+!2R:bit, sbit!!15--36
+!2R:bit-and, bit-andc1, bit-andc2, bit-eqv, bit-ior, bit-nand, bit-nor, bit-not, bit-orc1, bit-orc2, bit-xor!!15--37
+!2R:bit-vector-p!!15--39
+!2R:simple-bit-vector-p!!15--39

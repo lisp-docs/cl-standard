@@ -1,0 +1,15 @@
+!0Programming Language---Common Lisp !!i
+!118. Hash Tables !!i
+!218.1\ Hash Table Concepts !!18--1
+!318.1.1\ Hash-Table Operations !!18--1
+!318.1.2\ Modifying Hash Table Keys !!18--1
+!418.1.2.1\ Visible Modification of Objects with respect to EQ and EQL !!18--2
+!418.1.2.2\ Visible Modification of Objects with respect to EQUAL !!18--2
+!518.1.2.2.1\ Visible Modification of Conses with respect to EQUAL !!18--2
+!518.1.2.2.2\ Visible Modification of Bit Vectors and Strings with respect to EQUAL !!18--2
+!418.1.2.3\ Visible Modification of Objects with respect to EQUALP !!18--2
+!518.1.2.3.1\ Visible Modification of Structures with respect to EQUALP !!18--2
+!518.1.2.3.2\ Visible Modification of Arrays with respect to EQUALP !!18--3
+!518.1.2.3.3\ Visible Modification of Hash Tables with respect to EQUALP !!18--3
+!418.1.2.4\ Visible Modifications by Language Extensions !!18--3
+!218.2\ {Hash Tables} Dictionary !!18--4
