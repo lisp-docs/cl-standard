@@ -1,0 +1,43 @@
+regex expressions for editing the docx files
+
+chapter 1
+-----------
+
+\n(Figures|Credits|\w*) [xvi*]\n
+Credits [xvi]+\n
+
+
+
+\n\w+ [xvi]+\n
+
+
+Version 15.17R, X3J13/94-101R.
+Fri 12-Aug-1994 6:35pm EDT
+
+
+[xvi]+ Programming Language—Common Lisp
+
+Introduction \d+(–\d+)*
+
+\n\w+ \d+(–\d+)*\n
+
+\d+(–\d+)* Programming Language—Common Lisp
+
+chapter 2-end
+-------------
+
+Version 15.17R, X3J13/94-101R.
+Fri 12-Aug-1994 6:35pm EDT
+
+\n\w+(\s+\w+)* [xvi]+\n
+[xvi]+ Programming Language—Common Lisp
+\n\w+(\s+\w+)* \d+(–\d+)*\n
+\d+(–\d+)* Programming Language—Common Lisp
+
+
+find . -not -name "*.md" | xargs -I '{}' mv {} {}.md
+
+for f in *.md; do mv "$f" "$(echo "$f" | sed s/chap-2//)"; done
+
+
+
